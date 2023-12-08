@@ -1,9 +1,9 @@
 import { Fade } from "react-awesome-reveal";
 import { useState } from "react";
-//import { BrowserRoute, Routes, Route} from "react-router-dom"
 import axios from 'axios'
-function Login () {
 
+function Login () {
+ 
     const[username, setUsername] = useState("");
     const[password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -13,9 +13,23 @@ function Login () {
 
     function handleLogin(event){
       event.preventDefault();
-      axios.post('http://localhost:8081/login', {username, password})
-      .then(res => console.log(res))
-      .catch (err => console.log(err))
+      axios.post('http://localhost:8081/', {username, password})
+      .then(res => {
+        console.log(res)
+
+        if (res.data.success) {
+          // Redirect to the dashboard
+          window.location.href = res.data.redirect;
+        } else {
+          setError("Incorrect username or password");
+        }
+        
+      })
+      .catch (err => {
+        console.log(err)
+        setError("Incorrect username or password");
+      })
+
     }
 
 
@@ -36,21 +50,9 @@ function Login () {
                     setError("Password has left blank")
                 }
                 break
-        }
-
-
-
+              }
     }
   
-    function loginSubmit(e){ 
-        if(username !== "" && password != ""){
-            alert("Success");
-        }
-        else{
-            setError("All field are required!");
-        }
-    }
-
 
     return (
         <>

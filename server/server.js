@@ -14,7 +14,7 @@ const db = mysql.createConnection({
 
 })
 
-app.post('/login', (req, res) => {
+app.post('/', (req, res) => {
     console.log("Request Payload:", req.body);
     const sql = "SELECT * FROM user WHERE username = ? AND password = ?";
 
@@ -25,9 +25,10 @@ app.post('/login', (req, res) => {
         }
 
         if(data.length > 0){
-            return res.json("Login Successfully");
+            // Redirect to the dashboard upon successful login
+            return res.json({ success: true, redirect: '/dashboard' });
         } else {
-            return res.json("Login Failed!");
+            return res.json({ success: false, message: "Login Failed!" });
         }
         
     })
