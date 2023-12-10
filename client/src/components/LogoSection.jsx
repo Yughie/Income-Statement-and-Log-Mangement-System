@@ -5,9 +5,10 @@ import Login from "./Login";
 function LogoSection() {
   return (
     <>
-      <div className="flex-col items-center justify-center  bg-black w-screen h-screen text-slate-300">
+      <div className="flex items-center justify-center  bg-black w-screen h-screen text-slate-300">
         {/* IMAGE */}
-        <Fade down cascade damping={0.9}>
+
+        <div className="min-h-screen flex-col items-center justify-center">
           <img
             src={logo}
             alt="Your Image"
@@ -15,7 +16,8 @@ function LogoSection() {
           ></img>
 
           <Login />
-        </Fade>
+          <Fade down cascade damping={0.9}></Fade>
+        </div>
       </div>
     </>
   );

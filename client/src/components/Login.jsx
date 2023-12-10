@@ -50,7 +50,10 @@ function Login() {
   return (
     <>
       <Fade>
-        <form onSubmit={handleLogin} className="max-w-sm mx-auto px-10 md:px-0">
+        <form
+          onSubmit={handleLogin}
+          className="max-w-sm mx-auto px-10 py-5 md:px-0"
+        >
           <div className="mb-5">
             <p>
               {error != "" ? (

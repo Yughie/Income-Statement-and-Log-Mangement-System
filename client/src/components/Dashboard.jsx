@@ -1,5 +1,6 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
+import { useState } from "react";
 
 function Dashboard() {
   return (
@@ -10,63 +11,70 @@ function Dashboard() {
           data-drawer-toggle="logo-sidebar"
           aria-controls="logo-sidebar"
           type="button"
-          class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
         >
-          <span class="sr-only">Open sidebar</span>
+          <span className="sr-only">Open sidebar</span>
           <svg
-            class="w-6 h-6"
+            className="w-6 h-6"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              clip-rule="evenodd"
-              fill-rule="evenodd"
+              clipRule="evenodd"
+              fillRule="evenodd"
               d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
             ></path>
           </svg>
         </button>
 
+        {/* LOGO  */}
         <aside
           id="logo-sidebar"
-          class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+          className="fixed top-0 left-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0"
           aria-label="Sidebar"
         >
-          <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-dbackground">
+          <div className="h-full px-3 py-4 overflow-y-auto bg-dbackground dark:bg-dbackground">
             <a
-              href="https://flowbite.com/"
-              class="flex items-center ps-2.5 mb-5"
+              href="#"
+              className="flex items-center justify-center ps-2.5 mb-5 mt-5"
             >
-              <img src={logo} class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
-              <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
+              <img src={logo} className="h-16 sm:h-16" alt="Southside Logo" />
+              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
             </a>
-            <ul class="space-y-2 font-medium">
+
+            {/*LIST OF TAB */}
+            <ul className="space-y-8 font-medium">
               <li>
                 <a
                   href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center mt-10 p-6 py-6 text-gray-100 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
+                    "
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
-                    viewBox="0 0 22 21"
+                    viewBox="0 0 32 32"
                   >
-                    <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                    <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                    <path
+                      d="M15.5 0C6.9375 0 0 6.9375 0 15.5C0 24.0625 6.9375 31 15.5 31C24.0625 31 31 24.0625 31 15.5C31 6.9375 24.0625 0 15.5 0ZM24.5 17.25C24.5 17.6625 24.1625 18 23.75 18H18V23.75C18 24.1625 17.6625 24.5 17.25 24.5H13.75C13.3375 24.5 13 24.1625 13 23.75V18H7.25C6.8375 18 6.5 17.6625 6.5 17.25V13.75C6.5 13.3375 6.8375 13 7.25 13H13V7.25C13 6.8375 13.3375 6.5 13.75 6.5H17.25C17.6625 6.5 18 6.8375 18 7.25V13H23.75C24.1625 13 24.5 13.3375 24.5 13.75V17.25Z"
+                      fill="#7A30C2"
+                    />
                   </svg>
-                  <span class="ms-3">Dashboard</span>
+
+                  <span className="ms-3">Create New Service</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -74,28 +82,35 @@ function Dashboard() {
                   >
                     <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                   </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Kanban</span>
-                  <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-dbg-dbackground bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                    Pro
+
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    Dashboard
+                  </span>
+                  <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-dbg-dbackground bg-gray-100 rounded-full dark:bg-darkPurple dark:text-gray-300">
+                    Hello
                   </span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
-                    viewBox="0 0 20 20"
+                    viewBox="0 0 31 31"
                   >
-                    <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
+                    <path
+                      d="M0.751531 8.96247L14.8552 15.3604C15.2669 15.5475 15.7325 15.5475 16.1442 15.3604L30.2479 8.96247C31.2499 8.50777 31.2499 6.99351 30.2479 6.53881L16.1448 0.140313C15.9425 0.0478539 15.7227 0 15.5003 0C15.2779 0 15.0581 0.0478539 14.8558 0.140313L0.751531 6.53821C-0.25051 6.99291 -0.25051 8.50777 0.751531 8.96247ZM30.2485 14.3075L26.7313 12.7133L16.9446 17.1495C16.4869 17.3572 16.0007 17.4625 15.5 17.4625C14.9993 17.4625 14.5137 17.3572 14.0554 17.1495L4.26927 12.7133L0.751531 14.3075C-0.25051 14.7616 -0.25051 16.2752 0.751531 16.7293L14.8552 23.1224C15.2669 23.3088 15.7325 23.3088 16.1442 23.1224L30.2485 16.7293C31.2505 16.2752 31.2505 14.7616 30.2485 14.3075ZM30.2485 22.0452L26.7447 20.4571L16.9446 24.8994C16.4869 25.1071 16.0007 25.2124 15.5 25.2124C14.9993 25.2124 14.5137 25.1071 14.0554 24.8994L4.25595 20.4571L0.751531 22.0452C-0.25051 22.4993 -0.25051 24.013 0.751531 24.4671L14.8552 30.8601C15.2669 31.0466 15.7325 31.0466 16.1442 30.8601L30.2485 24.4671C31.2505 24.013 31.2505 22.4993 30.2485 22.0452Z"
+                      fill="7A30C2"
+                    />
                   </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                  <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+
+                  <span className="flex-1 ms-3 whitespace-nowrap">Log</span>
+                  <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
                     3
                   </span>
                 </a>
@@ -103,94 +118,88 @@ function Dashboard() {
               <li>
                 <a
                   href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
-                    viewBox="0 0 20 18"
-                  >
-                    <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                  </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 18 20"
-                  >
-                    <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                  </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 16"
+                    width="31"
+                    height="31"
+                    viewBox="0 0 31 31"
                   >
                     <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                      d="M27.9242 6.64286H4.84375C4.30852 6.64286 3.875 6.14741 3.875 5.53571C3.875 4.92402 4.30852 4.42857 4.84375 4.42857H28.0938C28.629 4.42857 29.0625 3.93312 29.0625 3.32143C29.0625 1.48703 27.7613 0 26.1562 0H3.875C1.73467 0 0 1.98248 0 4.42857V26.5714C0 29.0175 1.73467 31 3.875 31H27.9242C29.6207 31 31 29.5102 31 27.6786V9.96428C31 8.13266 29.6207 6.64286 27.9242 6.64286ZM25.1875 21.0357C24.1176 21.0357 23.25 20.0441 23.25 18.8214C23.25 17.5987 24.1176 16.6071 25.1875 16.6071C26.2574 16.6071 27.125 17.5987 27.125 18.8214C27.125 20.0441 26.2574 21.0357 25.1875 21.0357Z"
+                      fill="7A30C2"
                     />
                   </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    Income Statement
+                  </span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h- text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
-                    viewBox="0 0 20 20"
+                    viewBox="0 0 31 24"
                   >
-                    <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
-                    <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
-                    <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
+                    <path
+                      d="M20.15 15.5H22.475C22.8625 15.5 23.25 15.1125 23.25 14.725V6.5875C23.25 6.2 22.8625 5.8125 22.475 5.8125H20.15C19.7625 5.8125 19.375 6.2 19.375 6.5875V14.725C19.375 15.1125 19.7625 15.5 20.15 15.5ZM25.9625 15.5H28.2875C28.675 15.5 29.0625 15.1125 29.0625 14.725V0.775C29.0625 0.3875 28.675 0 28.2875 0H25.9625C25.575 0 25.1875 0.3875 25.1875 0.775V14.725C25.1875 15.1125 25.575 15.5 25.9625 15.5ZM8.525 15.5H10.85C11.2375 15.5 11.625 15.1125 11.625 14.725V10.4625C11.625 10.075 11.2375 9.6875 10.85 9.6875H8.525C8.1375 9.6875 7.75 10.075 7.75 10.4625V14.725C7.75 15.1125 8.1375 15.5 8.525 15.5ZM14.3375 15.5H16.6625C17.05 15.5 17.4375 15.1125 17.4375 14.725V2.7125C17.4375 2.325 17.05 1.9375 16.6625 1.9375H14.3375C13.95 1.9375 13.5625 2.325 13.5625 2.7125V14.725C13.5625 15.1125 13.95 15.5 14.3375 15.5ZM30.0312 19.375H3.875V0.96875C3.875 0.433516 3.44148 0 2.90625 0H0.96875C0.433516 0 0 0.433516 0 0.96875V21.3125C0 22.3824 0.867637 23.25 1.9375 23.25H30.0312C30.5665 23.25 31 22.8165 31 22.2812V20.3438C31 19.8085 30.5665 19.375 30.0312 19.375Z"
+                      fill="7A30C2"
+                    />
                   </svg>
-                  <span class="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">
+                    Sales Statistics
+                  </span>
                 </a>
               </li>
+
+              <li></li>
             </ul>
 
-            <span className="absolute bottom-0 right-0 p-4">
+            <span className="flex absolute bottom-0 w-full items-center justify-between py-4 pr-6">
+              <a
+                href="#"
+                className="flex w-full items-center p-4  text-gray-900 rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+              >
+                <svg
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 18 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
+                  />
+                </svg>
+                <span className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
+              </a>
               <DarkMode />
             </span>
           </div>
         </aside>
 
-        <div class="p-4 sm:ml-64">
-          <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <div class="grid grid-cols-3 gap-4 mb-4">
-              <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+        <div className="p-4 sm:ml-80">
+          <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-bg-darkPurple">
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -198,18 +207,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -217,18 +226,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -236,19 +245,19 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-dbackground">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-dbackground">
+              <p className="text-2xl text-gray-400 dark:text-gray-500">
                 <svg
-                  class="w-3.5 h-3.5"
+                  className="w-3.5 h-3.5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -256,19 +265,19 @@ function Dashboard() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
               </p>
             </div>
-            <div class="grid grid-cols-2 gap-4 mb-4">
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -276,18 +285,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -295,18 +304,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -314,18 +323,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -333,19 +342,19 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
             </div>
-            <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-dbackground">
-              <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-dbackground">
+              <p className="text-2xl text-gray-400 dark:text-gray-500">
                 <svg
-                  class="w-3.5 h-3.5"
+                  className="w-3.5 h-3.5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -353,19 +362,19 @@ function Dashboard() {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
               </p>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -373,18 +382,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -392,18 +401,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -411,18 +420,18 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
                 </p>
               </div>
-              <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p class="text-2xl text-gray-400 dark:text-gray-500">
+              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
+                <p className="text-2xl text-gray-400 dark:text-gray-500">
                   <svg
-                    class="w-3.5 h-3.5"
+                    className="w-3.5 h-3.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -430,9 +439,9 @@ function Dashboard() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M9 1v16M1 9h16"
                     />
                   </svg>
