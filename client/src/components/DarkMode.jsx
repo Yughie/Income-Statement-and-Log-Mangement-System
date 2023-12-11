@@ -14,13 +14,13 @@ export const DarkMode = () => {
         <button
           id="theme-toggle"
           type="button"
-          className="text-gray-500 dark:text-gray-400 hover:bg-lightPurple dark:hover:bg-darkPurple  rounded-lg text-sm p-3.5 hover:shadow-shadowPurple dark:bg-ddbackground "
+          className="text-gray-500 dark:text-gray-400 hover:bg-lightPurple dark:hover:bg-darkPurple  rounded-lg text-sm p-4 mr-2 hover:shadow-shadowPurple dark:bg-ddbackground "
           onClick={handleDarkMode}
         >
           {darkMode ? (
             <svg
               id="theme-toggle-dark-icon"
-              className=" w-6 h-6"
+              className=" w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ export const DarkMode = () => {
           ) : (
             <svg
               id="theme-toggle-light-icon"
-              className=" w-6 h-6"
+              className=" w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"

@@ -15,7 +15,7 @@ function Dashboard() {
         >
           <span className="sr-only">Open sidebar</span>
           <svg
-            className="w-6 h-6"
+            className="w-5 h-5"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -49,10 +49,10 @@ function Dashboard() {
               <li>
                 <a
                   href="#"
-                  className="flex transition duration-1000 ease-in-out items-center mt-10 p-6 py-6 text-gray-100 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4 text-gray-100 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
+                    className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
                     "
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -71,10 +71,10 @@ function Dashboard() {
               <li>
                 <a
                   href="#"
-                  className="flex transition duration-300 ease-in-out items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -85,19 +85,20 @@ function Dashboard() {
 
                   <span className="flex-1 ms-3 whitespace-nowrap">
                     Dashboard
-                  </span>
+                  </span>{/*
                   <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-dbg-dbackground bg-gray-100 rounded-full dark:bg-darkPurple dark:text-gray-300">
                     Hello
                   </span>
+                  */}
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex transition duration-300 ease-in-out items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -118,10 +119,10 @@ function Dashboard() {
               <li>
                 <a
                   href="#"
-                  className="flex transition duration-300 ease-in-out items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -143,10 +144,10 @@ function Dashboard() {
               <li>
                 <a
                   href="#"
-                  className="flex transition duration-300 ease-in-out items-center p-6 py-6 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-6 h- text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -164,7 +165,7 @@ function Dashboard() {
               </li>
             </ul>
 
-            <span className="flex transition duration-300 ease-in-out absolute bottom-0 w-full items-center justify-between py-6 pr-6">
+            <span className="flex transition duration-300 ease-in-out absolute bottom-0 w-full items-center justify-between py-4 pr-4">
               <a
                 href="#"
                 className="flex transition duration-300 ease-in-out w-full items-center p-4  text-gray-900 rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
