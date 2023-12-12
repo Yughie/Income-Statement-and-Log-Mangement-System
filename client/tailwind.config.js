@@ -7,6 +7,9 @@ export default {
       boxShadow: {
         'shadowPurple': '0px 0px 15px 8px #7A30C2',
         'shaddow': '0px 0px 30px 5px #252736'
+      },
+      fontFamily: {
+        'poppins': ['Poppins',  'sans-serif']
       }
     },
     colors: {
