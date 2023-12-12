@@ -13,8 +13,10 @@ export default {
       }
     },
     colors: {
-      ddbackground: '#252736',
-      dbackground: '#2F3042',
+      ddbackground: '#1E1D2B',  //Darker
+      dbackground: '#252736',
+      dbgContainer1: '#2F3042',
+      dbgContainer2: '#44455D',  //Ligther
       darkPurple: '#450088',
       lightPurple: '#7A30C2'
 

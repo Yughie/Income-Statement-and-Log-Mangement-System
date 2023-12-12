@@ -49,7 +49,7 @@ function Dashboard() {
             <ul className="space-y-8 font-medium">
               <li>
                 <a
-                  href="#"
+                  href="./create-new-service"
                   className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4 text-gray-100 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -71,7 +71,7 @@ function Dashboard() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="./dashboard"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:bg-darkPurple shadow-shadowPurple group"
                 >
                   <svg
