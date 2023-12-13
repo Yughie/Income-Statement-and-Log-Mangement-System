@@ -12,7 +12,7 @@ function CreateNewService() {
           data-drawer-toggle="logo-sidebar"
           aria-controls="logo-sidebar"
           type="button"
-          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg sm:hidden dark:hover:bg-darkPurple focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
         >
           <span className="sr-only">Open sidebar</span>
           <svg
@@ -196,129 +196,322 @@ function CreateNewService() {
           </div>
         </aside>
 
-        <div className="p-4 sm:ml-80">
+        <div className="p-6 sm:ml-80">
+          {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
-              <h1 className="dark:text-gray-300 text-4xl text-ddbackground font-poppins pb-4 mx-auto text-center lg:text-left">
-                New Service
+              <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins mx-auto text-center ">
+                Vehicle Information
               </h1>
             </span>
           </div>
-          {/* Large Container */}
-          <div className="w-full bg-dbackground p-4 rounded-md">
-            {/* Seperator Container */}
-            <div className="bg-dbgContainer1 w-full h-full">
-              <div className="flex flex-col lg:flex-row bg-dbgContainer1 justify-evenly rounded-md">
-                {/* Vehicle Information Container */}
-                <div className="p-4 w-full lg:w-1/2">
-                  <h1 className="text-xl text-gray-300 text-center">
-                    Vehicle Information
-                  </h1>
-                  <div class="mb-6">
-                    <label
-                      for="plate-number"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Plate Number
-                    </label>
-                    <input
-                      type="text"
-                      id="plate-number"
-                      placeholder="Enter plate number"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
-                  </div>
-                  {/* Vehicle Description TEXT */}
-                  <div class="mb-6">
-                    <label
-                      for="vehicle-description"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Vehicle Description
-                    </label>
+          {/* LARGE Container Vehicle information*/}
+          <div className="w-full flex flex-col lg:flex-row ">
+            {/*  Plate Number */}
+            <div className="w-full lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl text-gray-300 text-center ">
+                <label htmlFor="plate-number">Plate Number</label>
+              </h1>
+              <div className="">
+                <input
+                  type="text"
+                  id="plate-number"
+                  placeholder="Enter plate number"
+                  className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+            </div>
+            {/* Phone Number */}
+            <div className="w-full lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl text-gray-300 text-center">
+                <label htmlFor="phone-number">Phone Number</label>
+              </h1>
+              <div className="">
+                <input
+                  type="text"
+                  id="phone-number"
+                  placeholder="Enter phone number"
+                  className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+            </div>
+            {/* Vehicle DESCRIPTION */}
+            <div className="w-full lg:w-1/3  bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl text-gray-300 text-center ">
+                <label htmlFor="vehicle-description">Vehicle Description</label>
+              </h1>
+              <form>
+                <div className="flex">
+                  <div className="relative w-full">
                     <input
                       type="text"
                       id="vehicle-description"
+                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                       placeholder="Enter vehicle description"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
                     />
                   </div>
-                  {/* Vehicle TYPE SELECTION */}
-                  <div className="mb-6">
-                    <label
-                      for="vehicle-type"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  <button
+                    id="dropdown-button"
+                    data-dropdown-toggle="dropdown"
+                    className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-r-lg border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                    type="button"
+                  >
+                    All categories{" "}
+                    <svg
+                      className="w-2.5 h-2.5 ms-2.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 10 6"
                     >
-                      Vehicle Type
-                    </label>
-                    <select
-                      id="vehicle-type"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 4 4 4-4"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    id="dropdown"
+                    className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                  >
+                    <ul
+                      className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="dropdown-button"
                     >
-                      <option selected>Choose vehicle type</option>
-                      <option value="Car">Car</option>
-                      <option value="Motor">Motor</option>
-                      <option value="Tricycle">Tricycle</option>
-                      <option value="Van">Van</option>
-                      <option value="Others">Others</option>
-                    </select>
-                  </div>
-                  {/* Vehicle TYPE SIZE */}
-                  <div className="mb-6">
-                    <label
-                      for="vehicle-size"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Vehicle Size
-                    </label>
-                    <select
-                      id="vehicle-size"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option selected>Choose vehicle size</option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                    </select>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Shopping
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Images
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          News
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Finance
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-                {/* Services Container */}
-                <div className="p-4 w-full lg:w-1/2 ">
-                  <h1 className="text-xl text-gray-300 text-center">
-                    Services
-                  </h1>
-                  <div class="mb-6">
-                    <label
-                      for="carwash"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                      Carwash
-                    </label>
-                    <input
-                      type="text"
-                      id="carwash"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-              </div>
-              {/* Total */}
-              <div class="mb-6">
-                <label
-                  for="total"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              </form>
+            </div>
+          </div>
+          {/* SERVICES */}
+          <div className=" rounded-lg dark:border-bg-darkPurple ">
+            <span className="w-full ">
+              <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins pb-4 mx-auto text-center ">
+                Services
+              </h1>
+            </span>
+          </div>
+
+          {/* LARGE Container SERVICES*/}
+          <div className="w-full flex flex-col lg:flex-row ">
+            {/*  CARWASH */}
+            <div className="w-full overflow-y-auto h-96 lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl text-gray-300 text-center">
+                <label htmlFor="service-carwash">Carwash</label>
+              </h1>
+              <div className="mb-4">
+                <select
+                  id="service-carwash"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  Total
-                </label>
-                <input
-                  type="total"
-                  id="vehicle-description"
-                  placeholder="Enter vehicle description"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                />
+                  <option selected>Select Service</option>
+                  <option value="carwash">Carwash</option>
+                  <option value="motorwash">Motorwash</option>
+                  <option value="tricycle-private">Tricycle (Private)</option>
+                  <option value="tricycle-public">Tricycle (Public)</option>
+                  <option value="wax">Wax</option>
+                  <option value="back-2-zero">Back 2 zero</option>
+                  <option value="buffing">Buffing</option>
+                  <option value="engine-wash">Engine wash</option>
+                </select>
               </div>
+              <div className="mb-4">
+                <select
+                  id="service-carwash"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Select Service</option>
+                  <option value="carwash">Carwash</option>
+                  <option value="motorwash">Motorwash</option>
+                  <option value="tricycle-private">Tricycle (Private)</option>
+                  <option value="tricycle-public">Tricycle (Public)</option>
+                  <option value="wax">Wax</option>
+                  <option value="back-2-zero">Back 2 zero</option>
+                  <option value="buffing">Buffing</option>
+                  <option value="engine-wash">Engine wash</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <select
+                  id="service-carwash"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Select Service</option>
+                  <option value="carwash">Carwash</option>
+                  <option value="motorwash">Motorwash</option>
+                  <option value="tricycle-private">Tricycle (Private)</option>
+                  <option value="tricycle-public">Tricycle (Public)</option>
+                  <option value="wax">Wax</option>
+                  <option value="back-2-zero">Back 2 zero</option>
+                  <option value="buffing">Buffing</option>
+                  <option value="engine-wash">Engine wash</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <select
+                  id="service-carwash"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Select Service</option>
+                  <option value="carwash">Carwash</option>
+                  <option value="motorwash">Motorwash</option>
+                  <option value="tricycle-private">Tricycle (Private)</option>
+                  <option value="tricycle-public">Tricycle (Public)</option>
+                  <option value="wax">Wax</option>
+                  <option value="back-2-zero">Back 2 zero</option>
+                  <option value="buffing">Buffing</option>
+                  <option value="engine-wash">Engine wash</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <select
+                  id="service-carwash"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Select Service</option>
+                  <option value="carwash">Carwash</option>
+                  <option value="motorwash">Motorwash</option>
+                  <option value="tricycle-private">Tricycle (Private)</option>
+                  <option value="tricycle-public">Tricycle (Public)</option>
+                  <option value="wax">Wax</option>
+                  <option value="back-2-zero">Back 2 zero</option>
+                  <option value="buffing">Buffing</option>
+                  <option value="engine-wash">Engine wash</option>
+                </select>
+              </div>
+              {/* ADD NEW BUTTON */}
+              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-1 w-4"
+                >
+                  <path
+                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
+                    fill="#B9BCD0"
+                  />
+                </svg>
+                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  Add new
+                </span>
+              </button>
+            </div>
+            {/* Phone Number */}
+            <div className="w-full overflow-y-auto h-96 lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl text-gray-300 text-center">
+                <label htmlFor="detailing">Detailing</label>
+              </h1>
+              <div className="mb-4">
+                <select
+                  id="countries"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Select Detailing</option>
+                  <option value="interior">Interior</option>
+                  <option value="exterior">Exterior</option>
+                </select>
+              </div>
+              {/* ADD NEW BUTTON */}
+              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-1 w-4"
+                >
+                  <path
+                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
+                    fill="#B9BCD0"
+                  />
+                </svg>
+                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  Add new
+                </span>
+              </button>
+            </div>
+            {/* PROMO */}
+            <div className="w-full overflow-y-auto h-96 lg:w-1/3  bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl text-gray-300 text-center">
+                <label htmlFor="promo">Promo</label>
+              </h1>
+              <div className="mb-4">
+                <select
+                  id="countries"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected>Select Promo</option>
+                  <option value="engine-wash">Engine wash</option>
+                  <option value="wash-vacuum">
+                    Wash, vacuum, armor & tire black
+                  </option>
+                  <option value="asphalt-removal">Asphalt removal</option>
+                  <option value="hydrophobic-waxing">Hydrophobic waxing</option>
+                  <option value="antibacterial">
+                    Back 2 zero / antibacterial chemical
+                  </option>
+                </select>
+              </div>
+              {/* ADD NEW BUTTON */}
+              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="mr-1 w-4"
+                >
+                  <path
+                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
+                    fill="#B9BCD0"
+                  />
+                </svg>
+                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  Add new
+                </span>
+              </button>
             </div>
           </div>
         </div>
