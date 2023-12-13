@@ -257,7 +257,7 @@ function CreateNewService() {
                     className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-r-lg border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
                     type="button"
                   >
-                    All categories{" "}
+                    Vehicle Type{" "}
                     <svg
                       className="w-2.5 h-2.5 ms-2.5"
                       aria-hidden="true"
@@ -287,7 +287,7 @@ function CreateNewService() {
                           href="#"
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          Shopping
+                          Car
                         </a>
                       </li>
                       <li>
@@ -295,7 +295,7 @@ function CreateNewService() {
                           href="#"
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          Images
+                          Motor
                         </a>
                       </li>
                       <li>
@@ -303,7 +303,7 @@ function CreateNewService() {
                           href="#"
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          News
+                          Tricycle
                         </a>
                       </li>
                       <li>
@@ -311,7 +311,15 @@ function CreateNewService() {
                           href="#"
                           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
-                          Finance
+                          Van
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Others
                         </a>
                       </li>
                     </ul>
@@ -513,6 +521,133 @@ function CreateNewService() {
                 </span>
               </button>
             </div>
+          </div>
+
+          {/* MORE CHOICES */}
+          <div>
+            <div>
+              {/*SIZES S M L XL XXL XXL */}
+              <div>
+                <ul className="flex justify-evenly flex-auto">
+                  {/* SMALL */}
+                  <li>
+                    <input
+                      type="radio"
+                      id="sizes-small"
+                      name="sizes"
+                      value="sizes-small"
+                      className="hidden peer"
+                      required
+                    />
+                    <label
+                      htmlFor="sizes-small"
+                      className="inline-flex items-center justify-center w-14 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                    >
+                      <div className="block">
+                        <div className="w-full text-lg font-semibold">S</div>
+                      </div>
+                    </label>
+                  </li>
+                  {/* Medium */}
+                  <li>
+                    <input
+                      type="radio"
+                      id="sizes-medium"
+                      name="sizes"
+                      value="sizes-medium"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="sizes-medium"
+                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <div className="block">
+                        <div className="w-full text-lg font-semibold ">M</div>
+                      </div>
+                    </label>
+                  </li>
+                  {/* LARGE */}
+                  <li>
+                    <input
+                      type="radio"
+                      id="sizes-large"
+                      name="sizes"
+                      value="sizes-large"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="sizes-large"
+                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <div className="block">
+                        <div className="w-full text-lg font-semibold ">L</div>
+                      </div>
+                    </label>
+                  </li>
+                  {/* EXTRA LARGE */}
+                  <li>
+                    <input
+                      type="radio"
+                      id="sizes-xlarge"
+                      name="sizes"
+                      value="sizes-xlarge"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="sizes-xlarge"
+                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <div className="block">
+                        <div className="w-full text-lg font-semibold ">XL</div>
+                      </div>
+                    </label>
+                  </li>
+                  {/* 2 EXTRALARGE */}
+                  <li>
+                    <input
+                      type="radio"
+                      id="sizes-xxlarge"
+                      name="sizes"
+                      value="sizes-xxlarge"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="sizes-xxlarge"
+                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <div className="block">
+                        <div className="w-full text-lg font-semibold ">2XL</div>
+                      </div>
+                    </label>
+                  </li>
+                  {/* 3 EXTRA LARGE */}
+                  <li>
+                    <input
+                      type="radio"
+                      id="sizes-xxxlarge"
+                      name="sizes"
+                      value="sizes-xxxlarge"
+                      className="hidden peer"
+                    />
+                    <label
+                      htmlFor="sizes-xxxlarge"
+                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <div className="block">
+                        <div className="w-full text-lg font-semibold ">3XL</div>
+                      </div>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              {/*ADD SERVICE / HOUR TIME */}
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <div></div>
           </div>
         </div>
       </div>
