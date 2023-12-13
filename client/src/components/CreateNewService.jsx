@@ -96,7 +96,7 @@ function CreateNewService() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="./log"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -122,7 +122,7 @@ function CreateNewService() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="./income-statement"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -147,7 +147,7 @@ function CreateNewService() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="./statistics"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -163,7 +163,7 @@ function CreateNewService() {
                     />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">
-                    Sales Statistics
+                    Statistics
                   </span>
                 </a>
               </li>
@@ -417,7 +417,7 @@ function CreateNewService() {
                 </select>
               </div>
               {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
+              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
                 <svg
                   width="20"
                   height="20"

@@ -2,7 +2,7 @@ import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
 import { useState } from "react";
 
-function Dashboard() {
+function IncomeStatement() {
   return (
     <>
       <div className="bg-ddbackground">
@@ -72,7 +72,7 @@ function Dashboard() {
               <li>
                 <a
                   href="./dashboard"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:bg-darkPurple shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white dark:hover:bg-darkPurple hover:shadow-shadowPurple dark:hover:shadow-shadowPurple hover:bg-gray-100  group"
                 >
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -123,7 +123,7 @@ function Dashboard() {
               <li>
                 <a
                   href="./income-statement"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple dark:bg-darkPurple shadow-shadowPurple group"
                 >
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -398,4 +398,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default IncomeStatement;
