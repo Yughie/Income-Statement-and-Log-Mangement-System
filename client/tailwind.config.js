@@ -18,8 +18,8 @@ export default {
       dbgContainer1: '#2F3042',
       dbgContainer2: '#44455D',  //Ligther
       darkPurple: '#450088',
-      lightPurple: '#7A30C2'
-
+      lightPurple: '#7A30C2',
+      purpleGrape: '#8736DA'
     }
   },
   plugins: [
