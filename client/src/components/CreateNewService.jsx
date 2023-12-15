@@ -196,7 +196,7 @@ function CreateNewService() {
           </div>
         </aside>
 
-        <div className="p-6 sm:ml-80">
+        <div className="p-6 sm:ml-80 min-h-screen">
           {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
@@ -524,11 +524,11 @@ function CreateNewService() {
           </div>
 
           {/* MORE CHOICES */}
-          <div>
-            <div>
+          <div className="lg:flex  ">
+            <div className="mb-4 lg:w-3/4 border-2 border-dbackground border-dashed">
               {/*SIZES S M L XL XXL XXL */}
               <div>
-                <ul className="flex justify-evenly flex-auto">
+                <ul className="flex justify-evenly flex-auto m-4">
                   {/* SMALL */}
                   <li>
                     <input
@@ -616,7 +616,7 @@ function CreateNewService() {
                       className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">2XL</div>
+                        <div className="w-full text-lg font-semibold ">XXL</div>
                       </div>
                     </label>
                   </li>
@@ -634,20 +634,93 @@ function CreateNewService() {
                       className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">3XL</div>
+                        <div className="w-full text-xs  font-semibold ">
+                          XL & XXL
+                        </div>
                       </div>
                     </label>
                   </li>
                 </ul>
               </div>
-              {/*ADD SERVICE / HOUR TIME */}
-              <div>
-                <div></div>
-                <div></div>
-                <div></div>
+              {/*HOUR TIME / Etra charges*/}
+              <div className="flex-row lg:flex mb-4">
+                {/* Hour Time*/}
+                <div className="w-full justify-evenly  lg:w-2/5">
+                  <ul className="flex justify-evenly flex-auto mb-4 lg:mb-0">
+                    {/* NORMAL HOUR */}
+                    <li>
+                      <input
+                        type="radio"
+                        id="hour-normal"
+                        name="hour-rate"
+                        value="hour-noraml"
+                        className="hidden peer"
+                        required
+                      />
+                      <label
+                        htmlFor="hour-normal"
+                        className="inline-flex items-center justify-center w-24 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                      >
+                        <div className="block">
+                          <div className="w-full  text-m font-semibold text-center">
+                            Normal Hour
+                          </div>
+                        </div>
+                      </label>
+                    </li>
+                    {/* OVERTIME HOUR */}
+                    <li>
+                      <input
+                        type="radio"
+                        id="hour-overtime"
+                        name="hour-rate"
+                        value="hour-overtime"
+                        className="hidden peer"
+                      />
+                      <label
+                        htmlFor="hour-overtime"
+                        className="inline-flex items-center justify-center w-24 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      >
+                        <div className="block">
+                          <div className="w-full text-m font-semibold text-center">
+                            Overtime Hour
+                          </div>
+                        </div>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                {/* Etra charges*/}
+                <div className="flex lg:w-3/5 items-center lg:mb-0 justify-center">
+                  <h1 className=" mr-4 text-xl text-gray-300 text-center ">
+                    <label htmlFor="extra-charges">Extra Chages</label>
+                  </h1>
+                  <div className="">
+                    <input
+                      type="text"
+                      id="extra-charges"
+                      className="bg-gray-50 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            <div></div>
+
+            {/* TOTAL AND SUBMIT BUTTON */}
+            <div className="flex flex-col w-full lg:w-1/3 items-center justify-center">
+              <div>
+                <h1 className="mb-4 text-3xl text-gray-300">
+                  <label htmlFor="extra-charges">Total: 99999</label>
+                </h1>
+              </div>
+              <div>
+                <button className="w-32 text-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 px-6 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    Submit
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
