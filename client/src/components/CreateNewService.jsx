@@ -12,7 +12,7 @@ function CreateNewService() {
           data-drawer-toggle="logo-sidebar"
           aria-controls="logo-sidebar"
           type="button"
-          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg sm:hidden dark:hover:bg-darkPurple focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
         >
           <span className="sr-only">Open sidebar</span>
           <svg
@@ -33,7 +33,7 @@ function CreateNewService() {
         {/* LOGO  */}
         <aside
           id="logo-sidebar"
-          className="fixed top-0 left-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0"
+          className="fixed top-0 left-0 z-40 w-80 h-screen md:transition-transform -translate-x-full md:translate-x-0"
           aria-label="Sidebar"
         >
           <div className="h-full px-3 py-4 overflow-y-auto bg-dbackground dark:bg-dbackground">
@@ -196,7 +196,7 @@ function CreateNewService() {
           </div>
         </aside>
 
-        <div className="p-6 sm:ml-80 min-h-screen">
+        <div className="p-6 md:ml-80 min-h-screen">
           {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
@@ -344,29 +344,14 @@ function CreateNewService() {
               <h1 className="mb-4 text-xl text-gray-300 text-center">
                 <label htmlFor="service-carwash">Carwash</label>
               </h1>
+
               <div className="mb-4">
                 <select
                   id="service-carwash"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
-                  <option value="motorwash">Motorwash</option>
-                  <option value="tricycle-private">Tricycle (Private)</option>
-                  <option value="tricycle-public">Tricycle (Public)</option>
-                  <option value="wax">Wax</option>
-                  <option value="back-2-zero">Back 2 zero</option>
-                  <option value="buffing">Buffing</option>
-                  <option value="engine-wash">Engine wash</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <select
-                  id="service-carwash"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
+                  <option value="carwash">Carwash </option>
                   <option value="motorwash">Motorwash</option>
                   <option value="tricycle-private">Tricycle (Private)</option>
                   <option value="tricycle-public">Tricycle (Public)</option>
@@ -525,10 +510,10 @@ function CreateNewService() {
 
           {/* MORE CHOICES */}
           <div className="lg:flex  ">
-            <div className="mb-4 lg:w-3/4 border-2 border-dbackground border-dashed">
+            <div className="mb-4 lg:w-3/4 ">
               {/*SIZES S M L XL XXL XXL */}
               <div>
-                <ul className="flex justify-evenly flex-auto m-4">
+                <ul className="flex justify-evenly flex-auto m-4 mb-8">
                   {/* SMALL */}
                   <li>
                     <input
@@ -541,10 +526,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-small"
-                      className="inline-flex items-center justify-center w-14 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold">S</div>
+                        <div className="w-full text-lg  xl:text-3xl font-semibold">
+                          S
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -559,10 +546,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-medium"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">M</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          M
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -577,10 +566,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-large"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">L</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          L
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -595,10 +586,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xlarge"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">XL</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          XL
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -613,10 +606,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">XXL</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          XXL
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -631,10 +626,10 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xxxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-xs  font-semibold ">
+                        <div className="w-full text-xs xl:text-lg  font-semibold ">
                           XL & XXL
                         </div>
                       </div>
@@ -645,7 +640,7 @@ function CreateNewService() {
               {/*HOUR TIME / Etra charges*/}
               <div className="flex-row lg:flex mb-4">
                 {/* Hour Time*/}
-                <div className="w-full justify-evenly  lg:w-2/5">
+                <div className="w-full justify-evenly lg:w-2/5">
                   <ul className="flex justify-evenly flex-auto mb-4 lg:mb-0">
                     {/* NORMAL HOUR */}
                     <li>
@@ -659,7 +654,7 @@ function CreateNewService() {
                       />
                       <label
                         htmlFor="hour-normal"
-                        className="inline-flex items-center justify-center w-24 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 xl:h-14 p-4 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
                       >
                         <div className="block">
                           <div className="w-full  text-m font-semibold text-center">
@@ -679,7 +674,7 @@ function CreateNewService() {
                       />
                       <label
                         htmlFor="hour-overtime"
-                        className="inline-flex items-center justify-center w-24 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 p-4 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                       >
                         <div className="block">
                           <div className="w-full text-m font-semibold text-center">
@@ -691,7 +686,7 @@ function CreateNewService() {
                   </ul>
                 </div>
                 {/* Etra charges*/}
-                <div className="flex lg:w-3/5 items-center lg:mb-0 justify-center">
+                <div className="flex lg:w-3/5 items-center lg:mb-0 my-8 md:my-0 justify-center">
                   <h1 className=" mr-4 text-xl text-gray-300 text-center ">
                     <label htmlFor="extra-charges">Extra Chages</label>
                   </h1>
