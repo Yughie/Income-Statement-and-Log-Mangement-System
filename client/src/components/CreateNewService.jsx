@@ -240,92 +240,31 @@ function CreateNewService() {
               <h1 className="mb-4 text-xl text-gray-300 text-center ">
                 <label htmlFor="vehicle-description">Vehicle Description</label>
               </h1>
-              <form>
-                <div className="flex">
-                  <div className="relative w-full">
-                    <input
-                      type="text"
-                      id="vehicle-description"
-                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                      placeholder="Enter vehicle description"
-                      required
-                    />
-                  </div>
-                  <button
-                    id="dropdown-button"
-                    data-dropdown-toggle="dropdown"
-                    className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-r-lg border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-                    type="button"
-                  >
-                    Vehicle Type{" "}
-                    <svg
-                      className="w-2.5 h-2.5 ms-2.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 10 6"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m1 1 4 4 4-4"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    id="dropdown"
-                    className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                  >
-                    <ul
-                      className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                      aria-labelledby="dropdown-button"
-                    >
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Car
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Motor
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Tricycle
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Van
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Others
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+
+              <div className="flex">
+                <div className="w-full">
+                  <input
+                    type="text"
+                    id="vehicle-description"
+                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                    placeholder="Enter vehicle description"
+                    required
+                  />
                 </div>
-              </form>
+                <div className="mb-4 w-40">
+                  <select
+                    id="vehicleType"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option selected>Type</option>
+                    <option value="car">Car</option>
+                    <option value="motor">Motor</option>
+                    <option value="tricycle">Tricycle</option>
+                    <option value="van">Van</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           {/* SERVICES */}
@@ -410,24 +349,31 @@ function CreateNewService() {
                 </select>
               </div>
               {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 w-4"
-                >
-                  <path
-                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                    fill="#B9BCD0"
-                  />
-                </svg>
-                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  Add new
-                </span>
-              </button>
+              <div className="flex flex-shrink justify-center gap-4 flex-wrap">
+                <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 min-w-32 p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mr-1 w-4"
+                  >
+                    <path
+                      d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
+                      fill="#B9BCD0"
+                    />
+                  </svg>
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    Add new
+                  </span>
+                </button>
+                <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-gray-900 text-sm rounded-lg  min-w-32 p-2.5  dark:bg-red-900 dark:hover:bg-red-800 dark:border-red-900">
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white ">
+                    Delete
+                  </span>
+                </button>
+              </div>
             </div>
             {/* Phone Number */}
             <div className="w-full overflow-y-auto h-96 lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
@@ -445,24 +391,31 @@ function CreateNewService() {
                 </select>
               </div>
               {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 w-4"
-                >
-                  <path
-                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                    fill="#B9BCD0"
-                  />
-                </svg>
-                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  Add new
-                </span>
-              </button>
+              <div className="flex flex-shrink justify-center gap-4 flex-wrap">
+                <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 min-w-32 p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mr-1 w-4"
+                  >
+                    <path
+                      d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
+                      fill="#B9BCD0"
+                    />
+                  </svg>
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    Add new
+                  </span>
+                </button>
+                <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-gray-900 text-sm rounded-lg  min-w-32 p-2.5  dark:bg-red-900 dark:hover:bg-red-800 dark:border-red-900">
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white ">
+                    Delete
+                  </span>
+                </button>
+              </div>
             </div>
             {/* PROMO */}
             <div className="w-full overflow-y-auto h-96 lg:w-1/3  bg-dbackground p-4 mb-4 rounded-md">
@@ -487,24 +440,31 @@ function CreateNewService() {
                 </select>
               </div>
               {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 w-4"
-                >
-                  <path
-                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                    fill="#B9BCD0"
-                  />
-                </svg>
-                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  Add new
-                </span>
-              </button>
+              <div className="flex flex-shrink justify-center gap-4 flex-wrap">
+                <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 min-w-32 p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mr-1 w-4"
+                  >
+                    <path
+                      d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
+                      fill="#B9BCD0"
+                    />
+                  </svg>
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    Add new
+                  </span>
+                </button>
+                <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-gray-900 text-sm rounded-lg  min-w-32 p-2.5  dark:bg-red-900 dark:hover:bg-red-800 dark:border-red-900">
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white ">
+                    Delete
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
 
