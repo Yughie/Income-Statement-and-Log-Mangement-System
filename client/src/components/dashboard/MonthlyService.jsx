@@ -1,78 +1,75 @@
-import React from "react";
-import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import React, { useEffect, useRef } from "react";
+import ApexCharts from "apexcharts";
+import Chart from "react-apexcharts"; // Make sure to install the 'react-apexcharts' package
 
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
+const MonthlyService = () => {
+  const chartRef = useRef(null);
 
-function MonthlyService() {
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  useEffect(() => {
+    const options = {
+      series: [55555, 52215, 41333],
+      labels: ["Engine Wash", "Wax (Hydro Wax)", "Others"],
 
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+      chart: {
+        type: "donut",
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            labels: {
+              show: true,
+              name: {},
+              value: {},
+              total: {
+                show: true,
+                showAlways: false,
+                label: "Total",
+              },
+            },
+          },
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 2400,
+          options: {
+            chart: {
+              width: 450,
+            },
+            legend: {
+              position: "bottom",
+            },
+          },
+        },
+      ],
+    };
 
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
+    // Create the chart instance
+    const chartInstance = new ApexCharts(chartRef.current, options);
+
+    // Render the chart
+    chartInstance.render();
+
+    // Cleanup function to destroy the chart when the component unmounts
+    return () => {
+      chartInstance.destroy();
+    };
+  }, []); // Empty dependency array ensures the effect runs only once, similar to componentDidMount
+
   return (
     <>
-      <div className="w-full h-96">
-        <div>
-          <h1 className="dark:text-gray-300 text-xl text-ddbackground font-poppins">
-            Monthly Service
-          </h1>
-          <h1 className="dark:text-gray-500 text-md text-ddbackground font-poppins">
-            Average total service + 99%
-          </h1>
-        </div>
+      <h1 className="dark:text-gray-300 text-xl text-ddbackground font-poppins">
+        Monthly Services
+      </h1>
+      <h1 className="dark:text-gray-500 text-md text-ddbackground font-poppins mb-4">
+        Average total sales +99%
+      </h1>
 
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={300} height={300}>
-            <Pie
-              data={data}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
+      <div id="chart" ref={chartRef}>
+        {/* The chart will be rendered here */}
       </div>
     </>
   );
-}
+};
 
 export default MonthlyService;

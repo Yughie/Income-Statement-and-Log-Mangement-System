@@ -3,6 +3,8 @@ import logo from "../assets/logo.png";
 import { useState } from "react";
 import WeeklyService from "./dashboard/WeeklyService";
 import MonthlyService from "./dashboard/MonthlyService";
+import TopServices from "./dashboard/TopServices";
+import RecentServices from "./dashboard/RecentServices";
 
 function Dashboard() {
   return (
@@ -198,58 +200,27 @@ function Dashboard() {
           </div>
         </aside>
 
-        <div className="p-4 lg:ml-80">
-          <div className="p-4  rounded-lg dark:border-bg-darkPurple">
+        <div className="p-4 lg:ml-80 bg-gray-50 dark:bg-ddbackground">
+          <div className="p-4 rounded-lg dark:border-bg-darkPurple">
             {/*WEEKLY AVERAGE MONTHLY SALES */}
             <h1 className="dark:text-gray-400 text-5xl text-ddbackground font-poppins">
               Welcome, Admin
             </h1>
             <div className="w-full flex flex-col lg:flex-row ">
-              <div className="w-full lg:w-2/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
+              <div className="w-full lg:w-2/3 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
                 <WeeklyService />
               </div>
-              <div className="w-full lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
+              <div className="w-full lg:w-1/3 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
                 <MonthlyService />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
+
+            <div className="w-full flex flex-col lg:flex-row ">
+              <div className="w-full lg:w-2/5 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
+                <TopServices />
               </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
+              <div className="w-full lg:w-3/5 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
+                <RecentServices />
               </div>
             </div>
           </div>
