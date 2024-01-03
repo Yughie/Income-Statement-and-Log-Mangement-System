@@ -13,6 +13,9 @@ const MonthlyService = () => {
       chart: {
         type: "donut",
       },
+      legend: {
+        position: "bottom",
+      },
       plotOptions: {
         pie: {
           donut: {
@@ -31,13 +34,10 @@ const MonthlyService = () => {
       },
       responsive: [
         {
-          breakpoint: 2400,
+          breakpoint: 240,
           options: {
             chart: {
-              width: 450,
-            },
-            legend: {
-              position: "bottom",
+              width: 200,
             },
           },
         },

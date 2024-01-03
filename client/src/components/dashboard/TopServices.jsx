@@ -11,11 +11,13 @@ class TopServices extends React.Component {
           data: [400, 430, 448, 470, 540],
         },
       ],
+
       options: {
         chart: {
           type: "bar",
           height: 350,
         },
+
         plotOptions: {
           bar: {
             borderRadius: 4,
@@ -23,9 +25,16 @@ class TopServices extends React.Component {
           },
         },
         dataLabels: {
-          enabled: false,
+          enabled: true,
           style: {
-            colors: ["#999DA0"],
+            colors: ["#ffffff"], //Set color of value within the bar
+          },
+        },
+        yaxis: {
+          labels: {
+            style: {
+              colors: "#696969 ", // Set the color for all categories
+            },
           },
         },
         xaxis: {
@@ -36,6 +45,11 @@ class TopServices extends React.Component {
             "Cleaning Sanitizing",
             "Back 2 Zero (Antibac)",
           ],
+          labels: {
+            style: {
+              colors: "#696969 ", // Set the color for all categories
+            },
+          },
         },
       },
     };
