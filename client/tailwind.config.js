@@ -6,11 +6,12 @@ export default {
     extend: {
       boxShadow: {
         'shadowPurple': '0px 0px 15px 8px #7A30C2',
-        'shaddow': '0px 0px 30px 5px #252736'
+        'redShadow': '0px 0px 15px 8px #800020'
       },
       fontFamily: {
         'poppins': ['Poppins',  'sans-serif']
       }
+
     },
     colors: {
       ddbackground: '#1E1D2B',  //Darker

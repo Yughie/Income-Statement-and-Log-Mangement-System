@@ -1,0 +1,8 @@
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4f46e5; /* Change the color as per your preference */
+    border-radius: 6px;
+  }

@@ -1,6 +1,9 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import Carwash from "./createNewService/Carwash";
+import Detailing from "./createNewService/Detailing";
+import Promo from "./createNewService/Promo";
 
 function CreateNewService() {
   return (
@@ -12,7 +15,7 @@ function CreateNewService() {
           data-drawer-toggle="logo-sidebar"
           aria-controls="logo-sidebar"
           type="button"
-          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg sm:hidden dark:hover:bg-darkPurple focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 mt-2 ms-3 text-sm shadow-lg text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-darkPurple dark:focus:ring-gray-600"
         >
           <span className="sr-only">Open sidebar</span>
           <svg
@@ -33,7 +36,7 @@ function CreateNewService() {
         {/* LOGO  */}
         <aside
           id="logo-sidebar"
-          className="fixed top-0 left-0 z-40 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0"
+          className="fixed top-0 left-0 z-40 w-80 h-screen md:transition-transform -translate-x-full md:translate-x-0"
           aria-label="Sidebar"
         >
           <div className="h-full px-3 py-4 overflow-y-auto bg-dbackground dark:bg-dbackground">
@@ -196,7 +199,7 @@ function CreateNewService() {
           </div>
         </aside>
 
-        <div className="p-6 sm:ml-80">
+        <div className="p-6 md:ml-80 min-h-screen">
           {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
@@ -240,92 +243,31 @@ function CreateNewService() {
               <h1 className="mb-4 text-xl text-gray-300 text-center ">
                 <label htmlFor="vehicle-description">Vehicle Description</label>
               </h1>
-              <form>
-                <div className="flex">
-                  <div className="relative w-full">
-                    <input
-                      type="text"
-                      id="vehicle-description"
-                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                      placeholder="Enter vehicle description"
-                      required
-                    />
-                  </div>
-                  <button
-                    id="dropdown-button"
-                    data-dropdown-toggle="dropdown"
-                    className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-r-lg border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-                    type="button"
-                  >
-                    Vehicle Type{" "}
-                    <svg
-                      className="w-2.5 h-2.5 ms-2.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 10 6"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m1 1 4 4 4-4"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    id="dropdown"
-                    className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                  >
-                    <ul
-                      className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                      aria-labelledby="dropdown-button"
-                    >
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Car
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Motor
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Tricycle
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Van
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                          Others
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+
+              <div className="flex">
+                <div className="w-full">
+                  <input
+                    type="text"
+                    id="vehicle-description"
+                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                    placeholder="Enter vehicle description"
+                    required
+                  />
                 </div>
-              </form>
+                <div className="mb-4 w-40">
+                  <select
+                    id="vehicleType"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option selected>Type</option>
+                    <option value="car">Car</option>
+                    <option value="motor">Motor</option>
+                    <option value="tricycle">Tricycle</option>
+                    <option value="van">Van</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           {/* SERVICES */}
@@ -340,195 +282,19 @@ function CreateNewService() {
           {/* LARGE Container SERVICES*/}
           <div className="w-full flex flex-col lg:flex-row ">
             {/*  CARWASH */}
-            <div className="w-full overflow-y-auto h-96 lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl text-gray-300 text-center">
-                <label htmlFor="service-carwash">Carwash</label>
-              </h1>
-              <div className="mb-4">
-                <select
-                  id="service-carwash"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
-                  <option value="motorwash">Motorwash</option>
-                  <option value="tricycle-private">Tricycle (Private)</option>
-                  <option value="tricycle-public">Tricycle (Public)</option>
-                  <option value="wax">Wax</option>
-                  <option value="back-2-zero">Back 2 zero</option>
-                  <option value="buffing">Buffing</option>
-                  <option value="engine-wash">Engine wash</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <select
-                  id="service-carwash"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
-                  <option value="motorwash">Motorwash</option>
-                  <option value="tricycle-private">Tricycle (Private)</option>
-                  <option value="tricycle-public">Tricycle (Public)</option>
-                  <option value="wax">Wax</option>
-                  <option value="back-2-zero">Back 2 zero</option>
-                  <option value="buffing">Buffing</option>
-                  <option value="engine-wash">Engine wash</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <select
-                  id="service-carwash"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
-                  <option value="motorwash">Motorwash</option>
-                  <option value="tricycle-private">Tricycle (Private)</option>
-                  <option value="tricycle-public">Tricycle (Public)</option>
-                  <option value="wax">Wax</option>
-                  <option value="back-2-zero">Back 2 zero</option>
-                  <option value="buffing">Buffing</option>
-                  <option value="engine-wash">Engine wash</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <select
-                  id="service-carwash"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
-                  <option value="motorwash">Motorwash</option>
-                  <option value="tricycle-private">Tricycle (Private)</option>
-                  <option value="tricycle-public">Tricycle (Public)</option>
-                  <option value="wax">Wax</option>
-                  <option value="back-2-zero">Back 2 zero</option>
-                  <option value="buffing">Buffing</option>
-                  <option value="engine-wash">Engine wash</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <select
-                  id="service-carwash"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Service</option>
-                  <option value="carwash">Carwash</option>
-                  <option value="motorwash">Motorwash</option>
-                  <option value="tricycle-private">Tricycle (Private)</option>
-                  <option value="tricycle-public">Tricycle (Public)</option>
-                  <option value="wax">Wax</option>
-                  <option value="back-2-zero">Back 2 zero</option>
-                  <option value="buffing">Buffing</option>
-                  <option value="engine-wash">Engine wash</option>
-                </select>
-              </div>
-              {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 w-4"
-                >
-                  <path
-                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                    fill="#B9BCD0"
-                  />
-                </svg>
-                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  Add new
-                </span>
-              </button>
-            </div>
-            {/* Phone Number */}
-            <div className="w-full overflow-y-auto h-96 lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl text-gray-300 text-center">
-                <label htmlFor="detailing">Detailing</label>
-              </h1>
-              <div className="mb-4">
-                <select
-                  id="countries"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Detailing</option>
-                  <option value="interior">Interior</option>
-                  <option value="exterior">Exterior</option>
-                </select>
-              </div>
-              {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 w-4"
-                >
-                  <path
-                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                    fill="#B9BCD0"
-                  />
-                </svg>
-                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  Add new
-                </span>
-              </button>
-            </div>
+            <Carwash />
+            {/* Detailing */}
+            <Detailing />
             {/* PROMO */}
-            <div className="w-full overflow-y-auto h-96 lg:w-1/3  bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl text-gray-300 text-center">
-                <label htmlFor="promo">Promo</label>
-              </h1>
-              <div className="mb-4">
-                <select
-                  id="countries"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option selected>Select Promo</option>
-                  <option value="engine-wash">Engine wash</option>
-                  <option value="wash-vacuum">
-                    Wash, vacuum, armor & tire black
-                  </option>
-                  <option value="asphalt-removal">Asphalt removal</option>
-                  <option value="hydrophobic-waxing">Hydrophobic waxing</option>
-                  <option value="antibacterial">
-                    Back 2 zero / antibacterial chemical
-                  </option>
-                </select>
-              </div>
-              {/* ADD NEW BUTTON */}
-              <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700 dark:border-gray-600">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-1 w-4"
-                >
-                  <path
-                    d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                    fill="#B9BCD0"
-                  />
-                </svg>
-                <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  Add new
-                </span>
-              </button>
-            </div>
+            <Promo />
           </div>
 
           {/* MORE CHOICES */}
-          <div>
-            <div>
+          <div className="lg:flex  ">
+            <div className="mb-4 lg:w-3/4 ">
               {/*SIZES S M L XL XXL XXL */}
               <div>
-                <ul className="flex justify-evenly flex-auto">
+                <ul className="flex justify-evenly flex-auto m-4 mb-8">
                   {/* SMALL */}
                   <li>
                     <input
@@ -541,10 +307,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-small"
-                      className="inline-flex items-center justify-center w-14 h-12 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold">S</div>
+                        <div className="w-full text-lg  xl:text-3xl font-semibold">
+                          S
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -559,10 +327,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-medium"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">M</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          M
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -577,10 +347,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-large"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">L</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          L
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -595,10 +367,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xlarge"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">XL</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          XL
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -613,10 +387,12 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">2XL</div>
+                        <div className="w-full text-lg xl:text-3xl font-semibold ">
+                          XXL
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -631,23 +407,96 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xxxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
-                        <div className="w-full text-lg font-semibold ">3XL</div>
+                        <div className="w-full text-xs xl:text-lg  font-semibold ">
+                          XL & XXL
+                        </div>
                       </div>
                     </label>
                   </li>
                 </ul>
               </div>
-              {/*ADD SERVICE / HOUR TIME */}
-              <div>
-                <div></div>
-                <div></div>
-                <div></div>
+              {/*HOUR TIME / Etra charges*/}
+              <div className="flex-row lg:flex mb-4">
+                {/* Hour Time*/}
+                <div className="w-full justify-evenly lg:w-2/5">
+                  <ul className="flex justify-evenly flex-auto mb-4 lg:mb-0">
+                    {/* NORMAL HOUR */}
+                    <li>
+                      <input
+                        type="radio"
+                        id="hour-normal"
+                        name="hour-rate"
+                        value="hour-noraml"
+                        className="hidden peer"
+                        required
+                      />
+                      <label
+                        htmlFor="hour-normal"
+                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 xl:h-14 p-4 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                      >
+                        <div className="block">
+                          <div className="w-full  text-m font-semibold text-center">
+                            Normal Hour
+                          </div>
+                        </div>
+                      </label>
+                    </li>
+                    {/* OVERTIME HOUR */}
+                    <li>
+                      <input
+                        type="radio"
+                        id="hour-overtime"
+                        name="hour-rate"
+                        value="hour-overtime"
+                        className="hidden peer"
+                      />
+                      <label
+                        htmlFor="hour-overtime"
+                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 p-4 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                      >
+                        <div className="block">
+                          <div className="w-full text-m font-semibold text-center">
+                            Overtime Hour
+                          </div>
+                        </div>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                {/* Etra charges*/}
+                <div className="flex lg:w-3/5 items-center lg:mb-0 my-8 md:my-0 justify-center">
+                  <h1 className=" mr-4 text-xl text-gray-300 text-center ">
+                    <label htmlFor="extra-charges">Extra Chages</label>
+                  </h1>
+                  <div className="">
+                    <input
+                      type="text"
+                      id="extra-charges"
+                      className="bg-gray-50 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            <div></div>
+
+            {/* TOTAL AND SUBMIT BUTTON */}
+            <div className="flex flex-col w-full lg:w-1/3 items-center justify-center">
+              <div>
+                <h1 className="mb-4 text-3xl text-gray-300">
+                  <label htmlFor="extra-charges">Total: 99999</label>
+                </h1>
+              </div>
+              <div>
+                <button className="w-32 text-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 px-6 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    Submit
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
