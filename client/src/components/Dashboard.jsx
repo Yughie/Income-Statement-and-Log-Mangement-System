@@ -201,7 +201,7 @@ function Dashboard() {
         </aside>
 
         <div className="p-4 xl:ml-80 bg-gray-50 dark:bg-ddbackground">
-          <div className="p-4 rounded-lg dark:border-bg-darkPurple">
+          <div className=" rounded-lg dark:border-bg-darkPurple">
             {/*WEEKLY AVERAGE MONTHLY SALES */}
             <h1 className="dark:text-gray-400 text-5xl text-ddbackground font-poppins">
               Welcome, Admin
@@ -210,7 +210,7 @@ function Dashboard() {
               <div className="w-full lg:w-2/3 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
                 <WeeklyService />
               </div>
-              <div className="w-full lg:w-1/3 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
+              <div className="w-full lg:w-1/3  bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
                 <MonthlyService />
               </div>
             </div>
@@ -219,7 +219,7 @@ function Dashboard() {
               <div className="w-full lg:w-2/5 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
                 <TopServices />
               </div>
-              <div className="w-full lg:w-3/5 lg:mr-4 bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
+              <div className="w-full lg:w-3/5  bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
                 <RecentServices />
               </div>
             </div>

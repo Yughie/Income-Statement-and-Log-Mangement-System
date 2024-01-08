@@ -199,7 +199,7 @@ function CreateNewService() {
           </div>
         </aside>
 
-        <div className="p-6 md:ml-80 min-h-screen">
+        <div className="p-4 md:ml-80 min-h-screen">
           {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
