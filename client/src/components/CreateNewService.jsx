@@ -4,6 +4,7 @@ import { useState } from "react";
 import Carwash from "./createNewService/Carwash";
 import Detailing from "./createNewService/Detailing";
 import Promo from "./createNewService/Promo";
+import Pricing from "./createNewService/Pricing";
 
 function CreateNewService() {
   return (
@@ -283,9 +284,7 @@ function CreateNewService() {
               </h1>
             </span>
           </div>
-
-          {/* LARGE Container SERVICES*/}
-          <div className="w-full gap-4 p-4 pb-0 bg-dbackground rounded-lg flex flex-col lg:flex-row ">
+          <div className="w-full gap-4 p-4 pb-0 bg-gray-400 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
             {/*  CARWASH */}
             <Carwash />
             {/* Detailing */}
@@ -294,215 +293,11 @@ function CreateNewService() {
             <Promo />
           </div>
 
-          {/* MORE CHOICES */}
-          <div className="lg:flex  ">
-            <div className="mb-4 lg:w-3/4 ">
-              {/*SIZES S M L XL XXL XXL */}
-              <div>
-                <ul className="flex justify-evenly flex-auto m-4 mb-8">
-                  {/* SMALL */}
-                  <li>
-                    <input
-                      type="radio"
-                      id="sizes-small"
-                      name="sizes"
-                      value="sizes-small"
-                      className="hidden peer"
-                      required
-                    />
-                    <label
-                      htmlFor="sizes-small"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
-                    >
-                      <div className="block">
-                        <div className="w-full text-lg  xl:text-3xl font-semibold">
-                          S
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                  {/* Medium */}
-                  <li>
-                    <input
-                      type="radio"
-                      id="sizes-medium"
-                      name="sizes"
-                      value="sizes-medium"
-                      className="hidden peer"
-                    />
-                    <label
-                      htmlFor="sizes-medium"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
-                    >
-                      <div className="block">
-                        <div className="w-full text-lg xl:text-3xl font-semibold ">
-                          M
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                  {/* LARGE */}
-                  <li>
-                    <input
-                      type="radio"
-                      id="sizes-large"
-                      name="sizes"
-                      value="sizes-large"
-                      className="hidden peer"
-                    />
-                    <label
-                      htmlFor="sizes-large"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
-                    >
-                      <div className="block">
-                        <div className="w-full text-lg xl:text-3xl font-semibold ">
-                          L
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                  {/* EXTRA LARGE */}
-                  <li>
-                    <input
-                      type="radio"
-                      id="sizes-xlarge"
-                      name="sizes"
-                      value="sizes-xlarge"
-                      className="hidden peer"
-                    />
-                    <label
-                      htmlFor="sizes-xlarge"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
-                    >
-                      <div className="block">
-                        <div className="w-full text-lg xl:text-3xl font-semibold ">
-                          XL
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                  {/* 2 EXTRALARGE */}
-                  <li>
-                    <input
-                      type="radio"
-                      id="sizes-xxlarge"
-                      name="sizes"
-                      value="sizes-xxlarge"
-                      className="hidden peer"
-                    />
-                    <label
-                      htmlFor="sizes-xxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
-                    >
-                      <div className="block">
-                        <div className="w-full text-lg xl:text-3xl font-semibold ">
-                          XXL
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                  {/* 3 EXTRA LARGE */}
-                  <li>
-                    <input
-                      type="radio"
-                      id="sizes-xxxlarge"
-                      name="sizes"
-                      value="sizes-xxxlarge"
-                      className="hidden peer"
-                    />
-                    <label
-                      htmlFor="sizes-xxxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 dark:text-gray-400 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
-                    >
-                      <div className="block">
-                        <div className="w-full text-xs xl:text-lg  font-semibold ">
-                          XL & XXL
-                        </div>
-                      </div>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              {/*HOUR TIME / Etra charges*/}
-              <div className="flex-row lg:flex mb-4">
-                {/* Hour Time*/}
-                <div className="w-full justify-evenly lg:w-2/5">
-                  <ul className="flex justify-evenly flex-auto mb-4 lg:mb-0">
-                    {/* NORMAL HOUR */}
-                    <li>
-                      <input
-                        type="radio"
-                        id="hour-normal"
-                        name="hour-rate"
-                        value="hour-noraml"
-                        className="hidden peer"
-                        required
-                      />
-                      <label
-                        htmlFor="hour-normal"
-                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 xl:h-14 p-4 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
-                      >
-                        <div className="block">
-                          <div className="w-full  text-m font-semibold text-center">
-                            Normal Hour
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                    {/* OVERTIME HOUR */}
-                    <li>
-                      <input
-                        type="radio"
-                        id="hour-overtime"
-                        name="hour-rate"
-                        value="hour-overtime"
-                        className="hidden peer"
-                      />
-                      <label
-                        htmlFor="hour-overtime"
-                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 p-4 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
-                      >
-                        <div className="block">
-                          <div className="w-full text-m font-semibold text-center">
-                            Overtime Hour
-                          </div>
-                        </div>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-                {/* Extra charges*/}
-                <div className="flex lg:w-3/5 items-center lg:mb-0 my-8 md:my-0 justify-center">
-                  <h1 className=" mr-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
-                    <label htmlFor="extra-charges">Extra Chages</label>
-                  </h1>
-                  <div className="">
-                    <input
-                      type="text"
-                      id="extra-charges"
-                      className="bg-gray-50 lg:mb-0 border border-gray-300 text-ddbackground text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/*PRICING */}
 
-            {/* TOTAL AND SUBMIT BUTTON */}
-            <div className="flex flex-col w-full lg:w-1/3 items-center justify-center">
-              <div>
-                <h1 className="mb-4 text-3xl dark:text-gray-300 text-ddbackground ">
-                  <label htmlFor="extra-charges">Total: 99999</label>
-                </h1>
-              </div>
-              <div>
-                <button className="w-32 text-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-ddbackground text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 px-6 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
-                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    Submit
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
+          {/* PRICING */}
+          <Pricing />
+          {/* MORE CHOICES */}
         </div>
       </div>
     </>
