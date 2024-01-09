@@ -209,69 +209,74 @@ function CreateNewService() {
             </span>
           </div>
           {/* LARGE Container Vehicle information*/}
-          <div className="w-full flex flex-col lg:flex-row ">
-            {/*  Plate Number */}
-            <div className="w-full lg:w-1/3 lg:mr-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
-                <label htmlFor="plate-number">Plate Number</label>
-              </h1>
-              <div className="">
-                <input
-                  type="text"
-                  id="plate-number"
-                  placeholder="Enter plate number"
-                  className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                />
-              </div>
-            </div>
-            {/* Phone Number */}
-            <div className="w-full lg:w-1/3 lg:mr-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
-                <label htmlFor="phone-number">Phone Number</label>
-              </h1>
-              <div className="">
-                <input
-                  type="text"
-                  id="phone-number"
-                  placeholder="Enter phone number"
-                  className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                />
-              </div>
-            </div>
-            {/* Vehicle DESCRIPTION */}
-            <div className="w-full lg:w-1/3 dark:bg-dbackground bg-gray-400 p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
-                <label htmlFor="vehicle-description">Vehicle Description</label>
-              </h1>
-
-              <div className="flex">
-                <div className="w-full">
+          <div className="w-full  flex flex-row lg:flex-row ">
+            <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
+              {/*  Plate Number */}
+              <div className="lg:w-1/3">
+                <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
+                  <label htmlFor="plate-number">Plate Number</label>
+                </h1>
+                <div className="">
                   <input
                     type="text"
-                    id="vehicle-description"
-                    className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                    placeholder="Enter vehicle description"
-                    required
+                    id="plate-number"
+                    placeholder="Enter plate number"
+                    className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
-                <div className="mb-4 w-40">
-                  <select
-                    id="vehicleType"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option selected>Type</option>
-                    <option value="car">Car</option>
-                    <option value="motor">Motor</option>
-                    <option value="tricycle">Tricycle</option>
-                    <option value="van">Van</option>
-                    <option value="others">Others</option>
-                  </select>
+              </div>
+              {/* Phone Number */}
+              <div className="lg:w-1/3">
+                {" "}
+                <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
+                  <label htmlFor="phone-number">Phone Number</label>
+                </h1>
+                <div className="">
+                  <input
+                    type="text"
+                    id="phone-number"
+                    placeholder="Enter phone number"
+                    className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  />
+                </div>
+              </div>
+              {/* Vehicle DESCRIPTION */}
+              <div className="lg:w-1/3">
+                <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
+                  <label htmlFor="vehicle-description">
+                    Vehicle Description
+                  </label>
+                </h1>
+
+                <div className="flex">
+                  <div className="w-full">
+                    <input
+                      type="text"
+                      id="vehicle-description"
+                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                      placeholder="Enter vehicle description"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4 w-40">
+                    <select
+                      id="vehicleType"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option selected>Type</option>
+                      <option value="car">Car</option>
+                      <option value="motor">Motor</option>
+                      <option value="tricycle">Tricycle</option>
+                      <option value="van">Van</option>
+                      <option value="others">Others</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           {/* SERVICES */}
-          <div className=" rounded-lg dark:border-bg-darkPurple ">
+          <div className="rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
               <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins pb-4 mx-auto text-center ">
                 Services
@@ -280,7 +285,7 @@ function CreateNewService() {
           </div>
 
           {/* LARGE Container SERVICES*/}
-          <div className="w-full flex flex-col lg:flex-row ">
+          <div className="w-full gap-4 p-4 pb-0 bg-dbackground rounded-lg flex flex-col lg:flex-row ">
             {/*  CARWASH */}
             <Carwash />
             {/* Detailing */}
