@@ -144,7 +144,7 @@ function CreateNewService() {
                   </svg>
 
                   <span className="flex-1 ms-3 whitespace-nowrap">
-                    Income Statemenasdasdas
+                    Income Statement
                   </span>
                 </a>
               </li>
