@@ -50,7 +50,7 @@ function Statistics() {
               <li>
                 <a
                   href="./create-new-service"
-                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4 text-gray-100 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
                 >
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
@@ -72,10 +72,10 @@ function Statistics() {
               <li>
                 <a
                   href="./dashboard"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white dark:hover:bg-darkPurple hover:shadow-shadowPurple dark:hover:shadow-shadowPurple hover:bg-gray-100  group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white dark:hover:bg-darkPurple hover:shadow-shadowPurple dark:hover:shadow-shadowPurple hover:bg-gray-100  group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -97,10 +97,10 @@ function Statistics() {
               <li>
                 <a
                   href="./log"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -123,10 +123,10 @@ function Statistics() {
               <li>
                 <a
                   href="./income-statement"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -148,10 +148,10 @@ function Statistics() {
               <li>
                 <a
                   href="./statistics"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple dark:bg-darkPurple shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple bg-darkPurple shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -172,10 +172,10 @@ function Statistics() {
             <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-center items-end py-4 pr-4">
               <a
                 href="#"
-                className="flex transition duration-300 ease-in-out w-full items-center p-4  text-gray-900 rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                className="flex transition duration-300 ease-in-out w-full items-center p-4  text-white rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -8,7 +8,7 @@ import Promo from "./createNewService/Promo";
 function CreateNewService() {
   return (
     <>
-      <div className="bg-ddbackground">
+      <div className="dark:bg-ddbackground bg-gray-200">
         {/* Navigator open/close button */}
         <button
           data-drawer-target="logo-sidebar"
@@ -53,10 +53,10 @@ function CreateNewService() {
               <li>
                 <a
                   href="./create-new-service"
-                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4 text-gray-100 rounded-lg dark:text-gray-900 bg-gray-100 border-lightPurple shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4  dark:text-gray-900 bg-gray-100 border-lightPurple shadow-shadowPurple group"
                 >
                   <svg
-                    className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
+                    className="w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
                     "
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -75,10 +75,10 @@ function CreateNewService() {
               <li>
                 <a
                   href="./dashboard"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -100,10 +100,10 @@ function CreateNewService() {
               <li>
                 <a
                   href="./log"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -126,10 +126,10 @@ function CreateNewService() {
               <li>
                 <a
                   href="./income-statement"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -151,10 +151,10 @@ function CreateNewService() {
               <li>
                 <a
                   href="./statistics"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -175,10 +175,10 @@ function CreateNewService() {
             <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-center items-end py-4 pr-4">
               <a
                 href="#"
-                className="flex transition duration-300 ease-in-out w-full items-center p-4  text-gray-900 rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
+                className="flex transition duration-300 ease-in-out w-full items-center p-4  text-white  rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
               >
                 <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -203,7 +203,7 @@ function CreateNewService() {
           {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
-              <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins mx-auto text-center ">
+              <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
                 Vehicle Information
               </h1>
             </span>
@@ -211,8 +211,8 @@ function CreateNewService() {
           {/* LARGE Container Vehicle information*/}
           <div className="w-full flex flex-col lg:flex-row ">
             {/*  Plate Number */}
-            <div className="w-full lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl text-gray-300 text-center ">
+            <div className="w-full lg:w-1/3 lg:mr-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
                 <label htmlFor="plate-number">Plate Number</label>
               </h1>
               <div className="">
@@ -225,8 +225,8 @@ function CreateNewService() {
               </div>
             </div>
             {/* Phone Number */}
-            <div className="w-full lg:w-1/3 lg:mr-4 bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl text-gray-300 text-center">
+            <div className="w-full lg:w-1/3 lg:mr-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
                 <label htmlFor="phone-number">Phone Number</label>
               </h1>
               <div className="">
@@ -239,8 +239,8 @@ function CreateNewService() {
               </div>
             </div>
             {/* Vehicle DESCRIPTION */}
-            <div className="w-full lg:w-1/3  bg-dbackground p-4 mb-4 rounded-md">
-              <h1 className="mb-4 text-xl text-gray-300 text-center ">
+            <div className="w-full lg:w-1/3 dark:bg-dbackground bg-gray-400 p-4 mb-4 rounded-md">
+              <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
                 <label htmlFor="vehicle-description">Vehicle Description</label>
               </h1>
 
@@ -273,7 +273,7 @@ function CreateNewService() {
           {/* SERVICES */}
           <div className=" rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
-              <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins pb-4 mx-auto text-center ">
+              <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins pb-4 mx-auto text-center ">
                 Services
               </h1>
             </span>
@@ -307,7 +307,7 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-small"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
                         <div className="w-full text-lg  xl:text-3xl font-semibold">
@@ -327,7 +327,7 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-medium"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
                         <div className="w-full text-lg xl:text-3xl font-semibold ">
@@ -347,7 +347,7 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-large"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
                         <div className="w-full text-lg xl:text-3xl font-semibold ">
@@ -367,7 +367,7 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xlarge"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14  text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
                         <div className="w-full text-lg xl:text-3xl font-semibold ">
@@ -387,7 +387,7 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
                         <div className="w-full text-lg xl:text-3xl font-semibold ">
@@ -407,7 +407,7 @@ function CreateNewService() {
                     />
                     <label
                       htmlFor="sizes-xxxlarge"
-                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                      className="inline-flex items-center justify-center w-14 h-12 xl:w-20 xl:h-14 dark:text-gray-400 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                     >
                       <div className="block">
                         <div className="w-full text-xs xl:text-lg  font-semibold ">
@@ -435,7 +435,7 @@ function CreateNewService() {
                       />
                       <label
                         htmlFor="hour-normal"
-                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 xl:h-14 p-4 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
+                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 xl:h-14 p-4 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape  hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-purpleGrape"
                       >
                         <div className="block">
                           <div className="w-full  text-m font-semibold text-center">
@@ -455,7 +455,7 @@ function CreateNewService() {
                       />
                       <label
                         htmlFor="hour-overtime"
-                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 p-4 xl:h-14 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
+                        className="inline-flex items-center justify-center w-24 h-12 xl:w-28 p-4 xl:h-14 text-ddbackground bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white dark:peer-checked:bg-purpleGrape hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:bg-purpleGrape"
                       >
                         <div className="block">
                           <div className="w-full text-m font-semibold text-center">
@@ -466,16 +466,16 @@ function CreateNewService() {
                     </li>
                   </ul>
                 </div>
-                {/* Etra charges*/}
+                {/* Extra charges*/}
                 <div className="flex lg:w-3/5 items-center lg:mb-0 my-8 md:my-0 justify-center">
-                  <h1 className=" mr-4 text-xl text-gray-300 text-center ">
+                  <h1 className=" mr-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
                     <label htmlFor="extra-charges">Extra Chages</label>
                   </h1>
                   <div className="">
                     <input
                       type="text"
                       id="extra-charges"
-                      className="bg-gray-50 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 lg:mb-0 border border-gray-300 text-ddbackground text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
                 </div>
@@ -485,13 +485,13 @@ function CreateNewService() {
             {/* TOTAL AND SUBMIT BUTTON */}
             <div className="flex flex-col w-full lg:w-1/3 items-center justify-center">
               <div>
-                <h1 className="mb-4 text-3xl text-gray-300">
+                <h1 className="mb-4 text-3xl dark:text-gray-300 text-ddbackground ">
                   <label htmlFor="extra-charges">Total: 99999</label>
                 </h1>
               </div>
               <div>
-                <button className="w-32 text-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 px-6 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
-                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <button className="w-32 text-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple text-ddbackground text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 px-6 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
+                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     Submit
                   </span>
                 </button>
