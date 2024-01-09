@@ -234,7 +234,7 @@ function LogsTable() {
               <td class="px-6 py-4">09381293241</td>
               <td class="px-6 py-4">Maangas</td>
               <td class="px-6 py-4">Sedan</td>
-              <td class="px-6 py-4">Pasta</td>
+              <td class="px-6 py-4">Psta</td>
               <td class="px-6 py-4">$2999</td>
               <td class="px-6 py-4">09-23-42:03:11</td>
               <td class="px-6 py-4 flex gap-4">
