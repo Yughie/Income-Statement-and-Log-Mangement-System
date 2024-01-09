@@ -1,6 +1,7 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import LogsTable from "./logs/LogsTable";
 
 function Log() {
   return (
@@ -198,6 +199,7 @@ function Log() {
         <div className="p-4  lg:ml-80">
           <div className="min-h-screen rounded-lg dark:border-bg-darkPurple">
             {/*WEEKLY AVERAGE MONTHLY SALES */}
+            <LogsTable />
           </div>
         </div>
       </div>
