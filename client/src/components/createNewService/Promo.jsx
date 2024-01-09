@@ -1,7 +1,7 @@
 function Promo() {
   return (
     <>
-      <div className="w-full  h-96 lg:w-1/3  dark:bg-dbackground bg-gray-400 p-4 mb-4 rounded-md">
+      <div className="w-full  h-96 lg:w-1/3  dark:bg-dbackground bg-gray-400 mb-4 rounded-md">
         <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
           <label htmlFor="promo">Promo</label>
         </h1>
