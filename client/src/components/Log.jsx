@@ -52,7 +52,7 @@ function Log() {
               <li>
                 <a
                   href="./create-new-service"
-                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4  dark:text-gray-900 bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4  dark:text-gray-900 rounded-lg bg-gray-100 border-lightPurple hover:shadow-shadowPurple group"
                 >
                   <svg
                     className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white

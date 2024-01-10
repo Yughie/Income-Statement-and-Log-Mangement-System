@@ -8,22 +8,43 @@ function Detailing() {
         <div className="flex flex-col justify-between  text-gray-900 dark:text-gray-300 max-h-80 overflow-auto pb-4">
           <div className="mb-4">
             <select
-              id="countries"
+              id="detailing"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option selected>Select Detailing</option>
-              <option value="interior">Interior</option>
-              <option value="exterior">Exterior</option>
-            </select>
-          </div>
-          <div className="mb-4">
-            <select
-              id="countries"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-              <option selected>Select Detailing</option>
-              <option value="interior">Interior</option>
-              <option value="exterior">Exterior</option>
+              <option value="INTERIOR" disabled>
+                INTERIOR
+              </option>
+              <option value="Removing seats rear/front">
+                Removing seats rear/front
+              </option>
+              <option value="Cleaning/Sanitizing">Cleaning/Sanitizing</option>
+              <option value="Washing drying using hydro vacuum">
+                Washing drying using hydro vacuum
+              </option>
+              <option value="Cleaning dashboard, sidings & sealing/applying chemical cleanser">
+                Cleaning dashboard, sidings & sealing/applying chemical cleanser
+              </option>
+              <option value="Carpet cleansing">Carpet cleansing</option>
+              <option value="Removing seat cover">Removing seat cover</option>
+              <option value="Wash, Vacuum, armor & tire black">
+                Wash, Vacuum, armor & tire black
+              </option>
+              <option value="Back 2 zero antibac">Back 2 zero antibac</option>
+
+              <option value="EXTERIOR" disabled>
+                EXTERIOR
+              </option>
+              <option value="EXTERIOR">Wash</option>
+              <option value="EXTERIOR">Drying</option>
+              <option value="EXTERIOR">Buffing using wool pad/compound</option>
+              <option value="EXTERIOR">Engine wash</option>
+              <option value="EXTERIOR">
+                Polishing/Buffing with hydrophobic wax
+              </option>
+              <option value="EXTERIOR">
+                Wash, Vacuum armor oil, tire black
+              </option>
             </select>
           </div>
 
