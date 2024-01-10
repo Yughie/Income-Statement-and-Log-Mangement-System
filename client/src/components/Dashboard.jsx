@@ -76,7 +76,7 @@ function Dashboard() {
               <li>
                 <a
                   href="./dashboard"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 bg-darkPurple shadow-shadowPurple group"
+                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white bg-darkPurple shadow-shadowPurple group"
                 >
                   <svg
                     className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
