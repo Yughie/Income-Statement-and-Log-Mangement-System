@@ -1,51 +1,51 @@
 function LogsTable() {
   return (
     <>
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Plate Number
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Phone Number
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Vehicle Description
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Vehicle Type
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Service
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Total Paid
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Time and Date
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Option
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr class="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <tr className="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 ABC 1234
               </th>
-              <td class="px-6 py-4">09381293241</td>
-              <td class="px-6 py-4">Maangas</td>
-              <td class="px-6 py-4">Sedan</td>
-              <td class="px-6 py-4">Pasta</td>
-              <td class="px-6 py-4">$2999</td>
-              <td class="px-6 py-4">09-23-42:03:11</td>
-              <td class="px-6 py-4 flex gap-4">
+              <td className="px-6 py-4">09381293241</td>
+              <td className="px-6 py-4">Maangas</td>
+              <td className="px-6 py-4">Sedan</td>
+              <td className="px-6 py-4">Pasta</td>
+              <td className="px-6 py-4">$2999</td>
+              <td className="px-6 py-4">09-23-42:03:11</td>
+              <td className="px-6 py-4 flex gap-4">
                 {/*EDIT BUTTON*/}
                 <button className="">
                   <svg
@@ -80,20 +80,20 @@ function LogsTable() {
                 </button>
               </td>
             </tr>
-            <tr class="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <tr className="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 Microsoft Surface Pro
               </th>
-              <td class="px-6 py-4">09381293241</td>
-              <td class="px-6 py-4">Maangas</td>
-              <td class="px-6 py-4">Sedan</td>
-              <td class="px-6 py-4">Pasta</td>
-              <td class="px-6 py-4">$2999</td>
-              <td class="px-6 py-4">09-23-42:03:11</td>
-              <td class="px-6 py-4 flex gap-4">
+              <td className="px-6 py-4">09381293241</td>
+              <td className="px-6 py-4">Maangas</td>
+              <td className="px-6 py-4">Sedan</td>
+              <td className="px-6 py-4">Pasta</td>
+              <td className="px-6 py-4">$2999</td>
+              <td className="px-6 py-4">09-23-42:03:11</td>
+              <td className="px-6 py-4 flex gap-4">
                 {/*EDIT BUTTON*/}
                 <button className="">
                   <svg
@@ -128,20 +128,20 @@ function LogsTable() {
                 </button>
               </td>
             </tr>
-            <tr class="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <tr className="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 Magic Mouse 2
               </th>
-              <td class="px-6 py-4">09381293241</td>
-              <td class="px-6 py-4">Maangas</td>
-              <td class="px-6 py-4">Sedan</td>
-              <td class="px-6 py-4">Pasta</td>
-              <td class="px-6 py-4">$2999</td>
-              <td class="px-6 py-4">09-23-42:03:11</td>
-              <td class="px-6 py-4 flex gap-4">
+              <td className="px-6 py-4">09381293241</td>
+              <td className="px-6 py-4">Maangas</td>
+              <td className="px-6 py-4">Sedan</td>
+              <td className="px-6 py-4">Pasta</td>
+              <td className="px-6 py-4">$2999</td>
+              <td className="px-6 py-4">09-23-42:03:11</td>
+              <td className="px-6 py-4 flex gap-4">
                 {/*EDIT BUTTON*/}
                 <button className="">
                   <svg
@@ -176,20 +176,20 @@ function LogsTable() {
                 </button>
               </td>
             </tr>
-            <tr class="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <tr className="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 Google Pixel Phone
               </th>
-              <td class="px-6 py-4">09381293241</td>
-              <td class="px-6 py-4">Maangas</td>
-              <td class="px-6 py-4">Sedan</td>
-              <td class="px-6 py-4">Pasta</td>
-              <td class="px-6 py-4">$2999</td>
-              <td class="px-6 py-4">09-23-42:03:11</td>
-              <td class="px-6 py-4 flex gap-4">
+              <td className="px-6 py-4">09381293241</td>
+              <td className="px-6 py-4">Maangas</td>
+              <td className="px-6 py-4">Sedan</td>
+              <td className="px-6 py-4">Pasta</td>
+              <td className="px-6 py-4">$2999</td>
+              <td className="px-6 py-4">09-23-42:03:11</td>
+              <td className="px-6 py-4 flex gap-4">
                 {/*EDIT BUTTON*/}
                 <button className="">
                   <svg
@@ -224,20 +224,20 @@ function LogsTable() {
                 </button>
               </td>
             </tr>
-            <tr class="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <tr className="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 Magic Mouse 2
               </th>
-              <td class="px-6 py-4">09381293241</td>
-              <td class="px-6 py-4">Maangas</td>
-              <td class="px-6 py-4">Sedan</td>
-              <td class="px-6 py-4">Pasta</td>
-              <td class="px-6 py-4">$2999</td>
-              <td class="px-6 py-4">09-23-42:03:11</td>
-              <td class="px-6 py-4 flex gap-4">
+              <td className="px-6 py-4">09381293241</td>
+              <td className="px-6 py-4">Maangas</td>
+              <td className="px-6 py-4">Sedan</td>
+              <td className="px-6 py-4">Pasta</td>
+              <td className="px-6 py-4">$2999</td>
+              <td className="px-6 py-4">09-23-42:03:11</td>
+              <td className="px-6 py-4 flex gap-4">
                 {/*EDIT BUTTON*/}
                 <button className="">
                   <svg
