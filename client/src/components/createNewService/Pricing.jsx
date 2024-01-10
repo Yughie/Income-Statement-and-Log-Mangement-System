@@ -80,10 +80,8 @@ function Pricing() {
                 />
               </div>
               <div className="mb-4 w-40">
-                <button className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground text-sm  focus:ring-blue-500 focus:border-blue-500 p-2.5 px-6 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
-                  <span className="dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    Submit
-                  </span>
+                <button className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-gray-700  dark:border-gray-600 font-bold">
+                  Submit
                 </button>
               </div>
             </div>

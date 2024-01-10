@@ -64,10 +64,18 @@ class TopServices extends React.Component {
               Top Services
             </h1>
           </div>
-          <div>
-            <h1 className="dark:text-gray-500 text-md text-ddbackground font-poppins">
-              Last 7 days
-            </h1>
+
+          <div className="mb-4">
+            <select
+              id="days-filter"
+              className="bg-gray-50  border-gray-300  text-gray-900 text-sm rounded-lg focus:ring-purpleGrape focus:border-purpleGrape block w-full p-2.5 dark:bg-dbackground dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purpleGrape dark:focus:border-purpleGrape"
+            >
+              <option value="7-days" selected>
+                Last 7 days
+              </option>
+              <option value="15-days">Last 15 days</option>
+              <option value="30-days">Laast 30 days</option>
+            </select>
           </div>
         </div>
         <div id="chart">
