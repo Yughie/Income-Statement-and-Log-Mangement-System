@@ -1,54 +1,93 @@
 function Promo() {
   return (
     <>
-      <div className="w-full  h-96 lg:w-1/3  dark:bg-dbackground bg-gray-400 mb-4 rounded-md">
-        <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
+      <div className="w-full  h-96 lg:w-1/3  dark:bg-dbackground bg-gray-300 mb-4 rounded-md">
+        <h1 className="mb-4 font-bold text-xl dark:text-gray-300 text-ddbackground text-center">
           <label htmlFor="promo">Promo</label>
         </h1>
         <div className="flex flex-col justify-between  text-gray-900 dark:text-gray-300 max-h-80 overflow-auto pb-4">
-          <div className="mb-4">
-            <select
-              id="countries"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-              <option selected>Select Promo</option>
-              <option value="engine-wash">Engine wash</option>
-              <option value="wash-vacuum">
-                Wash, vacuum, armor & tire black
-              </option>
-              <option value="asphalt-removal">Asphalt removal</option>
-              <option value="hydrophobic-waxing">Hydrophobic waxing</option>
-              <option value="antibacterial">
-                Back 2 zero / antibacterial chemical
-              </option>
-            </select>
-          </div>
-          {/* ADD NEW BUTTON */}
-          <div className="flex flex-shrink justify-center gap-4 flex-wrap">
-            <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-shadowPurple  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 min-w-32 p-2.5 hover:bg-gray-300 dark:hover:bg-darkPurple dark:bg-gray-700  dark:border-gray-600">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mr-1 w-4"
-              >
-                <path
-                  d="M18.5714 7.85714H12.1429V1.42857C12.1429 0.639732 11.5031 0 10.7143 0H9.28571C8.49687 0 7.85714 0.639732 7.85714 1.42857V7.85714H1.42857C0.639732 7.85714 0 8.49687 0 9.28571V10.7143C0 11.5031 0.639732 12.1429 1.42857 12.1429H7.85714V18.5714C7.85714 19.3603 8.49687 20 9.28571 20H10.7143C11.5031 20 12.1429 19.3603 12.1429 18.5714V12.1429H18.5714C19.3603 12.1429 20 11.5031 20 10.7143V9.28571C20 8.49687 19.3603 7.85714 18.5714 7.85714Z"
-                  fill="#B9BCD0"
+          <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="engine-wash-promo"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
-              </svg>
-              <span className="dark:border-gray-600  dark:placeholder-gray-400 text-ddbackground dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                Add new
-              </span>
-            </button>
-            <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-gray-900 text-sm rounded-lg  min-w-32 p-2.5  dark:bg-gray-700 dark:hover:bg-red-800 dark:border-gray-700">
-              <span className="dark:border-gray-600  dark:placeholder-gray-400 text-ddbackground dark:text-white ">
-                Delete
-              </span>
-            </button>
-          </div>
+                <label
+                  htmlFor="engine-wash-promo"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Engine wash promo
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="vacuum-tire-promo"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="vacuum-tire-promo"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Wash, vacuum, armor & tire black promo
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="asphalt-removal-promo"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="asphalt-removal-promo"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Asphalt removal promo
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="hydrophobic-waxing-promo"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="hydrophobic-waxing-promo"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Hydrophobic waxing promo
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+              <div className="flex items-center ps-3">
+                <input
+                  id="antibacterial-promo"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="antibacterial-promo"
+                  className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Back 2 zero / antibacterial chemical promo
+                </label>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </>
