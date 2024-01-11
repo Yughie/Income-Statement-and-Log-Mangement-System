@@ -5,6 +5,7 @@ import Carwash from "./createNewService/Carwash";
 import Detailing from "./createNewService/Detailing";
 import Promo from "./createNewService/Promo";
 import Pricing from "./createNewService/Pricing";
+import CreateDatePicker from "./createNewService/CreateDatePicker";
 
 function CreateNewService() {
   return (
@@ -204,6 +205,7 @@ function CreateNewService() {
           {/*VEHICLE INFORMATION */}
           <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
             <span className="w-full ">
+              <CreateDatePicker />
               <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
                 Vehicle Information
               </h1>
@@ -211,7 +213,7 @@ function CreateNewService() {
           </div>
           {/* LARGE Container Vehicle information*/}
           <div className="w-full  flex flex-row lg:flex-row ">
-            <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
+            <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-300 dark:bg-dbackground p-4 mb-4 rounded-md">
               {/*  Plate Number */}
               <div className="lg:w-1/3">
                 <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
@@ -284,7 +286,7 @@ function CreateNewService() {
               </h1>
             </span>
           </div>
-          <div className="w-full gap-4 p-4 pb-0 bg-gray-400 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
+          <div className="w-full gap-4 p-4 pb-0 bg-gray-300 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
             {/*  CARWASH */}
             <Carwash />
             {/* Detailing */}

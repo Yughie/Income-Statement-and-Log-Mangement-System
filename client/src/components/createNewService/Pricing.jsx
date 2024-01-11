@@ -9,7 +9,7 @@ function Pricing() {
         </span>
       </div>
       <div className="w-full  flex flex-row lg:flex-row ">
-        <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-400 dark:bg-dbackground p-4 mb-4 rounded-md">
+        <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-300 dark:bg-dbackground p-4 mb-4 rounded-md">
           {/*  Plate Number */}
           <div className="lg:w-1/3">
             <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">

@@ -2,6 +2,8 @@
   "dependencies": {
     "apexcharts": "^3.45.1",
     "flowbite": "^2.2.0",
+    "flowbite-datepicker": "^1.2.6",
+    "pikaday": "^1.8.2",
     "react-apexcharts": "^1.4.1",
     "react-select": "^5.8.0",
     "recharts": "^2.10.3",
