@@ -1,7 +1,7 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import IncomeStatementDynamic from "./statistics/IncomeStatementDynamic";
+import IncomeStatementDynamic from "./income-statement/IncomeStatementDynamic";
 
 function Statistics() {
   return (

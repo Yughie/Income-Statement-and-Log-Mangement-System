@@ -1,6 +1,9 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import IncomeStatementDynamic from "./income-statement/IncomeStatementDynamic";
+import DailyFinancialLog from "./income-statement/DailyFinancialLog";
+import DatePicker from "./income-statement/DatePicker";
 
 function IncomeStatement() {
   return (
@@ -169,7 +172,7 @@ function IncomeStatement() {
               </li>
             </ul>
 
-            <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-center items-end py-4 pr-4">
+            <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-end py-4 pr-4">
               <a
                 href="#"
                 className="flex transition duration-300 ease-in-out w-full items-center p-4  text-white rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
@@ -199,196 +202,32 @@ function IncomeStatement() {
         <div className="p-4 md:ml-80">
           <div className="p-4  rounded-lg dark:border-bg-darkPurple">
             {/*WEEKLY AVERAGE MONTHLY SALES */}
-            <h1 className="dark:text-gray-400 text-5xl text-ddbackground font-poppins">
-              Welcome, Admin
-            </h1>
+
             <div className="grid md:grid-cols-2 gap-4 mb-4">
-              <div className="flex  rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <div className="w-full h-full p-4">
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="text-xl text-gray-100 dark:text-gray-400">
-                        Weekly average new sales
-                      </p>
-                      <h1 className="text-2xl dark:text-gray-300 ">P99,999</h1>
-                    </div>
-                    <div>
-                      <p className="text-xl text-gray-400 dark:text-gray-400">
-                        Last 7 days
-                      </p>
-                      <h1 className="flex text-2xl dark:text-gray-300 ">
-                        <svg
-                          width="30"
-                          height="27"
-                          viewBox="0 0 32 29"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M7.71846 10.0736L7.71846 8.51409C7.71846 7.85376 8.25235 7.31987 8.90917 7.32339L22.5619 7.31987C23.2223 7.31987 23.7561 7.85376 23.7526 8.51058L23.7526 22.1598C23.7526 22.8202 23.2187 23.3541 22.5619 23.3505L21.0024 23.3505C20.3351 23.3505 19.7977 22.7991 19.8117 22.1317L20.0119 13.874L9.91723 23.9687C9.45008 24.4359 8.69842 24.4359 8.23127 23.9687L7.1073 22.8448C6.64015 22.3776 6.64015 21.6259 7.1073 21.1588L17.202 11.0641L8.93727 11.2643C8.2664 11.2819 7.71495 10.7445 7.71846 10.0736Z"
-                            fill="#E1D9EA"
-                          />
-                        </svg>
-                        P99,999
-                      </h1>
-                    </div>
+              <IncomeStatementDynamic />
+              <div className="w-full h-full flex hidden border-2 border-dashed">
+                <div className=" m-auto">
+                  <div className="flex flex-col gap-4">
+                    <button className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800 dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                      Display Financial Log
+                    </button>
+                    <button className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                      Financial Log
+                    </button>
+                    <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                      Compare another Income Statement
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-            </div>
 
-            <div className="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-dbackground">
-              <p className="text-2xl text-gray-400 dark:text-gray-500">
-                <svg
-                  className="w-3.5 h-3.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
+              <div className="w-full">
+                {" "}
+                <DailyFinancialLog />
               </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
+              <div className="w-full">
+                {" "}
+                <DatePicker />
               </div>
             </div>
           </div>

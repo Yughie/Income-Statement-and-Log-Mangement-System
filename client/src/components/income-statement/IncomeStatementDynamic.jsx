@@ -10,7 +10,7 @@ function IncomeStatementDynamic() {
             <h3 className="dark:text-gray-400 text-lg text-ddbackground font-poppins">
               for december 13-28,2024 (15 days)
             </h3>
-          </div>
+          </div>{/**
           <div className="mb-4">
             <select
               id="days-filter"
@@ -23,10 +23,11 @@ function IncomeStatementDynamic() {
               <option value="30-days">Laast 30 days</option>
             </select>
           </div>
+          */}
         </div>
-        <div className="w-full  bg-gray-200 dark:bg-dbackground  mb-4 rounded-md">
+        <div className="w-full  bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
           <form>
-            <div className="relative">
+            <div className="relative ">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <label
                   htmlFor="revenue-bar"
@@ -38,8 +39,8 @@ function IncomeStatementDynamic() {
               <input
                 type="text"
                 id="revenue-bar"
-                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                className="text-right rounded-t-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="" disabled
               />
             </div>
             <div className="relative">
@@ -55,7 +56,8 @@ function IncomeStatementDynamic() {
                 type="text"
                 id="sales-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="99999" 
+                disabled
               />
             </div>
             <div className="relative">
@@ -72,6 +74,7 @@ function IncomeStatementDynamic() {
                 id="less-return-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -88,6 +91,7 @@ function IncomeStatementDynamic() {
                 id="less-discount-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -120,7 +124,7 @@ function IncomeStatementDynamic() {
                 type="text"
                 id="cost-service-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="" disabled
               />
             </div>
             <div className="relative">
@@ -137,6 +141,7 @@ function IncomeStatementDynamic() {
                 id="materials-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -153,6 +158,7 @@ function IncomeStatementDynamic() {
                 id="labor-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -169,6 +175,7 @@ function IncomeStatementDynamic() {
                 id="overhead-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -202,6 +209,7 @@ function IncomeStatementDynamic() {
                 id="gross-profit-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -217,7 +225,7 @@ function IncomeStatementDynamic() {
                 type="text"
                 id="operating-expenses-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="" disabled
               />
             </div>
             <div className="relative">
@@ -234,6 +242,7 @@ function IncomeStatementDynamic() {
                 id="wages-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -250,6 +259,7 @@ function IncomeStatementDynamic() {
                 id="repair-maintenance-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -266,6 +276,7 @@ function IncomeStatementDynamic() {
                 id="depreciation-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -282,6 +293,7 @@ function IncomeStatementDynamic() {
                 id="Interest-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -298,6 +310,7 @@ function IncomeStatementDynamic() {
                 id="other-expenses-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -314,6 +327,7 @@ function IncomeStatementDynamic() {
                 id="total-operating-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -329,7 +343,7 @@ function IncomeStatementDynamic() {
                 type="text"
                 id="operating-profit-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="" disabled
               />
             </div>
             <div className="relative">
@@ -346,6 +360,7 @@ function IncomeStatementDynamic() {
                 id="other-income-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -362,6 +377,7 @@ function IncomeStatementDynamic() {
                 id="interest-income-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -378,6 +394,7 @@ function IncomeStatementDynamic() {
                 id="other-income-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -393,7 +410,7 @@ function IncomeStatementDynamic() {
                 type="text"
                 id="before-taxes-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="" disabled
               />
             </div>
             <div className="relative">
@@ -410,6 +427,7 @@ function IncomeStatementDynamic() {
                 id="tax-expense-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -424,8 +442,9 @@ function IncomeStatementDynamic() {
               <input
                 type="text"
                 id="net-profit-bar"
-                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled
               />
             </div>
           </form>
