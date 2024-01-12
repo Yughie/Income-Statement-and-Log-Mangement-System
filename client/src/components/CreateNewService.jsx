@@ -105,6 +105,39 @@ function CreateNewService() {
     console.log("Form wrokhour:", workHour);
     console.log("Form vehicleSize:", vehicleSize);
     console.log("Form extraCharge:", extraCharge);
+
+    // Create an object with the form data
+    const formData = {
+      serviceDate,
+      plateNumber,
+      phoneNumber,
+      vehicleDescription,
+      VehicleType,
+      extraCharge,
+      workHour,
+      vehicleSize,
+      formValues,
+    };
+
+    // Log the form data for debugging
+    console.log("Form data:", formData);
+    // Send the form data to the server
+    fetch("http://localhost:8081/create-new-service", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Data sent successfully:", result);
+        // You can handle the server response here if needed
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+        // Handle errors here
+      });
   };
 
   return (
