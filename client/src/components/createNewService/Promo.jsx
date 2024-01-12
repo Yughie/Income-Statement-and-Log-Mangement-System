@@ -1,4 +1,4 @@
-function Promo() {
+const Promo = ({ checkboxValues, onCheckboxChange }) => {
   return (
     <>
       <div className="w-full  h-96 lg:w-1/3  dark:bg-dbackground bg-gray-300 mb-4 rounded-md">
@@ -14,6 +14,8 @@ function Promo() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.enginePromo}
+                  onChange={() => onCheckboxChange("enginePromo")}
                 />
                 <label
                   htmlFor="engine-wash-promo"
@@ -30,6 +32,8 @@ function Promo() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.washPromo}
+                  onChange={() => onCheckboxChange("washPromo")}
                 />
                 <label
                   htmlFor="vacuum-tire-promo"
@@ -46,6 +50,8 @@ function Promo() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.asphaltPromo}
+                  onChange={() => onCheckboxChange("asphaltPromo")}
                 />
                 <label
                   htmlFor="asphalt-removal-promo"
@@ -62,6 +68,8 @@ function Promo() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.hydrophobicPromo}
+                  onChange={() => onCheckboxChange("hydrophobicPromo")}
                 />
                 <label
                   htmlFor="hydrophobic-waxing-promo"
@@ -78,6 +86,8 @@ function Promo() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.backZeroPromo}
+                  onChange={() => onCheckboxChange("backZeroPromo")}
                 />
                 <label
                   htmlFor="antibacterial-promo"
@@ -92,6 +102,6 @@ function Promo() {
       </div>
     </>
   );
-}
+};
 
 export default Promo;

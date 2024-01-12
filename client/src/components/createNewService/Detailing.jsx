@@ -1,4 +1,4 @@
-function Detailing() {
+const Detailing = ({ checkboxValues, onCheckboxChange }) => {
   return (
     <>
       <div className="w-full h-96 lg:w-1/3  dark:bg-dbackground bg-gray-300 mb-4 rounded-md">
@@ -17,6 +17,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.removeSeat}
+                  onChange={() => onCheckboxChange("removeSeat")}
                 />
                 <label
                   htmlFor="removing-seat-checkbox"
@@ -33,6 +35,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.washingDrying}
+                  onChange={() => onCheckboxChange("washingDrying")}
                 />
                 <label
                   htmlFor="motorwash-checkbox"
@@ -49,6 +53,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.cleaningDashboard}
+                  onChange={() => onCheckboxChange("cleaningDashboard")}
                 />
                 <label
                   htmlFor="trycycle-priv-checkbox"
@@ -66,6 +72,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.washVacuumInt}
+                  onChange={() => onCheckboxChange("washVacuumInt")}
                 />
                 <label
                   htmlFor="tricycle-pub-checkbox"
@@ -82,6 +90,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.backZeroDetailing}
+                  onChange={() => onCheckboxChange("backZeroDetailing")}
                 />
                 <label
                   htmlFor="wax-checkbox"
@@ -103,6 +113,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.wash}
+                  onChange={() => onCheckboxChange("wash")}
                 />
                 <label
                   htmlFor="carwash-checkbox"
@@ -119,6 +131,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.drying}
+                  onChange={() => onCheckboxChange("drying")}
                 />
                 <label
                   htmlFor="drying-checkbox"
@@ -135,6 +149,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.buffingDetailing}
+                  onChange={() => onCheckboxChange("buffingDetailing")}
                 />
                 <label
                   htmlFor="buffing-wool-checkbox"
@@ -151,6 +167,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.engineWash}
+                  onChange={() => onCheckboxChange("engineWash")}
                 />
                 <label
                   htmlFor="engine-wash-checkbox"
@@ -167,6 +185,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.polishingHydrophobic}
+                  onChange={() => onCheckboxChange("polishingHydrophobic")}
                 />
                 <label
                   htmlFor="polishing-checkbox"
@@ -183,6 +203,8 @@ function Detailing() {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                  checked={checkboxValues.washVacuumExt}
+                  onChange={() => onCheckboxChange("washVacuumExt")}
                 />
                 <label
                   htmlFor="vacuum-armor-checkbox"
@@ -197,6 +219,6 @@ function Detailing() {
       </div>
     </>
   );
-}
+};
 
 export default Detailing;

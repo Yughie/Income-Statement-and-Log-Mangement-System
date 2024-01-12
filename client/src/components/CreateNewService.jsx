@@ -8,6 +8,105 @@ import Pricing from "./createNewService/Pricing";
 import CreateDatePicker from "./createNewService/CreateDatePicker";
 
 function CreateNewService() {
+  const [serviceDate, setServiceDate] = useState("");
+  const [plateNumber, setPlateNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [vehicleDescription, setVehicleDescription] = useState("");
+  const [VehicleType, setVehicleType] = useState("");
+
+  //Pricing
+  const [workHour, setWorkHour] = useState("");
+  const [vehicleSize, setVehicleSize] = useState("");
+  const [extraCharge, setExtraCharge] = useState("");
+
+  const handleVehicleType = (e) => {
+    setVehicleType(e.target.value);
+  };
+
+  const [formValues, setFormValues] = useState({
+    carwash: {
+      carwash: false,
+      motorwash: false,
+      trycyclePriv: false,
+      trycyclePub: false,
+      wax: false,
+      backZero: false,
+      buffing: false,
+      engineWash: false,
+    },
+    detailing: {
+      removeSeat: false,
+      washingDrying: false,
+      cleaningDashboard: false,
+      washVacuumInt: false,
+      backZeroDetailing: false,
+      wash: false,
+      drying: false,
+      buffingDetailing: false,
+      engineWash: false,
+      polishingHydrophobic: false,
+      washVacuumExt: false,
+    },
+    promo: {
+      enginePromo: false,
+      washPromo: false,
+      asphaltPromo: false,
+      hydrophobicPromo: false,
+      backZeroPromo: false,
+    },
+  });
+
+  const handleDateChange = (event) => {
+    setServiceDate(event.target.value);
+  };
+
+  const handleWorkHourChange = (e) => {
+    setWorkHour(e.target.value);
+  };
+
+  const handleVehicleSizeChange = (e) => {
+    setVehicleSize(e.target.value);
+  };
+
+  const handleExtraChargeChange = (e) => {
+    setExtraCharge(e.target.value);
+  };
+
+  // Function to handle checkbox changes
+  const handleCheckboxChange = (category) => {
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      carwash: {
+        ...prevValues.carwash,
+        [category]: !prevValues.carwash[category],
+      },
+      detailing: {
+        ...prevValues.detailing,
+        [category]: !prevValues.detailing[category],
+      },
+      promo: {
+        ...prevValues.promo,
+        [category]: !prevValues.promo[category],
+      },
+    }));
+  };
+
+  // Function to handle the overall form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Do something with the entire formValues object
+    console.log("Form serviceDate:", serviceDate);
+    console.log("Form plateNumber:", plateNumber);
+    console.log("Form phoneNumber:", phoneNumber);
+    console.log("Form vehicleDescription:", vehicleDescription);
+    console.log("Form VehicleType:", VehicleType);
+    console.log("Form values:", formValues);
+
+    console.log("Form wrokhour:", workHour);
+    console.log("Form vehicleSize:", vehicleSize);
+    console.log("Form extraCharge:", extraCharge);
+  };
+
   return (
     <>
       <div className="dark:bg-ddbackground bg-gray-200">
@@ -203,103 +302,226 @@ function CreateNewService() {
 
         <div className="p-4 md:ml-80 min-h-screen">
           {/*VEHICLE INFORMATION */}
-          <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
-            <span className="w-full ">
-              <CreateDatePicker />
-              <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
-                Vehicle Information
-              </h1>
-            </span>
-          </div>
-          {/* LARGE Container Vehicle information*/}
-          <div className="w-full  flex flex-row lg:flex-row ">
-            <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-300 dark:bg-dbackground p-4 mb-4 rounded-md">
-              {/*  Plate Number */}
-              <div className="lg:w-1/3">
-                <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
-                  <label htmlFor="plate-number">Plate Number</label>
+          <form onSubmit={handleSubmit}>
+            <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
+              <span className="w-full ">
+                <CreateDatePicker
+                  value={serviceDate}
+                  onChange={handleDateChange}
+                />
+                <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
+                  Vehicle Information
                 </h1>
-                <div className="">
-                  <input
-                    type="text"
-                    id="plate-number"
-                    placeholder="Enter plate number"
-                    className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  />
-                </div>
-              </div>
-              {/* Phone Number */}
-              <div className="lg:w-1/3">
-                {" "}
-                <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
-                  <label htmlFor="phone-number">Phone Number</label>
-                </h1>
-                <div className="">
-                  <input
-                    type="text"
-                    id="phone-number"
-                    placeholder="Enter phone number"
-                    className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  />
-                </div>
-              </div>
-              {/* Vehicle DESCRIPTION */}
-              <div className="lg:w-1/3">
-                <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
-                  <label htmlFor="vehicle-description">
-                    Vehicle Description
-                  </label>
-                </h1>
-
-                <div className="flex">
-                  <div className="w-full">
+              </span>
+            </div>
+            {/* LARGE Container Vehicle information*/}
+            <div className="w-full  flex flex-row lg:flex-row ">
+              <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-300 dark:bg-dbackground p-4 mb-4 rounded-md">
+                {/*  Plate Number */}
+                <div className="lg:w-1/3">
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
+                    <label htmlFor="plate-number">Plate Number</label>
+                  </h1>
+                  <div className="">
                     <input
                       type="text"
-                      id="vehicle-description"
-                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                      placeholder="Enter vehicle description"
+                      id="plate-number"
+                      placeholder="Enter plate number"
+                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                    "
+                      value={plateNumber}
+                      onChange={(e) => setPlateNumber(e.target.value)}
                       required
                     />
                   </div>
-                  <div className="mb-4 w-40">
-                    <select
-                      id="vehicleType"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option selected>Type</option>
-                      <option value="car">Car</option>
-                      <option value="motor">Motor</option>
-                      <option value="tricycle">Tricycle</option>
-                      <option value="van">Van</option>
-                      <option value="others">Others</option>
-                    </select>
+                </div>
+                {/* Phone Number */}
+                <div className="lg:w-1/3">
+                  {" "}
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
+                    <label htmlFor="phone-number">Phone Number</label>
+                  </h1>
+                  <div className="">
+                    <input
+                      type="text"
+                      id="phone-number"
+                      placeholder="Enter phone number"
+                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                  </div>
+                </div>
+                {/* Vehicle DESCRIPTION */}
+                <div className="lg:w-1/3">
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
+                    <label htmlFor="vehicle-description">
+                      Vehicle Description
+                    </label>
+                  </h1>
+
+                  <div className="flex">
+                    <div className="w-full">
+                      <input
+                        type="text"
+                        id="vehicle-description"
+                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        placeholder="Enter vehicle description"
+                        required
+                        value={vehicleDescription}
+                        onChange={(e) => setVehicleDescription(e.target.value)}
+                      />
+                    </div>
+                    <div className="mb-4 w-40">
+                      <select
+                        id="vehicleType"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        value={VehicleType}
+                        onChange={handleVehicleType}
+                      >
+                        <option value="" disabled defaultValue={""}>
+                          Type
+                        </option>
+                        <option value="car">Car</option>
+                        <option value="motor">Motor</option>
+                        <option value="tricycle">Tricycle</option>
+                        <option value="van">Van</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* SERVICES */}
-          <div className="rounded-lg dark:border-bg-darkPurple ">
-            <span className="w-full ">
-              <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins pb-4 mx-auto text-center ">
-                Services
-              </h1>
-            </span>
-          </div>
-          <div className="w-full gap-4 p-4 pb-0 bg-gray-300 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
-            {/*  CARWASH */}
-            <Carwash />
-            {/* Detailing */}
-            <Detailing />
-            {/* PROMO */}
-            <Promo />
-          </div>
+            {/* SERVICES */}
+            <div className="rounded-lg dark:border-bg-darkPurple ">
+              <span className="w-full ">
+                <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins pb-4 mx-auto text-center ">
+                  Services
+                </h1>
+              </span>
+            </div>
+            <div className="w-full gap-4 p-4 pb-0 bg-gray-300 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
+              {/*  CARWASH */}
+              <Carwash
+                checkboxValues={formValues.carwash}
+                onCheckboxChange={handleCheckboxChange}
+              />
+              {/* Detailing */}
+              <Detailing
+                checkboxValues={formValues.detailing}
+                onCheckboxChange={handleCheckboxChange}
+              />
+              {/* PROMO */}
+              <Promo
+                checkboxValues={formValues.promo}
+                onCheckboxChange={handleCheckboxChange}
+              />
+            </div>
 
-          {/*PRICING */}
+            {/*PRICING */}
 
-          {/* PRICING */}
-          <Pricing />
-          {/* MORE CHOICES */}
+            {/* PRICING */}
+            <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
+              <span className="w-full ">
+                <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
+                  Pricing
+                </h1>
+              </span>
+            </div>
+            <div className="w-full  flex flex-row lg:flex-row ">
+              <div className="w-full flex flex-col lg:flex-row gap-4 bg-gray-300 dark:bg-dbackground p-4 mb-4 rounded-md">
+                {/*  Plate Number */}
+                <div className="lg:w-1/3">
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
+                    <label htmlFor="work-hour">Work Hour</label>
+                  </h1>
+                  <div className="mb-4">
+                    <select
+                      id="work-hour"
+                      value={workHour}
+                      onChange={handleWorkHourChange}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option value="" disabled>
+                        Select work hour
+                      </option>
+                      <option value="normal">Normal</option>
+                      <option value="overtime">Overtime</option>
+                    </select>
+                  </div>
+                </div>
+                {/* Phone Number */}
+                <div className="lg:w-1/3">
+                  {" "}
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
+                    <label htmlFor="vehicle-size">Vehicle Size</label>
+                  </h1>
+                  <div className="mb-4">
+                    <select
+                      id="vehicle-size"
+                      value={vehicleSize}
+                      onChange={handleVehicleSizeChange}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option value="" disabled>
+                        Select vehicle size
+                      </option>
+                      <option value="normal-hour">S</option>
+                      <option value="overtime-hour">M</option>
+                      <option value="normal-hour">L</option>
+                      <option value="overtime-hour">XL</option>
+                      <option value="normal-hour">XXL</option>
+                      <option value="overtime-hour">XL & XXL</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="lg:w-1/3">
+                  {" "}
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center">
+                    <label htmlFor="extra-charge">Extra Charge</label>
+                  </h1>
+                  <div className="w-full">
+                    <input
+                      type="text"
+                      id="extra-charge"
+                      value={extraCharge}
+                      onChange={handleExtraChargeChange}
+                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                      placeholder="Enter extra charge"
+                    />
+                  </div>
+                </div>
+                {/* PRICING */}
+                <div className="lg:w-1/3">
+                  <h1 className="mb-4 text-xl dark:text-gray-300 text-ddbackground text-center ">
+                    <label htmlFor="vehicle-description">Total</label>
+                  </h1>
+
+                  <div className="flex">
+                    <div className="w-full">
+                      <input
+                        type="text"
+                        id="vehicle-description"
+                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        placeholder="00000"
+                        required
+                        disabled
+                      />
+                    </div>
+                    <div className="mb-4 w-40">
+                      <button
+                        type="submit"
+                        className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-gray-700  dark:border-gray-600 font-bold"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </>
