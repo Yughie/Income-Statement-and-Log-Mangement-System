@@ -6,13 +6,14 @@ import Detailing from "./createNewService/Detailing";
 import Promo from "./createNewService/Promo";
 import Pricing from "./createNewService/Pricing";
 import CreateDatePicker from "./createNewService/CreateDatePicker";
+import axios from "axios";
 
 function CreateNewService() {
-  const [serviceDate, setServiceDate] = useState("");
+  const [date, setDate] = useState("");
   const [plateNumber, setPlateNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [vehicleDescription, setVehicleDescription] = useState("");
-  const [VehicleType, setVehicleType] = useState("");
+  const [vehicleType, setVehicleType] = useState("");
 
   //Pricing
   const [workHour, setWorkHour] = useState("");
@@ -57,7 +58,7 @@ function CreateNewService() {
   });
 
   const handleDateChange = (event) => {
-    setServiceDate(event.target.value);
+    setDate(event.target.value);
   };
 
   const handleWorkHourChange = (e) => {
@@ -94,7 +95,22 @@ function CreateNewService() {
   // Function to handle the overall form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Do something with the entire formValues object
+    const formData = {
+      date,
+      plateNumber,
+      phoneNumber,
+      vehicleDescription,
+      vehicleType,
+      extraCharge,
+    };
+    console.log("Form Data:", formData);
+
+    axios
+      .post("http://localhost:8081/create-new-service", formData)
+      .then((res) => console.log("Inserted Successfully", res.data))
+      .catch((err) => console.log("ERROR:", err));
+    /*Do something with the entire formValues object
+
     console.log("Form serviceDate:", serviceDate);
     console.log("Form plateNumber:", plateNumber);
     console.log("Form phoneNumber:", phoneNumber);
@@ -105,23 +121,9 @@ function CreateNewService() {
     console.log("Form wrokhour:", workHour);
     console.log("Form vehicleSize:", vehicleSize);
     console.log("Form extraCharge:", extraCharge);
+      */
 
-    // Create an object with the form data
-    const formData = {
-      serviceDate,
-      plateNumber,
-      phoneNumber,
-      vehicleDescription,
-      VehicleType,
-      extraCharge,
-      workHour,
-      vehicleSize,
-      formValues,
-    };
-
-    // Log the form data for debugging
-    console.log("Form data:", formData);
-    // Send the form data to the server
+    /*Send the form data to the server
     fetch("http://localhost:8081/create-new-service", {
       method: "POST",
       headers: {
@@ -138,6 +140,7 @@ function CreateNewService() {
         console.error("Error sending data:", error);
         // Handle errors here
       });
+      */
   };
 
   return (
@@ -338,10 +341,7 @@ function CreateNewService() {
           <form onSubmit={handleSubmit}>
             <div className="p-4 rounded-lg dark:border-bg-darkPurple ">
               <span className="w-full ">
-                <CreateDatePicker
-                  value={serviceDate}
-                  onChange={handleDateChange}
-                />
+                <CreateDatePicker value={date} onChange={handleDateChange} />
                 <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
                   Vehicle Information
                 </h1>
@@ -364,7 +364,6 @@ function CreateNewService() {
                     "
                       value={plateNumber}
                       onChange={(e) => setPlateNumber(e.target.value)}
-                      required
                     />
                   </div>
                 </div>
@@ -400,7 +399,6 @@ function CreateNewService() {
                         id="vehicle-description"
                         className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="Enter vehicle description"
-                        required
                         value={vehicleDescription}
                         onChange={(e) => setVehicleDescription(e.target.value)}
                       />
@@ -409,7 +407,7 @@ function CreateNewService() {
                       <select
                         id="vehicleType"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        value={VehicleType}
+                        value={vehicleType}
                         onChange={handleVehicleType}
                       >
                         <option value="" disabled defaultValue={""}>
@@ -538,7 +536,6 @@ function CreateNewService() {
                         id="vehicle-description"
                         className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="00000"
-                        required
                         disabled
                       />
                     </div>
