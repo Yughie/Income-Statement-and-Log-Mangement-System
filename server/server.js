@@ -44,29 +44,55 @@ app.post('/', (req, res) => {
 
 
 app.post('/create-new-service', (req, res) => {
-    console.log("Request Body:", req.body); // Add this line for debugging
+    console.log("Request Body:", req.body);
 
-    const sql = "INSERT INTO customers (`Date`, `PlateNumber`, `PhoneNumber`, `VehicleDescription`, `VehicleType`, `ExtraCharge`) VALUES (?, ?, ?, ?, ?, ?)";
-    const formData = [
+    const sqlInsertCustomer = "INSERT INTO customers (`date`, `plateNumber`, `phoneNumber`, `vehicleDescription`, `vehicleType`, `workHour`, `vehicleSizing`, `extraCharge`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const formDataCustomer = [
         req.body.date,
         req.body.plateNumber,
         req.body.phoneNumber,
         req.body.vehicleDescription,
         req.body.vehicleType,
+        req.body.workHour,
+        req.body.vehicleSize,
         req.body.extraCharge
-    ]
-    
-    console.log("SQL Query:", sql, "Values:", formData); // Add this line for debugging
-    db.query(sql, formData, (err, data)=>{
-        if (err) {
-            console.error("Error:", err);
-            return res.json(err);
-        }
-        console.log("Insert Result:", data); // Add this line for debugging
-        return res.json(data);
-    });
+    ];
 
+    console.log("SQL Query:", sqlInsertCustomer, "Values:", formDataCustomer);
+
+    try {
+        db.query(sqlInsertCustomer, formDataCustomer, (err, data) => {
+            if (err) {
+                console.error("Error during customer insertion:", err);
+                return res.status(500).json({ error: "Internal Server Error" });
+            }
+
+            const customerID = data.insertId; // Get the inserted customer ID
+            const sqlInsertServices = "INSERT IGNORE INTO CustomerServices (customerID, serviceID) VALUES (?, (SELECT serviceID FROM Services WHERE serviceCode = ?))";
+
+            const selectedServices = req.body.selectedServices;
+            for (const category in selectedServices) {
+                for (const serviceName in selectedServices[category]) {
+                    if (selectedServices[category][serviceName]) {
+                        db.query(sqlInsertServices, [customerID, serviceName], (err) => {
+                            if (err) {
+                                console.error("Error during service insertion:", err);
+                                return res.status(500).json({ error: "Internal Server Error" });
+                            }
+                        });
+                    }
+                }
+            }
+
+            console.log("Insert Result:", data);
+            return res.json({ success: true, message: "Inserted Successfully" });
+        });
+    } catch (error) {
+        console.error("Unexpected error:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
 });
+
 
 
 

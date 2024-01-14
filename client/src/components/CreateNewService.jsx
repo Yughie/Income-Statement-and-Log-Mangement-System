@@ -44,7 +44,7 @@ function CreateNewService() {
       wash: false,
       drying: false,
       buffingDetailing: false,
-      engineWash: false,
+      engineWashDetailing: false,
       polishingHydrophobic: false,
       washVacuumExt: false,
     },
@@ -74,20 +74,12 @@ function CreateNewService() {
   };
 
   // Function to handle checkbox changes
-  const handleCheckboxChange = (category) => {
+  const handleCheckboxChange = (category, serviceName) => {
     setFormValues((prevValues) => ({
       ...prevValues,
-      carwash: {
-        ...prevValues.carwash,
-        [category]: !prevValues.carwash[category],
-      },
-      detailing: {
-        ...prevValues.detailing,
-        [category]: !prevValues.detailing[category],
-      },
-      promo: {
-        ...prevValues.promo,
-        [category]: !prevValues.promo[category],
+      [category]: {
+        ...prevValues[category],
+        [serviceName]: !prevValues[category][serviceName],
       },
     }));
   };
@@ -101,7 +93,10 @@ function CreateNewService() {
       phoneNumber,
       vehicleDescription,
       vehicleType,
+      workHour,
+      vehicleSize,
       extraCharge,
+      selectedServices: formValues,
     };
     console.log("Form Data:", formData);
 
@@ -436,17 +431,23 @@ function CreateNewService() {
               {/*  CARWASH */}
               <Carwash
                 checkboxValues={formValues.carwash}
-                onCheckboxChange={handleCheckboxChange}
+                onCheckboxChange={(serviceName) =>
+                  handleCheckboxChange("carwash", serviceName)
+                }
               />
               {/* Detailing */}
               <Detailing
                 checkboxValues={formValues.detailing}
-                onCheckboxChange={handleCheckboxChange}
+                onCheckboxChange={(serviceName) =>
+                  handleCheckboxChange("detailing", serviceName)
+                }
               />
               {/* PROMO */}
               <Promo
                 checkboxValues={formValues.promo}
-                onCheckboxChange={handleCheckboxChange}
+                onCheckboxChange={(serviceName) =>
+                  handleCheckboxChange("promo", serviceName)
+                }
               />
             </div>
 
@@ -498,12 +499,12 @@ function CreateNewService() {
                       <option value="" disabled>
                         Select vehicle size
                       </option>
-                      <option value="normal-hour">S</option>
-                      <option value="overtime-hour">M</option>
-                      <option value="normal-hour">L</option>
-                      <option value="overtime-hour">XL</option>
-                      <option value="normal-hour">XXL</option>
-                      <option value="overtime-hour">XL & XXL</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                      <option value="XL & XXL">XL & XXL</option>
                     </select>
                   </div>
                 </div>

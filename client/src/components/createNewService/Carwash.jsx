@@ -57,7 +57,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="trycycle-priv-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Tricycle (private)
+                  Tricycle (Private)
                 </label>
               </div>
             </li>
@@ -75,7 +75,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="tricycle-pub-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Tricycle (public)
+                  Tricycle (Public)
                 </label>
               </div>
             </li>
@@ -111,7 +111,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="back-zero-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Back 2 zero
+                  Back 2 Zero
                 </label>
               </div>
             </li>

@@ -24,7 +24,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="removing-seat-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Removing seats rear/front
+                  Removing Seats Rear/Front
                 </label>
               </div>
             </li>
@@ -42,7 +42,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="motorwash-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Washing drying using hydro vacuum
+                  Washing Drying Using Hydro Vacuum
                 </label>
               </div>
             </li>
@@ -60,8 +60,8 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="trycycle-priv-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Cleaning dashboard, sidings & sealing/applying chemical
-                  cleanser
+                  Cleaning Dashboard, Sidings & Sealing/Applying Chemical
+                  Cleanser
                 </label>
               </div>
             </li>
@@ -79,7 +79,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="tricycle-pub-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Wash, Vacuum, armor & tire black
+                  Wash, Vacuum, Armor & Tire Black
                 </label>
               </div>
             </li>
@@ -97,7 +97,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="wax-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Back 2 zero antibac
+                  Back 2 Zero Antibac
                 </label>
               </div>
             </li>
@@ -156,7 +156,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="buffing-wool-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Buffing using wool pad/compound
+                  Buffing Using Wool Pad/Compound
                 </label>
               </div>
             </li>
@@ -167,14 +167,14 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={checkboxValues.engineWash}
-                  onChange={() => onCheckboxChange("engineWash")}
+                  checked={checkboxValues.engineWashDetailing}
+                  onChange={() => onCheckboxChange("engineWashDetailing")}
                 />
                 <label
                   htmlFor="engine-wash-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Engine wash
+                  Engine Wash Detailing
                 </label>
               </div>
             </li>
@@ -192,7 +192,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="polishing-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Polishing/Buffing with hydrophobic wax
+                  Polishing/Buffing with Hydrophobic Wax
                 </label>
               </div>
             </li>
@@ -210,7 +210,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="vacuum-armor-checkbox"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Wash, Vacuum armor oil, tire black
+                  Wash, Vacuum Armor Oil, Tire Black Detailing
                 </label>
               </div>
             </li>

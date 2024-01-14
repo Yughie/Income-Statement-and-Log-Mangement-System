@@ -21,7 +21,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="engine-wash-promo"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Engine wash promo
+                  Engine Wash Promo
                 </label>
               </div>
             </li>
@@ -39,7 +39,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="vacuum-tire-promo"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Wash, vacuum, armor & tire black promo
+                  Wash, Vacuum, Armor & Tire Black Promo
                 </label>
               </div>
             </li>
@@ -57,7 +57,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="asphalt-removal-promo"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Asphalt removal promo
+                  Asphalt Removal Promo
                 </label>
               </div>
             </li>
@@ -75,7 +75,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="hydrophobic-waxing-promo"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Hydrophobic waxing promo
+                  Hydrophobic Waxing Promo
                 </label>
               </div>
             </li>
@@ -93,7 +93,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                   htmlFor="antibacterial-promo"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Back 2 zero / antibacterial chemical promo
+                  Back 2 Zero / Antibacterial Chemical Promo
                 </label>
               </div>
             </li>
