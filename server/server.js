@@ -94,6 +94,42 @@ app.post('/create-new-service', (req, res) => {
 });
 
 
+try {
+    app.get('/log', (req, res) => {
+      const sqlQuery = `
+        SELECT 
+          customer.CustomerID,
+          customer.plateNumber,
+          customer.vehicleType,
+          customer.vehicleDescription,
+          customer.phoneNumber,
+          customer.extraCharge,
+          customer.date,
+          GROUP_CONCAT(services.ServiceName) AS serviceNames
+        FROM 
+          Customers AS customer
+        LEFT JOIN 
+          CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+        LEFT JOIN 
+          Services AS services ON customerServices.ServiceID = services.ServiceID
+        GROUP BY 
+          customer.CustomerID;
+      `;
+  
+      db.query(sqlQuery, (err, results) => {
+        if (err) {
+          console.error('Error fetching data:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          // No need for additional formatting if the query is correctly organized
+          res.json(results);
+        }
+      });
+    });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 
 
 
