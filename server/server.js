@@ -94,26 +94,39 @@ app.post('/create-new-service', (req, res) => {
 });
 
 
+
 try {
     app.get('/log', (req, res) => {
       const sqlQuery = `
-        SELECT 
-          customer.CustomerID,
-          customer.plateNumber,
-          customer.vehicleType,
-          customer.vehicleDescription,
-          customer.phoneNumber,
-          customer.extraCharge,
-          customer.date,
-          GROUP_CONCAT(services.ServiceName) AS serviceNames
-        FROM 
-          Customers AS customer
-        LEFT JOIN 
-          CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
-        LEFT JOIN 
-          Services AS services ON customerServices.ServiceID = services.ServiceID
-        GROUP BY 
-          customer.CustomerID;
+      SELECT 
+      customer.CustomerID,
+      customer.plateNumber,
+      customer.vehicleType,
+      customer.vehicleDescription,
+      customer.phoneNumber,
+      customer.extraCharge,
+      customer.date,
+      customer.total,
+      GROUP_CONCAT(
+          CASE
+              WHEN services.ServiceID BETWEEN 1 AND 20 THEN services.ServiceName
+              ELSE NULL
+          END
+      ) AS serviceNames,
+      GROUP_CONCAT(
+          CASE
+              WHEN services.ServiceID BETWEEN 21 AND 25 THEN services.ServiceName
+              ELSE NULL
+          END
+      ) AS servicePromo
+  FROM 
+      Customers AS customer
+  LEFT JOIN 
+      CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+  LEFT JOIN 
+      Services AS services ON customerServices.ServiceID = services.ServiceID
+  GROUP BY 
+      customer.CustomerID;
       `;
   
       db.query(sqlQuery, (err, results) => {

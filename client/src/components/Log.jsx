@@ -8,12 +8,12 @@ function Log() {
   const [logsData, setLogsData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from your backend API
+    // Fetch data for all customers
     fetch("http://localhost:8081/log")
       .then((response) => response.json())
       .then((data) => setLogsData(data))
       .catch((error) => console.error("Error fetching data:", error));
-  }, []); // Empty dependency array means this effect runs once when the component mounts
+  }, []);
 
   return (
     <>

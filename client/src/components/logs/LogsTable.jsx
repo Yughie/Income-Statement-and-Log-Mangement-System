@@ -1,10 +1,13 @@
 function LogsTable({ logsData }) {
+  /*
   const services1to20 = logsData.filter(
     (log) => log.ServiceID >= 1 && log.ServiceID <= 20
   );
   const services21to25 = logsData.filter(
     (log) => log.ServiceID >= 21 && log.ServiceID <= 25
-  );
+  ); 
+
+  */
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -60,32 +63,25 @@ function LogsTable({ logsData }) {
                   <td className="px-6 py-4">{log.vehicleDescription}</td>
                   <td className="px-6 py-4">{log.phoneNumber}</td>
                   <td className="px-6 py-4">
-                    {" "}
                     {log.serviceNames &&
-                      log.serviceNames
-                        .split(",")
-                        .slice(1, 19)
-                        .map((service, index) => (
-                          <span key={index}>
-                            {service.trim()}
-                            <br />
-                          </span>
-                        ))}
+                      log.serviceNames.split(",").map((service, index) => (
+                        <span key={index}>
+                          {service.trim()}
+                          <br />
+                        </span>
+                      ))}
                   </td>
                   <td className="px-6 py-4">
-                    {log.serviceNames &&
-                      log.serviceNames
-                        .split(",")
-                        .slice(20, 25)
-                        .map((service, index) => (
-                          <span key={index}>
-                            {service.trim()}
-                            <br />
-                          </span>
-                        ))}
+                    {log.servicePromo &&
+                      log.servicePromo.split(",").map((promo, index) => (
+                        <span key={index}>
+                          {promo.trim()}
+                          <br />
+                        </span>
+                      ))}
                   </td>
                   <td className="px-6 py-4">{log.extraCharge}</td>
-                  <td className="px-6 py-4"></td>
+                  <td className="px-6 py-4">{log.total}</td>
                   <td className="px-6 py-4">{log.date}</td>
                   <td className="px-6 py-4 flex gap-4">
                     {/*EDIT BUTTON*/}
