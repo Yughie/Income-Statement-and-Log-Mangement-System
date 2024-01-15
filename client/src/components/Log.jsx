@@ -1,10 +1,20 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
-import { useState } from "react";
 import LogsTable from "./logs/LogsTable";
 import LogsFunction from "./logs/LogsFunction";
+import React, { useState, useEffect } from "react";
 
 function Log() {
+  const [logsData, setLogsData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data for all customers
+    fetch("http://localhost:8081/log")
+      .then((response) => response.json())
+      .then((data) => setLogsData(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   return (
     <>
       <div className="bg-ddbackground">
@@ -203,7 +213,7 @@ function Log() {
             <LogsFunction />
 
             {/*WEEKLY AVERAGE MONTHLY SALES */}
-            <LogsTable />
+            <LogsTable logsData={logsData} />
           </div>
         </div>
       </div>
