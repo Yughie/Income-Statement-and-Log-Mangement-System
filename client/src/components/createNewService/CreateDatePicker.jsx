@@ -20,6 +20,7 @@ const CreateDatePicker = ({ value, onChange }) => {
           placeholder="Select date"
           value={value}
           onChange={onChange}
+          required
         />
       </div>
     </>

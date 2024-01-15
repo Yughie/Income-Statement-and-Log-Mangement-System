@@ -30,9 +30,6 @@ function LogsTable({ logsData }) {
                 Services
               </th>
               <th scope="col" className="px-6 py-3">
-                Promo
-              </th>
-              <th scope="col" className="px-6 py-3">
                 EXTRA CHARGE
               </th>
               <th scope="col" className="px-6 py-3">
@@ -71,15 +68,7 @@ function LogsTable({ logsData }) {
                         </span>
                       ))}
                   </td>
-                  <td className="px-6 py-4">
-                    {log.servicePromo &&
-                      log.servicePromo.split(",").map((promo, index) => (
-                        <span key={index}>
-                          {promo.trim()}
-                          <br />
-                        </span>
-                      ))}
-                  </td>
+
                   <td className="px-6 py-4">{log.extraCharge}</td>
                   <td className="px-6 py-4">{log.total}</td>
                   <td className="px-6 py-4">{log.date}</td>

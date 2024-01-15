@@ -46,7 +46,7 @@ app.post('/', (req, res) => {
 app.post('/create-new-service', (req, res) => {
     console.log("Request Body:", req.body);
 
-    const sqlInsertCustomer = "INSERT INTO customers (`date`, `plateNumber`, `phoneNumber`, `vehicleDescription`, `vehicleType`, `workHour`, `vehicleSizing`, `extraCharge`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const sqlInsertCustomer = "INSERT INTO customers (`date`, `plateNumber`, `phoneNumber`, `vehicleDescription`, `vehicleType`, `workHour`, `vehicleSizing`, `extraCharge`, `total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     const formDataCustomer = [
         req.body.date,
         req.body.plateNumber,
@@ -55,7 +55,8 @@ app.post('/create-new-service', (req, res) => {
         req.body.vehicleType,
         req.body.workHour,
         req.body.vehicleSize,
-        req.body.extraCharge
+        req.body.extraCharge,
+        req.body.total,
     ];
 
     console.log("SQL Query:", sqlInsertCustomer, "Values:", formDataCustomer);
@@ -99,34 +100,23 @@ try {
     app.get('/log', (req, res) => {
       const sqlQuery = `
       SELECT 
-      customer.CustomerID,
-      customer.plateNumber,
-      customer.vehicleType,
-      customer.vehicleDescription,
-      customer.phoneNumber,
-      customer.extraCharge,
-      customer.date,
-      customer.total,
-      GROUP_CONCAT(
-          CASE
-              WHEN services.ServiceID BETWEEN 1 AND 20 THEN services.ServiceName
-              ELSE NULL
-          END
-      ) AS serviceNames,
-      GROUP_CONCAT(
-          CASE
-              WHEN services.ServiceID BETWEEN 21 AND 25 THEN services.ServiceName
-              ELSE NULL
-          END
-      ) AS servicePromo
-  FROM 
-      Customers AS customer
-  LEFT JOIN 
-      CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
-  LEFT JOIN 
-      Services AS services ON customerServices.ServiceID = services.ServiceID
-  GROUP BY 
-      customer.CustomerID;
+    customer.CustomerID,
+    customer.plateNumber,
+    customer.vehicleType,
+    customer.vehicleDescription,
+    customer.phoneNumber,
+    customer.extraCharge,
+    customer.date,
+    customer.total,
+    GROUP_CONCAT(services.ServiceName) AS serviceNames
+FROM 
+    Customers AS customer
+LEFT JOIN 
+    CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+LEFT JOIN 
+    Services AS services ON customerServices.ServiceID = services.ServiceID
+GROUP BY 
+    customer.CustomerID;
       `;
   
       db.query(sqlQuery, (err, results) => {

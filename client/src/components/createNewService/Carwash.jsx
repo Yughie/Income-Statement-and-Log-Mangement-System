@@ -1,4 +1,19 @@
 const Carwash = ({ checkboxValues, onCheckboxChange }) => {
+  const handleCheckboxChange = (category, serviceName) => {
+    // Update the state immediately
+    onCheckboxChange();
+
+    // Rest of your code for handling checkbox changes (which you already have)
+    setFormValues((prevValues) => {
+      return {
+        ...prevValues,
+        [category]: {
+          ...prevValues[category],
+          [serviceName]: !prevValues[category][serviceName],
+        },
+      };
+    });
+  };
   return (
     <>
       <div className="w-full h-96 lg:w-1/3 dark:bg-dbackground bg-gray-300 mb-4 rounded-md">
