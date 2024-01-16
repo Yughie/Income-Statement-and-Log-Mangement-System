@@ -24,6 +24,11 @@ function CreateNewService() {
     setVehicleType(e.target.value);
   };
 
+  useEffect(() => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    setDate(currentDate);
+  }, []);
+
   const [formValues, setFormValues] = useState({
     carwash: {
       carwash: false,
