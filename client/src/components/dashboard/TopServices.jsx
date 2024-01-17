@@ -70,7 +70,7 @@ class TopServices extends React.Component {
               id="days-filter"
               className="bg-gray-50  border-gray-300  text-gray-900 text-sm rounded-lg focus:ring-purpleGrape focus:border-purpleGrape block w-full p-2.5 dark:bg-dbackground dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purpleGrape dark:focus:border-purpleGrape"
             >
-              <option value="7-days" selected>
+              <option value="7-days" defaultValue={"7-days"}>
                 Last 7 days
               </option>
               <option value="15-days">Last 15 days</option>

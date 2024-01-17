@@ -1,12 +1,22 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WeeklyService from "./dashboard/WeeklyService";
 import MonthlyService from "./dashboard/MonthlyService";
 import TopServices from "./dashboard/TopServices";
 import RecentServices from "./dashboard/RecentServices";
 
 function Dashboard() {
+  const [logsData, setLogsData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data for all customers
+    fetch("http://localhost:8081/dashboard")
+      .then((response) => response.json())
+      .then((data) => setLogsData(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
   return (
     <>
       <div className="bg-ddbackground">
@@ -203,7 +213,7 @@ function Dashboard() {
         <div className="p-4 xl:ml-80 bg-gray-50 dark:bg-ddbackground">
           <div className=" rounded-lg dark:border-bg-darkPurple">
             {/*WEEKLY AVERAGE MONTHLY SALES */}
-            <h1 className="dark:text-gray-400 text-5xl text-ddbackground font-poppins">
+            <h1 className="m-4 dark:text-gray-400 text-5xl text-ddbackground font-poppins">
               Welcome, Admin
             </h1>
             <div className="w-full flex flex-col lg:flex-row ">
@@ -220,7 +230,7 @@ function Dashboard() {
                 <TopServices />
               </div>
               <div className="w-full lg:w-3/5  bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
-                <RecentServices />
+                <RecentServices logsData={logsData} />
               </div>
             </div>
           </div>
