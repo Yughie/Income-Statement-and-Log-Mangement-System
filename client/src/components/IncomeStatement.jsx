@@ -205,7 +205,9 @@ function IncomeStatement() {
 
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <IncomeStatementDynamic />
-              <div className="w-full h-full flex hidden border-2 border-dashed">
+
+              {/*Button Functions */}
+              <div className="w-full h-full flex  border-2 border-dashed">
                 <div className=" m-auto">
                   <div className="flex flex-col gap-4">
                     <button className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800 dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
@@ -226,7 +228,7 @@ function IncomeStatement() {
                 <DailyFinancialLog />
               </div>
               <div className="w-full">
-                {" "}
+                
                 <DatePicker />
               </div>
             </div>
