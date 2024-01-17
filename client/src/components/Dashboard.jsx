@@ -213,7 +213,7 @@ function Dashboard() {
         <div className="p-4 xl:ml-80 bg-gray-50 dark:bg-ddbackground">
           <div className=" rounded-lg dark:border-bg-darkPurple">
             {/*WEEKLY AVERAGE MONTHLY SALES */}
-            <h1 className="dark:text-gray-400 text-5xl text-ddbackground font-poppins">
+            <h1 className="m-4 dark:text-gray-400 text-5xl text-ddbackground font-poppins">
               Welcome, Admin
             </h1>
             <div className="w-full flex flex-col lg:flex-row ">
