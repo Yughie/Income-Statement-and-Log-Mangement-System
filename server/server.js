@@ -136,26 +136,31 @@ GROUP BY
 
 
   try {
-    app.get('/dashboard', (req, res) => {
+    // Endpoint for current day
+    app.get('/dashboard/day', (req, res) => {
+      const currentDate = new Date().toISOString().split('T')[0];
+  
       const sqlQuery = `
-      SELECT 
-    customer.CustomerID,
-    customer.plateNumber,
-    customer.vehicleType,
-    customer.vehicleDescription,
-    customer.phoneNumber,
-    customer.extraCharge,
-    customer.date,
-    customer.total,
-    GROUP_CONCAT(services.ServiceName) AS serviceNames
-FROM 
-    Customers AS customer
-LEFT JOIN 
-    CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
-LEFT JOIN 
-    Services AS services ON customerServices.ServiceID = services.ServiceID
-GROUP BY 
-    customer.CustomerID;
+        SELECT 
+          customer.CustomerID,
+          customer.plateNumber,
+          customer.vehicleType,
+          customer.vehicleDescription,
+          customer.phoneNumber,
+          customer.extraCharge,
+          customer.date,
+          customer.total,
+          GROUP_CONCAT(services.ServiceName) AS serviceNames
+        FROM 
+          Customers AS customer
+        LEFT JOIN 
+          CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+        LEFT JOIN 
+          Services AS services ON customerServices.ServiceID = services.ServiceID
+        WHERE
+          customer.date = '${currentDate}'
+        GROUP BY 
+          customer.CustomerID;
       `;
   
       db.query(sqlQuery, (err, results) => {
@@ -163,7 +168,45 @@ GROUP BY
           console.error('Error fetching data:', err);
           res.status(500).json({ error: 'Internal Server Error' });
         } else {
-          // No need for additional formatting if the query is correctly organized
+          res.json(results);
+        }
+      });
+    });
+  
+    // Endpoint for past week
+    app.get('/dashboard/week', (req, res) => {
+      const currentDate = new Date().toISOString().split('T')[0];
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+  
+      const sqlQuery = `
+        SELECT 
+          customer.CustomerID,
+          customer.plateNumber,
+          customer.vehicleType,
+          customer.vehicleDescription,
+          customer.phoneNumber,
+          customer.extraCharge,
+          customer.date,
+          customer.total,
+          GROUP_CONCAT(services.ServiceName) AS serviceNames
+        FROM 
+          Customers AS customer
+        LEFT JOIN 
+          CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+        LEFT JOIN 
+          Services AS services ON customerServices.ServiceID = services.ServiceID
+        WHERE
+          customer.date BETWEEN '${sevenDaysAgo.toISOString().split('T')[0]}' AND '${currentDate}'
+        GROUP BY 
+          customer.CustomerID, customer.date;
+      `;
+  
+      db.query(sqlQuery, (err, results) => {
+        if (err) {
+          console.error('Error fetching data:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
           res.json(results);
         }
       });

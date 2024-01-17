@@ -7,16 +7,6 @@ import TopServices from "./dashboard/TopServices";
 import RecentServices from "./dashboard/RecentServices";
 
 function Dashboard() {
-  const [logsData, setLogsData] = useState([]);
-
-  useEffect(() => {
-    // Fetch data for all customers
-    fetch("http://localhost:8081/dashboard")
-      .then((response) => response.json())
-      .then((data) => setLogsData(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
-
   return (
     <>
       <div className="bg-ddbackground">
@@ -230,7 +220,7 @@ function Dashboard() {
                 <TopServices />
               </div>
               <div className="w-full lg:w-3/5  bg-gray-200 dark:bg-dbackground p-4 mb-4 rounded-md">
-                <RecentServices logsData={logsData} />
+                <RecentServices />
               </div>
             </div>
           </div>

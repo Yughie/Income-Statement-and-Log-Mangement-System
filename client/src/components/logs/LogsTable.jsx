@@ -1,13 +1,8 @@
 function LogsTable({ logsData }) {
-  /*
-  const services1to20 = logsData.filter(
-    (log) => log.ServiceID >= 1 && log.ServiceID <= 20
-  );
-  const services21to25 = logsData.filter(
-    (log) => log.ServiceID >= 21 && log.ServiceID <= 25
-  ); 
-
-  */
+  const formatDate = (isoDateString) => {
+    const dateObject = new Date(isoDateString);
+    return dateObject.toLocaleDateString(); // Use toLocaleDateString for a localized date format
+  };
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -71,7 +66,7 @@ function LogsTable({ logsData }) {
 
                   <td className="px-6 py-4">{log.extraCharge}</td>
                   <td className="px-6 py-4">{log.total}</td>
-                  <td className="px-6 py-4">{log.date}</td>
+                  <td className="px-6 py-4">{formatDate(log.date)}</td>
                   <td className="px-6 py-4 flex gap-4">
                     {/*EDIT BUTTON*/}
                     <button className="">
