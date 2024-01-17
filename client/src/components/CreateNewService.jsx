@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Carwash from "./createNewService/Carwash";
 import Detailing from "./createNewService/Detailing";
 import Promo from "./createNewService/Promo";
-import Pricing from "./createNewService/Pricing";
 import CreateDatePicker from "./createNewService/CreateDatePicker";
 import axios from "axios";
 
@@ -484,7 +483,8 @@ function CreateNewService() {
                       type="text"
                       id="phone-number"
                       placeholder="Enter phone number"
-                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                      "
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       required
@@ -522,10 +522,10 @@ function CreateNewService() {
                         <option value="" disabled defaultValue={""}>
                           Type
                         </option>
-                        <option value="Car">Car</option>
-                        <option value="Motor">Motor</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Motorcycle">Motorcycle</option>
                         <option value="Tricycle">Tricycle</option>
-                        <option value="Van">Van</option>
+                        <option value="SUV">SUV</option>
                         <option value="Other">Others</option>
                       </select>
                     </div>

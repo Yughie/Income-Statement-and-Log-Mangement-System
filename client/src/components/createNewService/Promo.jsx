@@ -30,7 +30,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
               checked={checkboxValues.servicePromo}
               onChange={() => onCheckboxChange("servicePromo")}
             />
-            <label htmlFor="promo">PROMO</label>
+            <label htmlFor="promo">PROMO PAKCAGE</label>
           </h3>
           <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
