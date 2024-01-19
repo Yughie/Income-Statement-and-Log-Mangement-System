@@ -229,7 +229,8 @@ function DailyFinancialLog() {
     e.preventDefault();
 
     const rawCurrentDate = new Date();
-    const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+    rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+    const currentDate = rawCurrentDate.toISOString().split("T")[0];
   
     const formData = {
       date: currentDate,
@@ -328,10 +329,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="less-return-bar"
-                value={lessReturn} 
                 onChange={handleLessReturnChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -347,10 +347,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="less-discount-bar"
-                value={lessDiscount} 
                 onChange={handleLessDiscountChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -401,10 +400,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="materials-bar"
-                value={materials} 
                 onChange={handleMaterialsChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -420,10 +418,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="labor-bar"
-                value={labor} 
                 onChange={handleLaborChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -439,10 +436,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="overhead-bar"
-                value={overhead} 
                 onChange={handleOverheadChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -511,7 +507,6 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="wages-bar"
-                value={totalWage} 
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalWage}
                 disabled={!isEditing}
@@ -529,10 +524,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="repair-maintenance-bar"
-                value={repair} 
                 onChange={handleRepairChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -548,10 +542,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="depreciation-bar"
-                value={deprecation} 
                 onChange={handleDepreciationChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -567,10 +560,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="Interest-bar"
-                value={interest} 
                 onChange={handleInterestChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -586,10 +578,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="other-expenses-bar"
-                value={otherExp} 
                 onChange={handleOtherExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -641,10 +632,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="other-income-bar"
-                value={otherIncome} 
                 onChange={handleOtherIncChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -660,10 +650,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="interest-income-bar"
-                value={interestIncome} 
                 onChange={handleInterestIncomeChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>
@@ -697,10 +686,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="tax-expense-bar"
-                value={taxExp} 
                 onChange={handleTaxExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="0"
                 disabled={!isEditing}
               />
             </div>

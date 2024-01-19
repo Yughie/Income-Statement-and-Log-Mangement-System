@@ -262,7 +262,8 @@ GROUP BY
     // Endpoint for sum of total column within the current date 
     app.get('/customers/total', (req, res) => {
       const rawCurrentDate = new Date();
-      const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+      rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+      const currentDate = rawCurrentDate.toISOString().split("T")[0];
 
 
       const sqlQuery = `
@@ -295,7 +296,8 @@ GROUP BY
     app.get('/customers/totalNormalWage', (req, res) => {
       try {
         const rawCurrentDate = new Date();
-        const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+        rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+        const currentDate = rawCurrentDate.toISOString().split("T")[0];
 
         const sqlQuery = `
           SELECT 
@@ -325,7 +327,8 @@ GROUP BY
     app.get('/customers/totalOvertimeWage', (req, res) => {
       try {
         const rawCurrentDate = new Date();
-        const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+        rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+        const currentDate = rawCurrentDate.toISOString().split("T")[0];
 
         const sqlQuery = `
           SELECT 
@@ -354,7 +357,8 @@ GROUP BY
     // Endpoint for fetching forms data based on the current date
     app.get('/dailyfinanciallog/forms-data', (req, res) => {
       const rawCurrentDate = new Date();
-      const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+      rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+      const currentDate = rawCurrentDate.toISOString().split("T")[0];
         
       const sqlQuery = `
         SELECT 
