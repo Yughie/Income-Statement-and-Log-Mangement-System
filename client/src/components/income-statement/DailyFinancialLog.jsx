@@ -120,31 +120,35 @@ function DailyFinancialLog() {
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const currentDate = new Date(); // Get the current date
+    const formattedDate = currentDate.toISOString().split('T')[0]; // Format it as 'YYYY-MM-DD'
   
     const formData = {
-      date: CurrentDate,
-      sales: {totalSales}, 
-      return_amount: {lessReturn}, 
-      discount: {lessDiscount}, 
-      net_sales: {netSales}, 
-      materials: {materials}, 
-      labor: {labor}, 
-      overhead: {overhead}, 
-      total_cost_of_srvcs_provided: {totalCostOfSrvcsProvided}, 
-      gross_profit: {grossPrft}, 
-      wages: {wages}, 
-      repairs_maintenance: {repair}, 
-      depreciation: {deprecation}, 
-      interest: {interest}, 
-      other_expenses: {otherExp}, 
-      total_operating_exp: {totalOperatingExp}, 
-      operating_profit: {operatingPrft}, 
-      other_income: {otherIncome}, 
-      interest_income: {interestIncome}, 
-      profit_before_taxes: {prftBeforeTaxes}, 
-      tax_expense: {taxExp}, 
-      net_profit: {netProfit}
+      date: formattedDate,
+      sales: totalSales,
+      return_amount: lessReturn,
+      discount: lessDiscount,
+      net_sales: netSales,
+      materials: materials,
+      labor: labor,
+      overhead: overhead,
+      total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
+      gross_profit: grossPrft,
+      wages: wages,
+      repairs_maintenance: repair,
+      depreciation: deprecation,
+      interest: interest,
+      other_expenses: otherExp,
+      total_operating_exp: totalOperatingExp,
+      operating_profit: operatingPrft,
+      other_income: otherIncome,
+      interest_income: interestIncome,
+      profit_before_taxes: prftBeforeTaxes,
+      tax_expense: taxExp,
+      net_profit: netProfit
     };
+    
     console.log("Form Data:", formData);
     
   

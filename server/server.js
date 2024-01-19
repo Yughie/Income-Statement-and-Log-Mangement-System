@@ -95,6 +95,122 @@ app.post('/create-new-service', (req, res) => {
 });
 
 
+// Endpoint for creating entries in the dailyfinanciallog table
+/*
+app.post('/income-statement', (req, res) => {
+  console.log("Request Body AAAAAAAAAAAAAAA:", req.body);
+
+  const sqlInsertDailyFinancialLog = "INSERT INTO customers (`date`, `sales`, `return_amount`, `discount`, `net_sales`, `materials`, `labor`, `overhead`, `total_cost_of_srvcs_provided`, `gross_profit`, `wages`, `repairs_maintenance`, `depreciation`, `interest`, `other_expenses`, `total_operating_exp`, `operating_profit`, `other_income`, `interest_income`, `profit_before_taxes`, `tax_expense`, `net_profit`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const formDataDailyFinancialLog = [
+    /*parseFloat(req.body.date),
+    parseFloat(req.body.sales),
+    parseFloat(req.body.return_amount),
+    parseFloat(req.body.discount),
+    parseFloat(req.body.net_sales),
+    parseFloat(req.body.materials),
+    parseFloat(req.body.labor),
+    parseFloat(req.body.overhead),
+    parseFloat(req.body.total_cost_of_srvcs_provided),
+    parseFloat(req.body.gross_profit),
+    parseFloat(req.body.wages),
+    parseFloat(req.body.repairs_maintenance),
+    parseFloat(req.body.depreciation),
+    parseFloat(req.body.interest),
+    parseFloat(req.body.other_expenses),
+    parseFloat(req.body.total_operating_exp),
+    parseFloat(req.body.operating_profit),
+    parseFloat(req.body.other_income),
+    parseFloat(req.body.interest_income),
+    parseFloat(req.body.profit_before_taxes),
+    parseFloat(req.body.tax_expense),
+    parseFloat(req.body.net_profit)
+
+    req.body.date,
+    req.body.sales,
+    req.body.return_amount,
+    req.body.discount,
+    req.body.net_sales,
+    req.body.materials,
+    req.body.labor,
+    req.body.overhead,
+    req.body.total_cost_of_srvcs_provided,
+    req.body.gross_profit,
+    req.body.wages,
+    req.body.repairs_maintenance,
+    req.body.depreciation,
+    req.body.interest,
+    req.body.other_expenses,
+    req.body.total_operating_exp,
+    req.body.operating_profit,
+    req.body.other_income,
+    req.body.interest_income,
+    req.body.profit_before_taxes,
+    req.body.tax_expense,
+    req.body.net_profit
+  ];
+
+  console.log("SQL Query:", sqlInsertDailyFinancialLog, "Values:", formDataDailyFinancialLog);
+
+  try {
+    db.query(sqlInsertDailyFinancialLog, formDataDailyFinancialLog, (err, data) => {
+      if (err) {
+        console.error("Error during dailyfinanciallog insertion:", err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+
+      console.log("Insert Result:", data);
+      return res.json({ success: true, message: "Inserted Successfully" });
+    });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}); */
+
+app.post('/income-statement', (req, res) => {
+  console.log("Request Body:", req.body);
+
+  const sqlInsertDailyFinancialLog = "INSERT INTO dailyfinanciallog (`date`, `sales`, `return_amount`, `discount`, `net_sales`, `materials`, `labor`, `overhead`, `total_cost_of_srvcs_provided`, `gross_profit`, `wages`, `repairs_maintenance`, `depreciation`, `interest`, `other_expenses`, `total_operating_exp`, `operating_profit`, `other_income`, `interest_income`, `profit_before_taxes`, `tax_expense`, `net_profit`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const formDataDailyFinancialLog = [
+    req.body.date,
+    req.body.sales,
+    req.body.return_amount,
+    req.body.discount,
+    req.body.net_sales,
+    req.body.materials,
+    req.body.labor,
+    req.body.overhead,
+    req.body.total_cost_of_srvcs_provided,
+    req.body.gross_profit,
+    req.body.wages,
+    req.body.repairs_maintenance,
+    req.body.depreciation,
+    req.body.interest,
+    req.body.other_expenses,
+    req.body.total_operating_exp,
+    req.body.operating_profit,
+    req.body.other_income,
+    req.body.interest_income,
+    req.body.profit_before_taxes,
+    req.body.tax_expense,
+    req.body.net_profit
+  ];
+
+  console.log("SQL Query:", sqlInsertDailyFinancialLog, "Values:", formDataDailyFinancialLog);
+
+  db.query(sqlInsertDailyFinancialLog, formDataDailyFinancialLog, (err, data) => {
+    if (err) {
+      console.error("Error during dailyfinanciallog insertion:", err);
+      return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to insert data into the database" });
+    }
+
+    console.log("Insert Result:", data);
+    return res.json({ success: true, message: "Inserted Successfully" });
+  });
+});
+
+
+
 
 try {
     app.get('/log', (req, res) => {
@@ -241,57 +357,7 @@ GROUP BY
       next();
     });
     
-    // Endpoint for creating entries in the dailyfinanciallog table
-    app.post('/income-statement', (req, res) => {
-      console.log("Request Body AAAAAAAAAAAAAAA:", req.body);
     
-      const sqlInsertDailyFinancialLog = `
-        INSERT INTO dailyfinanciallog (date, sales, return_amount, discount, net_sales, materials, labor, overhead, total_cost_of_srvcs_provided, gross_profit, wages, repairs_maintenance, depreciation, interest, other_expenses, total_operating_exp, operating_profit, other_income, interest_income, profit_before_taxes, tax_expense, net_profit)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      `;
-    
-      const formDataDailyFinancialLog = [
-        parseFloat(req.body.date),
-        parseFloat(req.body.sales),
-        parseFloat(req.body.return_amount),
-        parseFloat(req.body.discount),
-        parseFloat(req.body.net_sales),
-        parseFloat(req.body.materials),
-        parseFloat(req.body.labor),
-        parseFloat(req.body.overhead),
-        parseFloat(req.body.total_cost_of_srvcs_provided),
-        parseFloat(req.body.gross_profit),
-        parseFloat(req.body.wages),
-        parseFloat(req.body.repairs_maintenance),
-        parseFloat(req.body.depreciation),
-        parseFloat(req.body.interest),
-        parseFloat(req.body.other_expenses),
-        parseFloat(req.body.total_operating_exp),
-        parseFloat(req.body.operating_profit),
-        parseFloat(req.body.other_income),
-        parseFloat(req.body.interest_income),
-        parseFloat(req.body.profit_before_taxes),
-        parseFloat(req.body.tax_expense),
-        parseFloat(req.body.net_profit)
-      ];
-    
-      console.log("SQL Query:", sqlInsertDailyFinancialLog, "Values:", formDataDailyFinancialLog);
-    
-      try {
-        db.query(sqlInsertDailyFinancialLog, formDataDailyFinancialLog, (err, data) => {
-          if (err) {
-            console.error("Error during dailyfinanciallog insertion:", err);
-            return res.status(500).json({ error: "Internal Server Error" });
-          }
-    
-          console.log("Insert Result:", data);
-          return res.json({ success: true, message: "Inserted Successfully" });
-        });
-      } catch (error) {
-        console.error("Unexpected error:", error);
-        return res.status(500).json({ error: "Internal Server Error" });
-      }
-    });
 
   } catch (error) {
     console.error("Unexpected error:", error);
