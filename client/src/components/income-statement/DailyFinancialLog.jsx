@@ -108,6 +108,50 @@ function DailyFinancialLog() {
 
   }, []); 
 
+
+  // for getting normal hour wage
+  const [normalWage, setNormalWage] = useState(0);
+
+  useEffect(() => {
+    const fetchNormalWage = async () => {
+      try {
+        const response = await fetch("http://localhost:8081/customers/totalNormalWage");
+        const data = await response.json();
+
+        const normalWageValue = data.totalNormalWage;
+        setNormalWage(normalWageValue);
+      } catch (error) {
+        console.error("Error fetching normal wage:", error);
+      }
+    };
+
+    fetchNormalWage();
+  }, []);
+
+  // for getting overtime hour wage
+  const [overtimeWage, setOvertimeWage] = useState(0);
+
+  useEffect(() => {
+    const fetchOvertimeWage = async () => {
+      try {
+        const response = await fetch("http://localhost:8081/customers/totalOvertimeWage");
+        const data = await response.json();
+
+        const overtimeWageValue = data.totalOvertimeWage;
+        setOvertimeWage(overtimeWageValue);
+      } catch (error) {
+        console.error("Error fetching overtime wage:", error);
+      }
+    };
+
+    fetchOvertimeWage();
+  }, []);
+
+
+
+  
+
+
   // handle totals 
   const netSales = totalSales - lessReturn - lessDiscount;
   const totalCostOfSrvcsProvided = materials + labor + overhead; 
@@ -116,6 +160,7 @@ function DailyFinancialLog() {
   const operatingPrft = grossPrft - totalOperatingExp;
   const prftBeforeTaxes = operatingPrft + otherIncome + interestIncome;
   const netProfit = (netSales + otherIncome + interestIncome) - totalCostOfSrvcsProvided - totalOperatingExp - taxExp;
+  const totalWage = normalWage + overtimeWage;
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -396,10 +441,10 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="wages-bar"
-                value={wages} 
-                onChange={handleWagesChange}
+                value={totalWage} 
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder={totalWage}
+                disabled
               />
             </div>
             <div className="relative">
