@@ -55,7 +55,7 @@ function Login() {
           className="max-w-sm mx-auto px-10 py-5 md:px-0"
         >
           <div className="mb-5">
-            <p>
+            <div>
               {error != "" ? (
                 <div style={{ color: "#842029" }}>
                   <b>{error}</b>
@@ -65,7 +65,7 @@ function Login() {
                   <b>{msg}</b>
                 </div>
               )}
-            </p>
+            </div>
             <label
               htmlFor="username"
               className="block mb-2 text-sm font-medium text-gray-200  dark:text-gray-900"
