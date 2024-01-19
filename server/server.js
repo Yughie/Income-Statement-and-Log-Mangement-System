@@ -181,8 +181,10 @@ GROUP BY
   try {
     // Endpoint for current day
     app.get('/dashboard/day', (req, res) => {
-      const currentDate = new Date().toISOString().split('T')[0];
-  
+      const rawCurrentDate = new Date();
+      rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+      const currentDate = rawCurrentDate.toISOString().split("T")[0];
+      
       const sqlQuery = `
         SELECT 
           customer.CustomerID,
@@ -218,7 +220,9 @@ GROUP BY
   
     // Endpoint for past week
     app.get('/dashboard/week', (req, res) => {
-      const currentDate = new Date().toISOString().split('T')[0];
+      const rawCurrentDate = new Date();
+      rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+      const currentDate = rawCurrentDate.toISOString().split("T")[0];
       const sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
   
@@ -255,9 +259,12 @@ GROUP BY
       });
     });
 
-    // Endpoint for total within the current date (southside_db/customers/total)
+    // Endpoint for sum of total column within the current date 
     app.get('/customers/total', (req, res) => {
-      const currentDate = new Date().toISOString().split('T')[0];
+      const rawCurrentDate = new Date();
+      const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+
+
       const sqlQuery = `
           SELECT 
               total
@@ -272,7 +279,7 @@ GROUP BY
               console.error('Error fetching total column for the current date:', err);
               res.status(500).json({ error: 'Internal Server Error' });
           } else {
-              // The result should contain an array of total column values
+              console.log("current date: " + currentDate);
               const totalValues = results.map(result => result.total);
               res.json({ total: totalValues });
           }
@@ -287,7 +294,9 @@ GROUP BY
     // endpoint to get normal wage of the day
     app.get('/customers/totalNormalWage', (req, res) => {
       try {
-        const currentDate = new Date().toISOString().split('T')[0];
+        const rawCurrentDate = new Date();
+        const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+
         const sqlQuery = `
           SELECT 
             SUM(total * 0.3) AS totalNormalWage
@@ -315,7 +324,9 @@ GROUP BY
     // endpoint to get overtime wage of the day
     app.get('/customers/totalOvertimeWage', (req, res) => {
       try {
-        const currentDate = new Date().toISOString().split('T')[0];
+        const rawCurrentDate = new Date();
+        const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+
         const sqlQuery = `
           SELECT 
             SUM(total * 0.5) AS totalOvertimeWage
@@ -339,7 +350,52 @@ GROUP BY
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
-    
+
+    // Endpoint for fetching forms data based on the current date
+    app.get('/dailyfinanciallog/forms-data', (req, res) => {
+      const rawCurrentDate = new Date();
+      const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
+        
+      const sqlQuery = `
+        SELECT 
+          sales,
+          return_amount,
+          discount,
+          net_sales,
+          materials,
+          labor,
+          overhead,
+          total_cost_of_srvcs_provided,
+          gross_profit,
+          repairs_maintenance,
+          depreciation,
+          interest,
+          other_expenses,
+          total_operating_exp,
+          operating_profit,
+          other_income,
+          interest_income,
+          profit_before_taxes,
+          tax_expense,
+          net_profit
+        FROM 
+          dailyfinanciallog
+        WHERE
+          date = '${currentDate}';
+      `;
+
+      db.query(sqlQuery, (err, results) => {
+        if (err) {
+          console.error('Error fetching income data:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          // If there is no data for the current date, return an empty object
+          const formsData = results.length > 0 ? results[0] : {};
+          res.json(formsData);
+        }
+      });
+    });
+        
     
     
 

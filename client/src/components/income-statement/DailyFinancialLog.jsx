@@ -18,8 +18,6 @@ function DailyFinancialLog() {
   const [interestIncome, setInterestIncome] = useState(0);
   const [taxExp, setTaxExp] = useState(0);
 
-
-
   const handleLessReturnChange = (e) => {
     const newLessReturn = parseFloat(e.target.value) || 0;
     setLessReturn(newLessReturn);
@@ -43,11 +41,6 @@ function DailyFinancialLog() {
   const handleOverheadChange = (e) => {
     const newOverhead = parseFloat(e.target.value) || 0;
     setOverhead(newOverhead);
-  };
-
-  const handleWagesChange = (e) => {
-    const newWages = parseFloat(e.target.value) || 0;
-    setWages(newWages);
   };
 
   const handleRepairChange = (e) => {
@@ -147,11 +140,6 @@ function DailyFinancialLog() {
     fetchOvertimeWage();
   }, []);
 
-
-
-  
-
-
   // handle totals 
   const netSales = totalSales - lessReturn - lessDiscount;
   const totalCostOfSrvcsProvided = materials + labor + overhead; 
@@ -162,15 +150,89 @@ function DailyFinancialLog() {
   const netProfit = (netSales + otherIncome + interestIncome) - totalCostOfSrvcsProvided - totalOperatingExp - taxExp;
   const totalWage = normalWage + overtimeWage;
 
+  // function to load data form datbase to the placeholders and values
+  const [formsData, setFormsData] = useState({
+    sales: '',
+    return_amount: '',
+    discount: '',
+    net_sales: '',
+    materials: '',
+    labor: '',
+    overhead: '',
+    total_cost_of_srvcs_provided: '',
+    gross_profit: '',
+    repairs_maintenance: '',
+    depreciation: '',
+    interest: '',
+    other_expenses: '',
+    total_operating_exp: '',
+    operating_profit: '',
+    other_income: '',
+    interest_income: '',
+    profit_before_taxes: '',
+    tax_expense: '',
+    net_profit: ''
+  });
+
+  useEffect(() => {
+    const fetchFormsData = async () => {
+      try {
+        const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
+        const data = await response.json();
+
+        // Check if data exists, otherwise set placeholders to "0"
+        if (Object.keys(data).length === 0) {
+          setFormsData({
+            sales: '0',
+            return_amount: '0',
+            discount: '0',
+            net_sales: '0',
+            materials: '0',
+            labor: '0',
+            overhead: '0',
+            total_cost_of_srvcs_provided: '0',
+            gross_profit: '0',
+            repairs_maintenance: '0',
+            depreciation: '0',
+            interest: '0',
+            other_expenses: '0',
+            total_operating_exp: '0',
+            operating_profit: '0',
+            other_income: '0',
+            interest_income: '0',
+            profit_before_taxes: '0',
+            tax_expense: '0',
+            net_profit: '0'
+          });
+        } else {
+          setFormsData(data);
+        }
+      } catch (error) {
+        console.error('Error fetching forms data:', error);
+      }
+    };
+    
+    fetchFormsData();
+  }, []);
+
+  // function to handle editing
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  }
+
+
   // Function to handle form submission
   const handleSubmit = async (e) => {
+    setIsEditing(false);
     e.preventDefault();
 
-    const currentDate = new Date(); // Get the current date
-    const formattedDate = currentDate.toISOString().split('T')[0]; // Format it as 'YYYY-MM-DD'
+    const rawCurrentDate = new Date();
+    const currentDate = rawCurrentDate.toLocaleString('en-US', { timeZone: 'Asia/Manila' }).split(',')[0];
   
     const formData = {
-      date: formattedDate,
+      date: currentDate,
       sales: totalSales,
       return_amount: lessReturn,
       discount: lessDiscount,
@@ -180,7 +242,7 @@ function DailyFinancialLog() {
       overhead: overhead,
       total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
       gross_profit: grossPrft,
-      wages: wages,
+      wages: totalWage,
       repairs_maintenance: repair,
       depreciation: deprecation,
       interest: interest,
@@ -232,7 +294,8 @@ function DailyFinancialLog() {
                 type="text"
                 id="revenue-bar"
                 className="text-right rounded-t-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="" disabled
+                placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -250,7 +313,7 @@ function DailyFinancialLog() {
                 value={totalSales}
                 className="text-right block w-full p-2 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalSales}
-                disabled
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -269,6 +332,7 @@ function DailyFinancialLog() {
                 onChange={handleLessReturnChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -287,6 +351,7 @@ function DailyFinancialLog() {
                 onChange={handleLessDiscountChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -304,7 +369,7 @@ function DailyFinancialLog() {
                 value = {netSales}
                 className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder= {netSales} readOnly
-                disabled
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -320,7 +385,8 @@ function DailyFinancialLog() {
                 type="text"
                 id="cost-service-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="" disabled
+                placeholder=""
+                disabled
               />
             </div>
             <div className="relative">
@@ -339,6 +405,7 @@ function DailyFinancialLog() {
                 onChange={handleMaterialsChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -357,6 +424,7 @@ function DailyFinancialLog() {
                 onChange={handleLaborChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -375,6 +443,7 @@ function DailyFinancialLog() {
                 onChange={handleOverheadChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -392,7 +461,7 @@ function DailyFinancialLog() {
                 value={totalCostOfSrvcsProvided}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalCostOfSrvcsProvided} 
-                disabled
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -410,7 +479,7 @@ function DailyFinancialLog() {
                 value = {grossPrft}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={grossPrft}
-                disabled
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -426,7 +495,8 @@ function DailyFinancialLog() {
                 type="text"
                 id="operating-expenses-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="" disabled
+                placeholder="" 
+                disabled
               />
             </div>
             <div className="relative">
@@ -444,7 +514,7 @@ function DailyFinancialLog() {
                 value={totalWage} 
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalWage}
-                disabled
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -463,6 +533,7 @@ function DailyFinancialLog() {
                 onChange={handleRepairChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -481,6 +552,7 @@ function DailyFinancialLog() {
                 onChange={handleDepreciationChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -499,6 +571,7 @@ function DailyFinancialLog() {
                 onChange={handleInterestChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -517,6 +590,7 @@ function DailyFinancialLog() {
                 onChange={handleOtherExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -534,7 +608,7 @@ function DailyFinancialLog() {
                 value = {totalOperatingExp}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder= {totalOperatingExp}
-                disabled
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -571,6 +645,7 @@ function DailyFinancialLog() {
                 onChange={handleOtherIncChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -589,6 +664,7 @@ function DailyFinancialLog() {
                 onChange={handleInterestIncomeChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -625,6 +701,7 @@ function DailyFinancialLog() {
                 onChange={handleTaxExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                disabled={!isEditing}
               />
             </div>
             <div className="relative">
@@ -642,17 +719,28 @@ function DailyFinancialLog() {
                 value = {netProfit}
                 className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={netProfit}
-                disabled
+                disabled={!isEditing}
               />
             </div>
-            <div className="flex items-center justify-center mb-4 w-40 p-5">
-                      <button
-                        type="submit"
-                        className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-gray-700  dark:border-gray-600 font-bold"
-                      >
-                        Submit
-                      </button>
-                    </div>
+            <div className="flex items-center justify-center mb-4 w-full">
+              {!isEditing && <button
+                type="submit"
+                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-100 ease-in-out font-bold
+                hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
+                onClick={handleEdit}
+              >
+                Edit
+              </button>}
+              
+              {isEditing && <button
+                type="submit"
+                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-100 ease-in-out font-bold
+                hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>}
+            </div>
           </form>
         </div>
       </div>
