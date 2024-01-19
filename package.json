@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "apexcharts": "^3.45.1",
+    "axios": "^1.6.5",
     "cors": "^2.8.5",
+    "express": "^4.18.2",
     "flowbite": "^2.2.0",
     "flowbite-datepicker": "^1.2.6",
     "pikaday": "^1.8.2",

@@ -1,429 +1,614 @@
+import React, { useState, useEffect } from "react";
+import CurrentDate from "../CurrentDate";
+import axios from "axios";
+
+
 function DailyFinancialLog() {
-    return (
-      <>
-        <div>
-          <div className="flex justify-between  pb-4">
-            <div>
-              <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins">
-                Daily Financial Log
-              </h1>
-              <h3 className="dark:text-gray-400 text-lg text-ddbackground font-poppins">
-                for december 29,2024
-              </h3>
-            </div>
-            
+  const [lessReturn, setLessReturn] = useState(0);
+  const [lessDiscount, setLessDiscount] = useState(0);
+  const [materials, setMaterials] = useState(0);
+  const [labor, setLabor] = useState(0);
+  const [overhead, setOverhead] = useState(0);
+  const [wages, setWages] = useState(0);
+  const [repair, setRepair] = useState(0);
+  const [deprecation, setDepreciation] = useState(0);
+  const [interest, setInterest] = useState(0);
+  const [otherExp, setOtherExp] = useState(0);
+  const [otherIncome, setOtherInc] = useState(0);
+  const [interestIncome, setInterestIncome] = useState(0);
+  const [taxExp, setTaxExp] = useState(0);
+
+
+
+  const handleLessReturnChange = (e) => {
+    const newLessReturn = parseFloat(e.target.value) || 0;
+    setLessReturn(newLessReturn);
+  };
+
+  const handleLessDiscountChange = (e) => {
+    const newLessDiscount = parseFloat(e.target.value) || 0;
+    setLessDiscount(newLessDiscount);
+  };
+
+  const handleMaterialsChange = (e) => {
+    const newMaterials = parseFloat(e.target.value) || 0;
+    setMaterials(newMaterials);
+  };
+
+  const handleLaborChange = (e) => {
+    const newLabor = parseFloat(e.target.value) || 0;
+    setLabor(newLabor);
+  };
+
+  const handleOverheadChange = (e) => {
+    const newOverhead = parseFloat(e.target.value) || 0;
+    setOverhead(newOverhead);
+  };
+
+  const handleWagesChange = (e) => {
+    const newWages = parseFloat(e.target.value) || 0;
+    setWages(newWages);
+  };
+
+  const handleRepairChange = (e) => {
+    const newRepair = parseFloat(e.target.value) || 0;
+    setRepair(newRepair);
+  };
+
+  const handleDepreciationChange = (e) => {
+    const newDepreciation = parseFloat(e.target.value) || 0;
+    setDepreciation(newDepreciation);
+  };
+
+  const handleInterestChange = (e) => {
+    const newInterest = parseFloat(e.target.value) || 0;
+    setInterest(newInterest);
+  };
+
+  const handleOtherExpChange = (e) => {
+    const newOtherExp = parseFloat(e.target.value) || 0;
+    setOtherExp(newOtherExp);
+  };
+
+  const handleOtherIncChange = (e) => {
+    const newOtherInc = parseFloat(e.target.value) || 0;
+    setOtherInc(newOtherInc);
+  };
+
+  const handleInterestIncomeChange = (e) => {
+    const newInterestIncome = parseFloat(e.target.value) || 0;
+    setInterestIncome(newInterestIncome);
+  };
+
+  const handleTaxExpChange = (e) => {
+    const newTaxExp = parseFloat(e.target.value) || 0;
+    setTaxExp(newTaxExp);
+  };
+  
+
+  // for getting sales of the day
+  const [totalSales, setTotalSales] = useState(0);
+
+  useEffect(() => {
+    const fetchTotalSales = async () => {
+    try {
+        const response = await fetch("http://localhost:8081/customers/total");
+        const data = await response.json();
+
+        // Calculate the sum of the "total" column
+        const sum = data.total.reduce((accumulator, totalValue) => accumulator + totalValue, 0);
+
+    setTotalSales(sum);
+    } catch (error) {
+        console.error("Error fetching total sales:", error);
+    }
+  };
+
+  fetchTotalSales();
+
+  }, []); 
+
+  // handle totals 
+  const netSales = totalSales - lessReturn - lessDiscount;
+  const totalCostOfSrvcsProvided = materials + labor + overhead; 
+  const grossPrft = netSales - totalCostOfSrvcsProvided;
+  const totalOperatingExp = wages + repair + deprecation + interest + otherExp;
+  const operatingPrft = grossPrft - totalOperatingExp;
+  const prftBeforeTaxes = operatingPrft + otherIncome + interestIncome;
+  const netProfit = (netSales + otherIncome + interestIncome) - totalCostOfSrvcsProvided - totalOperatingExp - taxExp;
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formData = {
+      date: CurrentDate,
+      sales: {totalSales}, 
+      return_amount: {lessReturn}, 
+      discount: {lessDiscount}, 
+      net_sales: {netSales}, 
+      materials: {materials}, 
+      labor: {labor}, 
+      overhead: {overhead}, 
+      total_cost_of_srvcs_provided: {totalCostOfSrvcsProvided}, 
+      gross_profit: {grossPrft}, 
+      wages: {wages}, 
+      repairs_maintenance: {repair}, 
+      depreciation: {deprecation}, 
+      interest: {interest}, 
+      other_expenses: {otherExp}, 
+      total_operating_exp: {totalOperatingExp}, 
+      operating_profit: {operatingPrft}, 
+      other_income: {otherIncome}, 
+      interest_income: {interestIncome}, 
+      profit_before_taxes: {prftBeforeTaxes}, 
+      tax_expense: {taxExp}, 
+      net_profit: {netProfit}
+    };
+    console.log("Form Data:", formData);
+    
+  
+    axios
+      .post("http://localhost:8081/income-statement", formData)
+      .then((res) => console.log("Inserted Successfully", res.data))
+      .catch((err) => console.log("ERROR:", err));
+  };
+
+  return (
+    <>
+      <div>
+        <div className="flex justify-between  pb-4">
+          <div>
+            <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins">
+              Daily Financial Log
+            </h1>
+            <h3 className="dark:text-gray-400 text-lg text-ddbackground font-poppins">
+              <CurrentDate />
+            </h3>
           </div>
-          <div className="w-full  bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
-            <form>
-              <div className="relative ">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="revenue-bar"
-                    className="text-dbackground dark:text-white font-medium   start-1 bottom-0.3 py-2 "
-                  >
-                    Revenue
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="revenue-bar"
-                  className="text-right rounded-t-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="" disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="sales-bar"
-                    className="text-dbackground dark:text-white font-sm start-1 bottom-0.3  py-2 "
-                  >
-                    Sales
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="sales-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="99999"
-                  disabled 
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="less-return-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Less: Return
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="less-return-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="less-discount-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Less: Discount
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="less-discount-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="net-sales-bar"
-                    className="text-purpleGrape  font-bold  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Net Sales
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="net-sales-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                  disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="cost-service-bar"
-                    className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Cost of Services
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="cost-service-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="" disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="materials-bar"
-                    className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Materials
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="materials-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="labor-bar"
-                    className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Labor
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="labor-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="overhead-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Overhead
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="overhead-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="goods-sold-bar"
-                    className="text-purpleGrape  font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Total Cost of Goods Sold
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="goods-sold-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                  disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="gross-profit-bar"
-                    className="text-purpleGrape  font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Gross Profit
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="gross-profit-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="operating-expenses-bar"
-                    className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Operating Expenses
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="operating-expenses-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="" disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="wages-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Wages
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="wages-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="repair-maintenance-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Repairs & Maintenance
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="repair-maintenance-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="depreciation-bar"
-                    className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Depreciation
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="depreciation-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="interest-bar"
-                    className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Interest
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="Interest-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="other-expenses-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Other Expenses
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="other-expenses-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="total-operating-bar"
-                    className="text-purpleGrape font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Total Operating Expenses
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="total-operating-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="operating-profit-bar"
-                    className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Operating Profit(Loss)
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="operating-profit-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="" disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="other-income-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Add: Other Income
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="other-income-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="interest-income-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Interest Income
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="interest-income-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="other-income-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Other Income
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="other-income-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="before-taxes-bar"
-                    className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Profit (Loss) Before Taxes
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="before-taxes-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="" disabled
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="tax-expense-bar"
-                    className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Less: Tax Expense
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="tax-expense-bar"
-                  className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <label
-                    htmlFor="net-profit-bar"
-                    className="text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
-                  >
-                    Net Profit (Loss)
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="net-profit-bar"
-                  className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                />
-              </div>
-            </form>
-          </div>
+          
         </div>
-      </>
-    );
-  }
-  
-  export default DailyFinancialLog;
-  
+        <div className="w-full  bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
+          <form onSubmit={handleSubmit}>
+            <div className="relative ">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="revenue-bar"
+                  className="text-dbackground dark:text-white font-medium   start-1 bottom-0.3 py-2 "
+                >
+                  Revenue
+                </label>
+              </div>
+              <input
+                type="text"
+                id="revenue-bar"
+                className="text-right rounded-t-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="" disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="sales-bar"
+                  className="text-dbackground dark:text-white font-sm start-1 bottom-0.3  py-2 "
+                >
+                  Sales
+                </label>
+              </div>
+              <input
+                type="text"
+                id="sales-bar"
+                value={totalSales}
+                className="text-right block w-full p-2 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder={totalSales}
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="less-return-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Return
+                </label>
+              </div>
+              <input
+                type="text"
+                id="less-return-bar"
+                value={lessReturn} 
+                onChange={handleLessReturnChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="less-discount-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Discount
+                </label>
+              </div>
+              <input
+                type="text"
+                id="less-discount-bar"
+                value={lessDiscount} 
+                onChange={handleLessDiscountChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="net-sales-bar"
+                  className="text-purpleGrape  font-bold  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Net Sales
+                </label>
+              </div>
+              <input
+                type="text"
+                id="net-sales-bar"
+                value = {netSales}
+                className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder= {netSales} readOnly
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="cost-service-bar"
+                  className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Cost of Services
+                </label>
+              </div>
+              <input
+                type="text"
+                id="cost-service-bar"
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="" disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="materials-bar"
+                  className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Materials
+                </label>
+              </div>
+              <input
+                type="text"
+                id="materials-bar"
+                value={materials} 
+                onChange={handleMaterialsChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="labor-bar"
+                  className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Labor
+                </label>
+              </div>
+              <input
+                type="text"
+                id="labor-bar"
+                value={labor} 
+                onChange={handleLaborChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="overhead-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Overhead
+                </label>
+              </div>
+              <input
+                type="text"
+                id="overhead-bar"
+                value={overhead} 
+                onChange={handleOverheadChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="goods-sold-bar"
+                  className="text-purpleGrape  font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Total Cost of Services Provided
+                </label>
+              </div>
+              <input
+                type="text"
+                id="goods-sold-bar"
+                value={totalCostOfSrvcsProvided}
+                className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder={totalCostOfSrvcsProvided} 
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="gross-profit-bar"
+                  className="text-purpleGrape  font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Gross Profit
+                </label>
+              </div>
+              <input
+                type="text"
+                id="gross-profit-bar"
+                value = {grossPrft}
+                className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder={grossPrft}
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="operating-expenses-bar"
+                  className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Operating Expenses
+                </label>
+              </div>
+              <input
+                type="text"
+                id="operating-expenses-bar"
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="" disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="wages-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Wages
+                </label>
+              </div>
+              <input
+                type="text"
+                id="wages-bar"
+                value={wages} 
+                onChange={handleWagesChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="repair-maintenance-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Repairs & Maintenance
+                </label>
+              </div>
+              <input
+                type="text"
+                id="repair-maintenance-bar"
+                value={repair} 
+                onChange={handleRepairChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="depreciation-bar"
+                  className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Depreciation
+                </label>
+              </div>
+              <input
+                type="text"
+                id="depreciation-bar"
+                value={deprecation} 
+                onChange={handleDepreciationChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="interest-bar"
+                  className="text-dbackground dark:text-white font-sm start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Interest
+                </label>
+              </div>
+              <input
+                type="text"
+                id="Interest-bar"
+                value={interest} 
+                onChange={handleInterestChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="other-expenses-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Other Expenses
+                </label>
+              </div>
+              <input
+                type="text"
+                id="other-expenses-bar"
+                value={otherExp} 
+                onChange={handleOtherExpChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="total-operating-bar"
+                  className="text-purpleGrape font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Total Operating Expenses
+                </label>
+              </div>
+              <input
+                type="text"
+                id="total-operating-bar"
+                value = {totalOperatingExp}
+                className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder= {totalOperatingExp}
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="operating-profit-bar"
+                  className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Operating Profit
+                </label>
+              </div>
+              <input
+                type="text"
+                id="operating-profit-bar"
+                value = {operatingPrft}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder={operatingPrft}
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="other-income-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Other Income
+                </label>
+              </div>
+              <input
+                type="text"
+                id="other-income-bar"
+                value={otherIncome} 
+                onChange={handleOtherIncChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="interest-income-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Interest Income
+                </label>
+              </div>
+              <input
+                type="text"
+                id="interest-income-bar"
+                value={interestIncome} 
+                onChange={handleInterestIncomeChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="before-taxes-bar"
+                  className="text-dbackground dark:text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Profit Before Taxes
+                </label>
+              </div>
+              <input
+                type="text"
+                id="before-taxes-bar"
+                value = {prftBeforeTaxes}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder= {prftBeforeTaxes}
+                disabled
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="tax-expense-bar"
+                  className="text-dbackground dark:text-white font-sm  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Tax Expense
+                </label>
+              </div>
+              <input
+                type="text"
+                id="tax-expense-bar"
+                value={taxExp} 
+                onChange={handleTaxExpChange}
+                className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
+            <div className="relative">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <label
+                  htmlFor="net-profit-bar"
+                  className="text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
+                >
+                  Net Profit 
+                </label>
+              </div>
+              <input
+                type="text"
+                id="net-profit-bar"
+                value = {netProfit}
+                className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder={netProfit}
+                disabled
+              />
+            </div>
+            <div className="flex items-center justify-center mb-4 w-40 p-5">
+                      <button
+                        type="submit"
+                        className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-gray-700  dark:border-gray-600 font-bold"
+                      >
+                        Submit
+                      </button>
+                    </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default DailyFinancialLog;
