@@ -2,6 +2,7 @@
   "dependencies": {
     "apexcharts": "^3.45.1",
     "cors": "^2.8.5",
+    "date-fns": "^3.2.0",
     "flowbite": "^2.2.0",
     "flowbite-datepicker": "^1.2.6",
     "pikaday": "^1.8.2",

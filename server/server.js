@@ -98,42 +98,56 @@ app.post('/create-new-service', (req, res) => {
 
 try {
     app.get('/log', (req, res) => {
-      const sqlQuery = `
-      SELECT 
-    customer.CustomerID,
-    customer.plateNumber,
-    customer.vehicleType,
-    customer.vehicleDescription,
-    customer.phoneNumber,
-    customer.extraCharge,
-    customer.date,
-    customer.total,
-    GROUP_CONCAT(services.ServiceName) AS serviceNames
-FROM 
-    Customers AS customer
-LEFT JOIN 
-    CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
-LEFT JOIN 
-    Services AS services ON customerServices.ServiceID = services.ServiceID
-GROUP BY 
-    customer.CustomerID;
-      `;
+
+      const startDate = req.query.startDate;
+      const endDate = req.query.endDate;
+
+      const isValidDate = (dateString) => {
+        const regex = /^\d{4}-\d{2}-\d{2}$/;
+        return regex.test(dateString);
+      };
+      if (startDate && endDate && isValidDate(startDate) && isValidDate(endDate)) {
+        // If valid date range provided, modify the SQL query to include date filtering
+        const sqlQuery = `
+          SELECT 
+            customer.CustomerID,
+            customer.plateNumber,
+            customer.vehicleType,
+            customer.vehicleDescription,
+            customer.phoneNumber,
+            customer.extraCharge,
+            customer.date,
+            customer.total,
+            GROUP_CONCAT(services.ServiceName) AS serviceNames
+          FROM 
+            Customers AS customer
+          LEFT JOIN 
+            CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+          LEFT JOIN 
+            Services AS services ON customerServices.ServiceID = services.ServiceID
+          WHERE 
+            customer.date BETWEEN '${startDate}' AND '${endDate}'
+          GROUP BY 
+            customer.CustomerID;
+        `;
   
-      db.query(sqlQuery, (err, results) => {
-        if (err) {
-          console.error('Error fetching data:', err);
-          res.status(500).json({ error: 'Internal Server Error' });
-        } else {
-          // No need for additional formatting if the query is correctly organized
-          res.json(results);
-        }
-      });
+        db.query(sqlQuery, (err, results) => {
+          if (err) {
+            console.error('Error fetching data:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+          } else {
+            res.json(results);
+          }
+        });
+      } else {
+        // If invalid date range provided, return an error response
+        res.status(400).json({ error: 'Invalid date range' });
+      }
     });
   } catch (error) {
     console.error("Unexpected error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-
 
   try {
     // Endpoint for current day
