@@ -3,6 +3,10 @@ function LogsTable({ logsData }) {
     const dateObject = new Date(isoDateString);
     return dateObject.toLocaleDateString(); // Use toLocaleDateString for a localized date format
   };
+
+  // Sort logsData array based on CustomerID in descending order
+  const sortedLogsData = [...logsData].sort((a, b) => b.date - a.date);
+
   return (
     <>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -39,8 +43,8 @@ function LogsTable({ logsData }) {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(logsData) && logsData.length > 0 ? (
-              logsData.map((log) => (
+            {Array.isArray(sortedLogsData) && sortedLogsData.length > 0 ? (
+              sortedLogsData.map((log) => (
                 <tr
                   key={log.CustomerID}
                   className="odd:bg-gray-200 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
@@ -67,7 +71,7 @@ function LogsTable({ logsData }) {
                   <td className="px-6 py-4">{log.extraCharge}</td>
                   <td className="px-6 py-4">{log.total}</td>
                   <td className="px-6 py-4">{formatDate(log.date)}</td>
-                  <td className="px-6 py-4 flex gap-4">
+                  <td className="px-6 py-4 flex items-center justify-center gap-4">
                     {/*EDIT BUTTON*/}
                     <button className="">
                       <svg
