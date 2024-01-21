@@ -26,7 +26,7 @@ function CreateNewService() {
   useEffect(() => {
     const rawCurrentDate = new Date();
     rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
-    const currentDate = rawCurrentDate.toISOString().split('T')[0];
+    const currentDate = rawCurrentDate.toISOString().split("T")[0];
     setDate(currentDate);
   }, []);
 
