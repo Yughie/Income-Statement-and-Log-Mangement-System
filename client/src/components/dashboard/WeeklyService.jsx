@@ -8,7 +8,6 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  Line,
   ResponsiveContainer,
 } from "recharts";
 
@@ -17,22 +16,34 @@ function WeeklyService() {
   const daysOfWeek = getDaysOfWeek(); // Move it here
 
   useEffect(() => {
+    console.log("Fetching data...");
     // Fetch data for all customers
     fetch("http://localhost:8081/dashboard/week")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched logsData:", data);
-        setLogsData(data);
+        const logsDataInClientTime = convertToClientTimeZone(data);
+        console.log("Fetched logsData:", logsDataInClientTime);
+        setLogsData(logsDataInClientTime);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
+  function convertToClientTimeZone(logsData) {
+    return logsData.map((log) => ({
+      ...log,
+      date: new Date(log.date).toLocaleString("en-US", {
+        timeZone: "Asia/Manila", // Set the time zone to Philippine time
+      }),
+    }));
+  }
+
   function getDaysOfWeek() {
     const daysOfWeek = [];
     const today = new Date();
+    today.setHours(0 + 8, 0, 0, 0); // Set time to midnight in local time
     for (let i = 0; i < 7; i++) {
       const day = new Date(today);
-      day.setDate(today.getDate() - i - 1);
+      day.setDate(today.getDate() - i);
       const dayString = day.toISOString().split("T")[0]; // Format as 'YYYY-MM-DD'
       daysOfWeek.push(dayString);
     }
@@ -41,9 +52,11 @@ function WeeklyService() {
 
   const data = daysOfWeek.map((day) => {
     const dayLogs = logsData.filter((log) => {
-      // Convert both dates to UTC format for accurate comparison
       const logDate = new Date(log.date).toISOString().split("T")[0];
-      return logDate === day;
+      const nextDay = new Date(day);
+      nextDay.setDate(nextDay.getDate() - 1); // Add one day to the current day
+      const nextDayString = nextDay.toISOString().split("T")[0];
+      return logDate === nextDayString;
     });
 
     const totalServices = dayLogs.reduce((acc, log) => {
@@ -51,26 +64,24 @@ function WeeklyService() {
         .split(",")
         .map((service) => service.trim());
       services.forEach((service) => {
-        acc[service] = (acc[service] || 0) + 1;
+        // Initialize the service count for each day
+        acc[day] = acc[day] || {};
+        acc[day][service] = (acc[day][service] || 0) + 1;
       });
       return acc;
     }, {});
-    const dayString = new Date(day).toLocaleDateString("en-US", {
-      weekday: "short",
-    });
 
+    const dayString = new Date(day).toLocaleDateString("en-US", {
+      timeZone: "Asia/Manila",
+      weekday: "short",
+      day: "numeric",
+    });
     const sampleData = {
       name: dayString,
-      Carwash: totalServices["Carwash"] || 0,
-      Motorwash: totalServices["Motorwash"] || 0,
-      Wax: totalServices["Wax"] || 0,
-      "Back 2 Zero": totalServices["Back 2 Zero"] || 0,
-      Buffing: totalServices["Buffing"] || 0,
-      "Engine Wash": totalServices["Engine Wash"] || 0,
-      "Promo Package": totalServices["Promo Package"] || 0,
-      "Interior Detailing": totalServices["Interior Detailing"] || 0,
-      "Exterior Detailing": totalServices["Exterior Detailing"] || 0,
+      ...totalServices[day], // Spread the services for the specific day
     };
+
+    console.log("Total Services for", day, totalServices[day]);
     return sampleData;
   });
 
