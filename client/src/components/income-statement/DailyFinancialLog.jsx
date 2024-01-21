@@ -3,7 +3,7 @@ import CurrentDate from "../CurrentDate";
 import axios from "axios";
 
 
-function DailyFinancialLog() {
+function DailyFinancialLog({ onGoBackClick }) {
   const [lessReturn, setLessReturn] = useState(0);
   const [lessDiscount, setLessDiscount] = useState(0);
   const [materials, setMaterials] = useState(0);
@@ -77,29 +77,29 @@ function DailyFinancialLog() {
     const newTaxExp = parseFloat(e.target.value) || 0;
     setTaxExp(newTaxExp);
   };
-  
+
 
   // for getting sales of the day
   const [totalSales, setTotalSales] = useState(0);
 
   useEffect(() => {
     const fetchTotalSales = async () => {
-    try {
+      try {
         const response = await fetch("http://localhost:8081/customers/total");
         const data = await response.json();
 
         // Calculate the sum of the "total" column
         const sum = data.total.reduce((accumulator, totalValue) => accumulator + totalValue, 0);
 
-    setTotalSales(sum);
-    } catch (error) {
+        setTotalSales(sum);
+      } catch (error) {
         console.error("Error fetching total sales:", error);
-    }
-  };
+      }
+    };
 
-  fetchTotalSales();
+    fetchTotalSales();
 
-  }, []); 
+  }, []);
 
 
   // for getting normal hour wage
@@ -142,7 +142,7 @@ function DailyFinancialLog() {
 
   // handle totals 
   const netSales = totalSales - lessReturn - lessDiscount;
-  const totalCostOfSrvcsProvided = materials + labor + overhead; 
+  const totalCostOfSrvcsProvided = materials + labor + overhead;
   const grossPrft = netSales - totalCostOfSrvcsProvided;
   const totalOperatingExp = wages + repair + deprecation + interest + otherExp;
   const operatingPrft = grossPrft - totalOperatingExp;
@@ -180,8 +180,11 @@ function DailyFinancialLog() {
         const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
         const data = await response.json();
 
-        // Check if data exists, otherwise set placeholders to "0"
-        if (Object.keys(data).length === 0) {
+        // Check if any property in the data object is defined or not
+        const hasData = Object.values(data).some(value => value !== undefined);
+
+        if (!hasData) {
+          // If none of the properties are defined, set all placeholders to "0"
           setFormsData({
             sales: '0',
             return_amount: '0',
@@ -211,9 +214,10 @@ function DailyFinancialLog() {
         console.error('Error fetching forms data:', error);
       }
     };
-    
+
     fetchFormsData();
   }, []);
+
 
   // function to handle editing
   const [isEditing, setIsEditing] = useState(false);
@@ -221,7 +225,6 @@ function DailyFinancialLog() {
   const handleEdit = () => {
     setIsEditing(true);
   }
-
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -231,7 +234,7 @@ function DailyFinancialLog() {
     const rawCurrentDate = new Date();
     rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
     const currentDate = rawCurrentDate.toISOString().split("T")[0];
-  
+
     const formData = {
       date: currentDate,
       sales: totalSales,
@@ -256,15 +259,18 @@ function DailyFinancialLog() {
       tax_expense: taxExp,
       net_profit: netProfit
     };
-    
+
     console.log("Form Data:", formData);
-    
-  
+
+
     axios
       .post("http://localhost:8081/income-statement", formData)
       .then((res) => console.log("Inserted Successfully", res.data))
       .catch((err) => console.log("ERROR:", err));
   };
+
+
+
 
   return (
     <>
@@ -278,7 +284,7 @@ function DailyFinancialLog() {
               <CurrentDate />
             </h3>
           </div>
-          
+
         </div>
         <div className="w-full  bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
           <form onSubmit={handleSubmit}>
@@ -331,7 +337,7 @@ function DailyFinancialLog() {
                 id="less-return-bar"
                 onChange={handleLessReturnChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.return_amount}
                 disabled={!isEditing}
               />
             </div>
@@ -349,7 +355,7 @@ function DailyFinancialLog() {
                 id="less-discount-bar"
                 onChange={handleLessDiscountChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.discount}
                 disabled={!isEditing}
               />
             </div>
@@ -365,10 +371,10 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="net-sales-bar"
-                value = {netSales}
+                value={netSales}
                 className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder= {netSales} readOnly
-                disabled={!isEditing}
+                placeholder={netSales}
+                disabled
               />
             </div>
             <div className="relative">
@@ -402,7 +408,7 @@ function DailyFinancialLog() {
                 id="materials-bar"
                 onChange={handleMaterialsChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.materials}
                 disabled={!isEditing}
               />
             </div>
@@ -420,7 +426,7 @@ function DailyFinancialLog() {
                 id="labor-bar"
                 onChange={handleLaborChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.labor}
                 disabled={!isEditing}
               />
             </div>
@@ -438,7 +444,7 @@ function DailyFinancialLog() {
                 id="overhead-bar"
                 onChange={handleOverheadChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.overhead}
                 disabled={!isEditing}
               />
             </div>
@@ -456,8 +462,8 @@ function DailyFinancialLog() {
                 id="goods-sold-bar"
                 value={totalCostOfSrvcsProvided}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={totalCostOfSrvcsProvided} 
-                disabled={!isEditing}
+                placeholder={totalCostOfSrvcsProvided}
+                disabled
               />
             </div>
             <div className="relative">
@@ -472,10 +478,10 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="gross-profit-bar"
-                value = {grossPrft}
+                value={grossPrft}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={grossPrft}
-                disabled={!isEditing}
+                disabled
               />
             </div>
             <div className="relative">
@@ -491,7 +497,7 @@ function DailyFinancialLog() {
                 type="text"
                 id="operating-expenses-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="" 
+                placeholder=""
                 disabled
               />
             </div>
@@ -509,7 +515,7 @@ function DailyFinancialLog() {
                 id="wages-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalWage}
-                disabled={!isEditing}
+                disabled
               />
             </div>
             <div className="relative">
@@ -526,7 +532,7 @@ function DailyFinancialLog() {
                 id="repair-maintenance-bar"
                 onChange={handleRepairChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.repairs_maintenance}
                 disabled={!isEditing}
               />
             </div>
@@ -544,7 +550,7 @@ function DailyFinancialLog() {
                 id="depreciation-bar"
                 onChange={handleDepreciationChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.depreciation}
                 disabled={!isEditing}
               />
             </div>
@@ -562,7 +568,7 @@ function DailyFinancialLog() {
                 id="Interest-bar"
                 onChange={handleInterestChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.interest}
                 disabled={!isEditing}
               />
             </div>
@@ -580,7 +586,7 @@ function DailyFinancialLog() {
                 id="other-expenses-bar"
                 onChange={handleOtherExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.other_expenses}
                 disabled={!isEditing}
               />
             </div>
@@ -596,10 +602,10 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="total-operating-bar"
-                value = {totalOperatingExp}
+                value={totalOperatingExp}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder= {totalOperatingExp}
-                disabled={!isEditing}
+                placeholder={totalOperatingExp}
+                disabled
               />
             </div>
             <div className="relative">
@@ -614,7 +620,7 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="operating-profit-bar"
-                value = {operatingPrft}
+                value={operatingPrft}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={operatingPrft}
                 disabled
@@ -634,7 +640,7 @@ function DailyFinancialLog() {
                 id="other-income-bar"
                 onChange={handleOtherIncChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.other_income}
                 disabled={!isEditing}
               />
             </div>
@@ -652,7 +658,7 @@ function DailyFinancialLog() {
                 id="interest-income-bar"
                 onChange={handleInterestIncomeChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.interest_income}
                 disabled={!isEditing}
               />
             </div>
@@ -668,9 +674,9 @@ function DailyFinancialLog() {
               <input
                 type="text"
                 id="before-taxes-bar"
-                value = {prftBeforeTaxes}
+                value={prftBeforeTaxes}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder= {prftBeforeTaxes}
+                placeholder={prftBeforeTaxes}
                 disabled
               />
             </div>
@@ -688,7 +694,7 @@ function DailyFinancialLog() {
                 id="tax-expense-bar"
                 onChange={handleTaxExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="0"
+                placeholder={formsData.tax_expense}
                 disabled={!isEditing}
               />
             </div>
@@ -698,36 +704,46 @@ function DailyFinancialLog() {
                   htmlFor="net-profit-bar"
                   className="text-white font-medium  start-1 bottom-0.3 px-0 py-2 "
                 >
-                  Net Profit 
+                  Net Profit
                 </label>
               </div>
               <input
                 type="text"
                 id="net-profit-bar"
-                value = {netProfit}
+                value={netProfit}
                 className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={netProfit}
-                disabled={!isEditing}
+                disabled
               />
             </div>
-            <div className="flex items-center justify-center mb-4 w-full">
+
+            <div className="flex items-center justify-center mb-4 w-full bg-ddbackground">
               {!isEditing && <button
                 type="submit"
-                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-100 ease-in-out font-bold
+                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
                 onClick={handleEdit}
               >
                 Edit
               </button>}
-              
+
               {isEditing && <button
                 type="submit"
-                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-100 ease-in-out font-bold
+                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
                 onClick={handleSubmit}
               >
                 Submit
               </button>}
+
+              <button
+                type="button"
+                onClick={onGoBackClick}
+                className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
+              >
+                Go Back to Menu
+              </button>
             </div>
           </form>
         </div>
