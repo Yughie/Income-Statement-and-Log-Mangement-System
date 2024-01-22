@@ -531,6 +531,7 @@ try {
       if (err) {
         console.error('Error fetching income data:', err);
         res.status(500).json({ error: 'Internal Server Error' });
+        console.log('Raw results from database:', results);
       } else {
         // If there is no data for the current date, return an empty object
         const formsData = results.length > 0 ? results[0] : {};
