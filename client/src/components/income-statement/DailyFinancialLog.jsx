@@ -313,10 +313,23 @@ function DailyFinancialLog({ onGoBackClick }) {
     tax_expense: null
   });
 
+  // handle submission 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     setIsEditing(false);
     e.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+
+    console.log('Submitting...');
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 500); // Adjust the duration as needed
 
     try {
       const rawCurrentDate = new Date();
@@ -392,25 +405,6 @@ function DailyFinancialLog({ onGoBackClick }) {
       // Check if the response contains expected data
       if (response.data && response.data.success) {
         console.log("Submitted Successfully", response.data);
-        console.log("total new return: ", formData.return_amount);
-        console.log("total new disc: ", formData.discount);
-        console.log("total new wages: ", formData.wages);
-        console.log("total new rep: ", formData.repairs_maintenance);
-        console.log("total new dep: ", formData.depreciation);
-        console.log("total new interest: ", formData.interest);
-        console.log("total new other exp: ", formData.other_expenses);
-        console.log("total new other inc: ", formData.other_income);
-        console.log("total new interest inc: ", formData.interest_income);
-        console.log("total new tax exp: ", formData.tax_expense);
-        console.log("ops");
-        console.log("total new net sales: ", netSales);
-        console.log("total new cost: ", totalCostOfSrvcsProvided);
-        console.log("total new gross profit: ", grossPrft);
-        console.log("total new operating exp: ", totalOperatingExp);
-        console.log("total new operating profit: ", operatingPrft);
-        console.log("total new profit before taxes: ", prftBeforeTaxes);
-        console.log("total new net profit: ", netProfit);
-        console.log("aye");
       } else {
         console.error("Error submitting form:", response.data);
       }
@@ -418,6 +412,7 @@ function DailyFinancialLog({ onGoBackClick }) {
       console.error('Error submitting form:', error);
     }
   };
+
 
   const totalWage = normalWage + overtimeWage;
   const netSales = formsData.sales - formsData.return_amount - formsData.discount;
@@ -525,6 +520,9 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="net-sales-bar"
+                value={totalSales -
+                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+                  (userInput.discount !== null ? userInput.discount : formsData.discount)}
                 className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={netSales}
                 disabled
@@ -613,6 +611,9 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="goods-sold-bar"
+                value={(userInput.materials !== null ? userInput.materials : formsData.materials) +
+                  (userInput.labor !== null ? userInput.labor : formsData.labor) +
+                  (userInput.overhead !== null ? userInput.overhead : formsData.overhead)}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.total_cost_of_srvcs_provided}
                 disabled
@@ -630,6 +631,11 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="gross-profit-bar"
+                value={(totalSales -
+                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+                  (userInput.discount !== null ? userInput.discount : formsData.discount)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
+                    (userInput.labor !== null ? userInput.labor : formsData.labor) +
+                    (userInput.overhead !== null ? userInput.overhead : formsData.overhead))}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.gross_profit}
                 disabled
@@ -753,6 +759,11 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="total-operating-bar"
+                value={totalWage +
+                  (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
+                  (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
+                  (userInput.interest !== null ? userInput.interest : formsData.interest) +
+                  (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses)}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.total_operating_exp}
                 disabled
@@ -770,6 +781,15 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="operating-profit-bar"
+                value={((totalSales -
+                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+                  (userInput.discount !== null ? userInput.discount : formsData.discount)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
+                    (userInput.labor !== null ? userInput.labor : formsData.labor) +
+                    (userInput.overhead !== null ? userInput.overhead : formsData.overhead))) - (totalWage +
+                      (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
+                      (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
+                      (userInput.interest !== null ? userInput.interest : formsData.interest) +
+                      (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses))}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.operating_profit}
                 disabled
@@ -823,6 +843,16 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="before-taxes-bar"
+                value={(((totalSales -
+                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+                  (userInput.discount !== null ? userInput.discount : formsData.discount)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
+                    (userInput.labor !== null ? userInput.labor : formsData.labor) +
+                    (userInput.overhead !== null ? userInput.overhead : formsData.overhead))) - (totalWage +
+                      (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
+                      (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
+                      (userInput.interest !== null ? userInput.interest : formsData.interest) +
+                      (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses))) + ((userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
+                        (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income))}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.profit_before_taxes}
                 disabled
@@ -858,40 +888,60 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="net-profit-bar"
-                value={netProfit}
+                value={(totalSales -
+                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+                  (userInput.discount !== null ? userInput.discount : formsData.discount)) + ((userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
+                    (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
+                      (userInput.labor !== null ? userInput.labor : formsData.labor) +
+                      (userInput.overhead !== null ? userInput.overhead : formsData.overhead)) - (totalWage +
+                        (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
+                        (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
+                        (userInput.interest !== null ? userInput.interest : formsData.interest) +
+                        (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses)) - (userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense)}
                 className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.net_profit}
                 disabled
               />
             </div>
 
-            <div className="flex items-center justify-center mb-4 w-full bg-ddbackground">
-              <button
-                type="button"
-                onClick={onGoBackClick}
-                className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+            {isSubmitting ? (
+              <div className="flex justify-center items-center">
+                <div className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700">
+                  Submitting...
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-center mb-4 w-full bg-ddbackground">
+                  <button
+                    type="button"
+                    onClick={onGoBackClick}
+                    className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                    hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
+                  >
+                    Back to Menu
+                  </button>
+                  {!isEditing && <button
+                    type="submit"
+                    className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
-              >
-                Back to Menu
-              </button>
-              {!isEditing && <button
-                type="submit"
-                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
-                hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
-                onClick={handleEdit}
-              >
-                Edit
-              </button>}
+                    onClick={handleEdit}
+                  >
+                    Edit
+                  </button>}
 
-              {isEditing && <button
-                type="submit"
-                className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                  {isEditing && <button
+                    type="submit"
+                    className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>}
-            </div>
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </button>}
+                </div>
+              </>
+            )}
+
           </form>
         </div>
       </div>
