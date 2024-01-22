@@ -80,6 +80,7 @@ function DailyFinancialLog({ onGoBackClick }) {
   }, []);
 
   // handle totals 
+  /*
   const netSales = totalSales - lessReturn - lessDiscount;
   const totalCostOfSrvcsProvided = materials + labor + overhead;
   const grossPrft = netSales - totalCostOfSrvcsProvided;
@@ -88,12 +89,14 @@ function DailyFinancialLog({ onGoBackClick }) {
   const prftBeforeTaxes = operatingPrft + otherIncome + interestIncome;
   const netProfit = (netSales + otherIncome + interestIncome) - totalCostOfSrvcsProvided - totalOperatingExp - taxExp;
   const totalWage = normalWage + overtimeWage;
+  */
 
   // function to load data form datbase to the placeholders and values
   const [formsData, setFormsData] = useState({});
 
   useEffect(() => {
     const fetchFormsData = async () => {
+
       console.log('Form component is mounting...', formsData);
       try {
         const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
@@ -106,7 +109,6 @@ function DailyFinancialLog({ onGoBackClick }) {
           : data;
 
         setFormsData(updatedFormsData);
-        console.log('Form component is mounted...', formsData);
       } catch (error) {
         console.error('Error fetching forms data:', error);
       }
@@ -163,10 +165,6 @@ function DailyFinancialLog({ onGoBackClick }) {
 
     fetchFormsData();
   }, []); */
-
-  useEffect(() => {
-    console.log('Form component is mounted er...', formsData);
-  }, [formsData]);
 
   /*
   useEffect(() => {
@@ -255,56 +253,6 @@ function DailyFinancialLog({ onGoBackClick }) {
   };
 
 
-  // Function to handle form submission
-  /*
-  const handleSubmit = async (e) => {
-    setIsEditing(false);
-    e.preventDefault();
-
-    try {
-      const response = await axios.get('/dailyfinanciallog/forms-data');
-      setFormsData(response.data);
-    } catch (error) {
-      console.error('Error fetching updated data:', error);
-    }
-
-    const rawCurrentDate = new Date();
-    rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
-    const currentDate = rawCurrentDate.toISOString().split("T")[0];
-
-    const formData = {
-      date: currentDate,
-      sales: totalSales !== null ? totalSales : formsData.sales,
-      return_amount: lessReturn !== null ? lessReturn : formsData.return_amount,
-      discount: lessDiscount !== null ? lessDiscount : formsData.discount,
-      net_sales: netSales !== null ? netSales : formsData.net_sales,
-      materials: materials !== null ? materials : formsData.materials,
-      labor: labor !== null ? labor : formsData.labor,
-      overhead: overhead !== null ? overhead : formsData.overhead,
-      total_cost_of_srvcs_provided: totalCostOfSrvcsProvided !== null ? totalCostOfSrvcsProvided : formsData.total_cost_of_srvcs_provided,
-      gross_profit: grossPrft !== null ? grossPrft : formsData.gross_profit,
-      wages: totalWage !== null ? totalWage : formsData.wages,
-      repairs_maintenance: repair !== null ? repair : formsData.repairs_maintenance,
-      depreciation: deprecation !== null ? deprecation : formsData.depreciation,
-      interest: interest !== null ? interest : formsData.interest,
-      other_expenses: otherExp !== null ? otherExp : formsData.other_expenses,
-      total_operating_exp: totalOperatingExp !== null ? totalOperatingExp : formsData.total_operating_exp,
-      operating_profit: operatingPrft !== null ? operatingPrft : formsData.operating_profit,
-      other_income: otherIncome !== null ? otherIncome : formsData.other_income,
-      interest_income: interestIncome !== null ? interestIncome : formsData.interest_income,
-      profit_before_taxes: prftBeforeTaxes !== null ? prftBeforeTaxes : formsData.profit_before_taxes,
-      tax_expense: taxExp !== null ? taxExp : formsData.tax_expense,
-      net_profit: netProfit !== null ? netProfit : formsData.net_profit
-    };
-
-    console.log("Form Data:", formData);
-
-    axios
-      .post("http://localhost:8081/income-statement", formData)
-      .then((res) => console.log("Inserted Successfully", res.data))
-      .catch((err) => console.log("ERROR:", err));
-  }; */
-
   const handleSubmit = async (e) => {
     setIsEditing(false);
     e.preventDefault();
@@ -315,27 +263,27 @@ function DailyFinancialLog({ onGoBackClick }) {
       const currentDate = rawCurrentDate.toISOString().split("T")[0];
       const formData = {
         date: currentDate,
-        sales: totalSales !== null ? totalSales : formsData.sales,
-        return_amount: lessReturn !== null ? lessReturn : formsData.return_amount,
-        discount: lessDiscount !== null ? lessDiscount : formsData.discount,
-        net_sales: netSales !== null ? netSales : formsData.net_sales,
-        materials: materials !== null ? materials : formsData.materials,
-        labor: labor !== null ? labor : formsData.labor,
-        overhead: overhead !== null ? overhead : formsData.overhead,
-        total_cost_of_srvcs_provided: totalCostOfSrvcsProvided !== null ? totalCostOfSrvcsProvided : formsData.total_cost_of_srvcs_provided,
-        gross_profit: grossPrft !== null ? grossPrft : formsData.gross_profit,
-        wages: totalWage !== null ? totalWage : formsData.wages,
-        repairs_maintenance: repair !== null ? repair : formsData.repairs_maintenance,
-        depreciation: deprecation !== null ? deprecation : formsData.depreciation,
-        interest: interest !== null ? interest : formsData.interest,
-        other_expenses: otherExp !== null ? otherExp : formsData.other_expenses,
-        total_operating_exp: totalOperatingExp !== null ? totalOperatingExp : formsData.total_operating_exp,
-        operating_profit: operatingPrft !== null ? operatingPrft : formsData.operating_profit,
-        other_income: otherIncome !== null ? otherIncome : formsData.other_income,
-        interest_income: interestIncome !== null ? interestIncome : formsData.interest_income,
-        profit_before_taxes: prftBeforeTaxes !== null ? prftBeforeTaxes : formsData.profit_before_taxes,
-        tax_expense: taxExp !== null ? taxExp : formsData.tax_expense,
-        net_profit: netProfit !== null ? netProfit : formsData.net_profit
+        sales: totalSales,
+        return_amount: lessReturn,
+        discount: lessDiscount,
+        net_sales: netSales,
+        materials: materials,
+        labor: labor,
+        overhead: overhead,
+        total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
+        gross_profit: grossPrft,
+        wages: totalWage,
+        repairs_maintenance: repair,
+        depreciation: deprecation,
+        interest: interest,
+        other_expenses: otherExp,
+        total_operating_exp: totalOperatingExp,
+        operating_profit: operatingPrft,
+        other_income: otherIncome,
+        interest_income: interestIncome,
+        profit_before_taxes: prftBeforeTaxes,
+        tax_expense: taxExp,
+        net_profit: netProfit
       };
       console.log("Form Datasss:", formData);
 
@@ -352,6 +300,15 @@ function DailyFinancialLog({ onGoBackClick }) {
       console.error('Error submitting form:', error);
     }
   };
+
+  const netSales = formsData.sales - formsData.return_amount - formsData.discount;
+  const totalCostOfSrvcsProvided = formsData.materials + formsData.labor + formsData.overhead;
+  const grossPrft = netSales - totalCostOfSrvcsProvided;
+  const totalWage = normalWage + overtimeWage;
+  const totalOperatingExp = totalWage + formsData.repairs_maintenance + formsData.depreciation + formsData.interest + formsData.other_expenses;
+  const operatingPrft = grossPrft - totalOperatingExp;
+  const prftBeforeTaxes = operatingPrft + formsData.other_income + formsData.interest_income;
+  const netProfit = (netSales + formsData.other_income + formsData.interest_income) - totalCostOfSrvcsProvided - totalOperatingExp - formsData.tax_expense;
 
   return (
     <>
@@ -398,7 +355,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="sales-bar"
-                value={totalSales}
                 className="text-right block w-full p-2 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalSales}
                 disabled={!isEditing}
@@ -417,7 +373,6 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="less-return-bar"
                 onChange={handleLessReturnChange}
-                onBlur={handleLessReturnChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.return_amount}
                 disabled={!isEditing}
@@ -453,7 +408,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="net-sales-bar"
-                value={netSales}
                 className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={netSales}
                 disabled
@@ -542,9 +496,8 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="goods-sold-bar"
-                value={totalCostOfSrvcsProvided}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={totalCostOfSrvcsProvided}
+                placeholder={formsData.total_cost_of_srvcs_provided}
                 disabled
               />
             </div>
@@ -560,7 +513,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="gross-profit-bar"
-                value={grossPrft}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={grossPrft}
                 disabled
@@ -684,7 +636,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="total-operating-bar"
-                value={totalOperatingExp}
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalOperatingExp}
                 disabled
@@ -702,7 +653,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="operating-profit-bar"
-                value={operatingPrft}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={operatingPrft}
                 disabled
@@ -756,7 +706,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="before-taxes-bar"
-                value={prftBeforeTaxes}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={prftBeforeTaxes}
                 disabled
@@ -800,6 +749,14 @@ function DailyFinancialLog({ onGoBackClick }) {
             </div>
 
             <div className="flex items-center justify-center mb-4 w-full bg-ddbackground">
+              <button
+                type="button"
+                onClick={onGoBackClick}
+                className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
+              >
+                Back to Menu
+              </button>
               {!isEditing && <button
                 type="submit"
                 className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
@@ -817,15 +774,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               >
                 Submit
               </button>}
-
-              <button
-                type="button"
-                onClick={onGoBackClick}
-                className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
-                hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
-              >
-                Go Back to Menu
-              </button>
             </div>
           </form>
         </div>
