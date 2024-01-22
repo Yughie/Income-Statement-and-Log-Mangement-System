@@ -1,18 +1,7 @@
-const EditDetailing = ({ checkboxValues, onCheckboxChange }) => {
+const EditDetailing = ({ customerData, checkboxValues, onCheckboxChange }) => {
   const handleCheckboxChange = (category, serviceName) => {
-    // Update the state immediately
-    onCheckboxChange();
-
-    // Rest of your code for handling checkbox changes (which you already have)
-    setFormValues((prevValues) => {
-      return {
-        ...prevValues,
-        [category]: {
-          ...prevValues[category],
-          [serviceName]: !prevValues[category][serviceName],
-        },
-      };
-    });
+    onCheckboxChange(category, serviceName);
+    // Update the state in EditCarwash if necessary
   };
   return (
     <>
@@ -27,8 +16,10 @@ const EditDetailing = ({ checkboxValues, onCheckboxChange }) => {
               type="checkbox"
               value=""
               className="w-4 mx-4 h-4 mb-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              checked={checkboxValues.interiorDetailing}
-              onChange={() => onCheckboxChange("interiorDetailing")}
+              checked={customerData.interiorDetailing}
+              onChange={() =>
+                onCheckboxChange("detailing", "interiorDetailing")
+              }
             />
             <span>INTERIOR</span>
           </h3>
@@ -91,8 +82,10 @@ const EditDetailing = ({ checkboxValues, onCheckboxChange }) => {
               type="checkbox"
               value=""
               className="w-4 mx-4 h-4 mb-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              checked={checkboxValues.exteriorDetailing}
-              onChange={() => onCheckboxChange("exteriorDetailing")}
+              checked={customerData.exteriorDetailing}
+              onChange={() =>
+                onCheckboxChange("detailing", "exteriorDetailing")
+              }
             />
             <span>EXTERIOR</span>
           </h3>
