@@ -18,67 +18,6 @@ function DailyFinancialLog({ onGoBackClick }) {
   const [interestIncome, setInterestIncome] = useState(0);
   const [taxExp, setTaxExp] = useState(0);
 
-  const handleLessReturnChange = (e) => {
-    const newLessReturn = parseFloat(e.target.value) || 0;
-    setLessReturn(newLessReturn);
-  };
-
-  const handleLessDiscountChange = (e) => {
-    const newLessDiscount = parseFloat(e.target.value) || 0;
-    setLessDiscount(newLessDiscount);
-  };
-
-  const handleMaterialsChange = (e) => {
-    const newMaterials = parseFloat(e.target.value) || 0;
-    setMaterials(newMaterials);
-  };
-
-  const handleLaborChange = (e) => {
-    const newLabor = parseFloat(e.target.value) || 0;
-    setLabor(newLabor);
-  };
-
-  const handleOverheadChange = (e) => {
-    const newOverhead = parseFloat(e.target.value) || 0;
-    setOverhead(newOverhead);
-  };
-
-  const handleRepairChange = (e) => {
-    const newRepair = parseFloat(e.target.value) || 0;
-    setRepair(newRepair);
-  };
-
-  const handleDepreciationChange = (e) => {
-    const newDepreciation = parseFloat(e.target.value) || 0;
-    setDepreciation(newDepreciation);
-  };
-
-  const handleInterestChange = (e) => {
-    const newInterest = parseFloat(e.target.value) || 0;
-    setInterest(newInterest);
-  };
-
-  const handleOtherExpChange = (e) => {
-    const newOtherExp = parseFloat(e.target.value) || 0;
-    setOtherExp(newOtherExp);
-  };
-
-  const handleOtherIncChange = (e) => {
-    const newOtherInc = parseFloat(e.target.value) || 0;
-    setOtherInc(newOtherInc);
-  };
-
-  const handleInterestIncomeChange = (e) => {
-    const newInterestIncome = parseFloat(e.target.value) || 0;
-    setInterestIncome(newInterestIncome);
-  };
-
-  const handleTaxExpChange = (e) => {
-    const newTaxExp = parseFloat(e.target.value) || 0;
-    setTaxExp(newTaxExp);
-  };
-
-
   // for getting sales of the day
   const [totalSales, setTotalSales] = useState(0);
 
@@ -226,10 +165,74 @@ function DailyFinancialLog({ onGoBackClick }) {
     setIsEditing(true);
   }
 
+  const handleLessReturnChange = (e) => {
+    const newLessReturn = parseFloat(e.target.value) || formsData.return_amount;
+    console.log("Default value:", formsData.return_amount);
+    setLessReturn(newLessReturn);
+  };
+
+  const handleLessDiscountChange = (e) => {
+    const newLessDiscount = parseFloat(e.target.value);
+    setLessDiscount(newLessDiscount);
+  };
+
+  const handleMaterialsChange = (e) => {
+    const newMaterials = parseFloat(e.target.value);
+    setMaterials(newMaterials);
+  };
+
+  const handleLaborChange = (e) => {
+    const newLabor = parseFloat(e.target.value);
+    setLabor(newLabor);
+  };
+
+  const handleOverheadChange = (e) => {
+    const newOverhead = parseFloat(e.target.value);
+    setOverhead(newOverhead);
+  };
+
+  const handleRepairChange = (e) => {
+    const newRepair = parseFloat(e.target.value);
+    setRepair(newRepair);
+  };
+
+  const handleDepreciationChange = (e) => {
+    const newDepreciation = parseFloat(e.target.value);
+    setDepreciation(newDepreciation);
+  };
+
+  const handleInterestChange = (e) => {
+    const newInterest = parseFloat(e.target.value);
+    setInterest(newInterest);
+  };
+
+  const handleOtherExpChange = (e) => {
+    const newOtherExp = parseFloat(e.target.value);
+    setOtherExp(newOtherExp);
+  };
+
+  const handleOtherIncChange = (e) => {
+    const newOtherInc = parseFloat(e.target.value);
+    setOtherInc(newOtherInc);
+  };
+
+  const handleInterestIncomeChange = (e) => {
+    const newInterestIncome = parseFloat(e.target.value);
+    setInterestIncome(newInterestIncome);
+  };
+
+  const handleTaxExpChange = (e) => {
+    const newTaxExp = parseFloat(e.target.value);
+    setTaxExp(newTaxExp);
+  };
+
+
   // Function to handle form submission
   const handleSubmit = async (e) => {
     setIsEditing(false);
     e.preventDefault();
+
+    handleLessReturnChange(e);
 
     const rawCurrentDate = new Date();
     rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
@@ -262,15 +265,11 @@ function DailyFinancialLog({ onGoBackClick }) {
 
     console.log("Form Data:", formData);
 
-
     axios
       .post("http://localhost:8081/income-statement", formData)
       .then((res) => console.log("Inserted Successfully", res.data))
       .catch((err) => console.log("ERROR:", err));
   };
-
-
-
 
   return (
     <>
@@ -336,6 +335,8 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="less-return-bar"
                 onChange={handleLessReturnChange}
+                onBlur={handleLessReturnChange}
+                defaultValue={formsData.return_amount}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.return_amount}
                 disabled={!isEditing}
@@ -530,6 +531,7 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="repair-maintenance-bar"
+                value={formsData.repairs_maintenance}
                 onChange={handleRepairChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.repairs_maintenance}
