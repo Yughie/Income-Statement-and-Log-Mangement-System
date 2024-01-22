@@ -190,67 +190,128 @@ function DailyFinancialLog({ onGoBackClick }) {
   }
 
   const handleLessReturnChange = (e) => {
-    const newLessReturn = parseFloat(e.target.value) || formsData.return_amount;
-    setLessReturn(newLessReturn);
+    const newReturn = parseFloat(e.target.value);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      return_amount: newReturn,
+    }));
   };
 
   const handleLessDiscountChange = (e) => {
-    const inputValue = e.target.value;
+    const newLessDiscountChange = parseFloat(e.target.value);
 
-    // Use the defaultValue directly if inputValue is empty
-    const valueToSave = inputValue.trim() === '' ? e.target.defaultValue : inputValue;
-    setLessDiscount(valueToSave);
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      discount: newLessDiscountChange,
+    }));
   };
 
   const handleMaterialsChange = (e) => {
     const newMaterials = parseFloat(e.target.value);
-    setMaterials(newMaterials);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      materials: newMaterials,
+    }));
   };
 
   const handleLaborChange = (e) => {
     const newLabor = parseFloat(e.target.value);
-    setLabor(newLabor);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      labor: newLabor,
+    }));
   };
 
   const handleOverheadChange = (e) => {
     const newOverhead = parseFloat(e.target.value);
-    setOverhead(newOverhead);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      overhead: newOverhead,
+    }));
   };
 
   const handleRepairChange = (e) => {
     const newRepair = parseFloat(e.target.value);
-    setRepair(newRepair);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      repairs_maintenance: newRepair,
+    }));
   };
 
   const handleDepreciationChange = (e) => {
     const newDepreciation = parseFloat(e.target.value);
-    setDepreciation(newDepreciation);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      depreciation: newDepreciation,
+    }));
   };
 
   const handleInterestChange = (e) => {
     const newInterest = parseFloat(e.target.value);
-    setInterest(newInterest);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      interest: newInterest,
+    }));
   };
 
   const handleOtherExpChange = (e) => {
     const newOtherExp = parseFloat(e.target.value);
-    setOtherExp(newOtherExp);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      other_expenses: newOtherExp,
+    }));
   };
 
   const handleOtherIncChange = (e) => {
     const newOtherInc = parseFloat(e.target.value);
-    setOtherInc(newOtherInc);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      other_income: newOtherInc,
+    }));
   };
 
   const handleInterestIncomeChange = (e) => {
     const newInterestIncome = parseFloat(e.target.value);
-    setInterestIncome(newInterestIncome);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      interest_income: newInterestIncome,
+    }));
   };
 
   const handleTaxExpChange = (e) => {
     const newTaxExp = parseFloat(e.target.value);
-    setTaxExp(newTaxExp);
+
+    setUserInput((prevUserInput) => ({
+      ...prevUserInput,
+      tax_expense: newTaxExp,
+    }));
   };
+
+
+  const [userInput, setUserInput] = useState({
+    return_amount: null,
+    discount: null,
+    materials: null,
+    labor: null,
+    overhead: null,
+    repairs_maintenance: null,
+    depreciation: null,
+    interest: null,
+    other_expenses: null,
+    other_income: null,
+    interest_income: null,
+    tax_expense: null
+  });
 
 
   const handleSubmit = async (e) => {
@@ -261,38 +322,95 @@ function DailyFinancialLog({ onGoBackClick }) {
       const rawCurrentDate = new Date();
       rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
       const currentDate = rawCurrentDate.toISOString().split("T")[0];
+
+      const netSales =
+        totalSales -
+        (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+        (userInput.discount !== null ? userInput.discount : formsData.discount);
+
+      const totalCostOfSrvcsProvided =
+        (userInput.materials !== null ? userInput.materials : formsData.materials) +
+        (userInput.labor !== null ? userInput.labor : formsData.labor) +
+        (userInput.overhead !== null ? userInput.overhead : formsData.overhead);
+
+      const grossPrft = netSales - totalCostOfSrvcsProvided;
+
+      const totalWage = normalWage + overtimeWage;
+
+      const totalOperatingExp =
+        totalWage +
+        (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
+        (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
+        (userInput.interest !== null ? userInput.interest : formsData.interest) +
+        (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses);
+
+      const operatingPrft = grossPrft - totalOperatingExp;
+
+      const prftBeforeTaxes =
+        operatingPrft +
+        (userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
+        (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income);
+
+      const netProfit =
+        (netSales +
+          (userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
+          (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income)) -
+        totalCostOfSrvcsProvided -
+        totalOperatingExp -
+        (userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense);
+
+
       const formData = {
         date: currentDate,
         sales: totalSales,
-        return_amount: lessReturn,
-        discount: lessDiscount,
+        return_amount: userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount,
+        discount: userInput.discount !== null ? userInput.discount : formsData.discount,
         net_sales: netSales,
-        materials: materials,
-        labor: labor,
-        overhead: overhead,
+        materials: userInput.materials !== null ? userInput.materials : formsData.materials,
+        labor: userInput.labor !== null ? userInput.labor : formsData.labor,
+        overhead: userInput.overhead !== null ? userInput.overhead : formsData.overhead,
         total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
         gross_profit: grossPrft,
         wages: totalWage,
-        repairs_maintenance: repair,
-        depreciation: deprecation,
-        interest: interest,
-        other_expenses: otherExp,
+        repairs_maintenance: userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance,
+        depreciation: userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation,
+        interest: userInput.interest !== null ? userInput.interest : formsData.interest,
+        other_expenses: userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses,
         total_operating_exp: totalOperatingExp,
         operating_profit: operatingPrft,
-        other_income: otherIncome,
-        interest_income: interestIncome,
+        other_income: userInput.other_income !== null ? userInput.other_income : formsData.other_income,
+        interest_income: userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income,
         profit_before_taxes: prftBeforeTaxes,
-        tax_expense: taxExp,
+        tax_expense: userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense,
         net_profit: netProfit
       };
-      console.log("Form Datasss:", formData);
 
+      console.log("Form Datasss:", formData);
 
       const response = await axios.post("http://localhost:8081/income-statement", formData);
 
       // Check if the response contains expected data
       if (response.data && response.data.success) {
         console.log("Submitted Successfully", response.data);
+        console.log("total new return: ", formData.return_amount);
+        console.log("total new disc: ", formData.discount);
+        console.log("total new wages: ", formData.wages);
+        console.log("total new rep: ", formData.repairs_maintenance);
+        console.log("total new dep: ", formData.depreciation);
+        console.log("total new interest: ", formData.interest);
+        console.log("total new other exp: ", formData.other_expenses);
+        console.log("total new other inc: ", formData.other_income);
+        console.log("total new interest inc: ", formData.interest_income);
+        console.log("total new tax exp: ", formData.tax_expense);
+        console.log("ops");
+        console.log("total new net sales: ", netSales);
+        console.log("total new cost: ", totalCostOfSrvcsProvided);
+        console.log("total new gross profit: ", grossPrft);
+        console.log("total new operating exp: ", totalOperatingExp);
+        console.log("total new operating profit: ", operatingPrft);
+        console.log("total new profit before taxes: ", prftBeforeTaxes);
+        console.log("total new net profit: ", netProfit);
+        console.log("aye");
       } else {
         console.error("Error submitting form:", response.data);
       }
@@ -301,10 +419,10 @@ function DailyFinancialLog({ onGoBackClick }) {
     }
   };
 
+  const totalWage = normalWage + overtimeWage;
   const netSales = formsData.sales - formsData.return_amount - formsData.discount;
   const totalCostOfSrvcsProvided = formsData.materials + formsData.labor + formsData.overhead;
   const grossPrft = netSales - totalCostOfSrvcsProvided;
-  const totalWage = normalWage + overtimeWage;
   const totalOperatingExp = totalWage + formsData.repairs_maintenance + formsData.depreciation + formsData.interest + formsData.other_expenses;
   const operatingPrft = grossPrft - totalOperatingExp;
   const prftBeforeTaxes = operatingPrft + formsData.other_income + formsData.interest_income;
@@ -339,7 +457,6 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="revenue-bar"
                 className="text-right rounded-t-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
                 disabled
               />
             </div>
@@ -357,7 +474,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="sales-bar"
                 className="text-right block w-full p-2 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={totalSales}
-                disabled={!isEditing}
+                disabled
               />
             </div>
             <div className="relative">
@@ -514,7 +631,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="gross-profit-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={grossPrft}
+                placeholder={formsData.gross_profit}
                 disabled
               />
             </div>
@@ -637,7 +754,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="total-operating-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={totalOperatingExp}
+                placeholder={formsData.total_operating_exp}
                 disabled
               />
             </div>
@@ -654,7 +771,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="operating-profit-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={operatingPrft}
+                placeholder={formsData.operating_profit}
                 disabled
               />
             </div>
@@ -707,7 +824,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="before-taxes-bar"
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={prftBeforeTaxes}
+                placeholder={formsData.profit_before_taxes}
                 disabled
               />
             </div>
@@ -743,7 +860,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="net-profit-bar"
                 value={netProfit}
                 className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={netProfit}
+                placeholder={formsData.net_profit}
                 disabled
               />
             </div>
