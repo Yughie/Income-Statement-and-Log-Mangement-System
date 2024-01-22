@@ -324,7 +324,7 @@ function DailyFinancialLog({ onGoBackClick }) {
       const currentDate = rawCurrentDate.toISOString().split("T")[0];
 
       const netSales =
-        (userInput.sales !== null ? userInput.sales : formsData.sales) -
+        totalSales -
         (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
         (userInput.discount !== null ? userInput.discount : formsData.discount);
 
@@ -332,6 +332,33 @@ function DailyFinancialLog({ onGoBackClick }) {
         (userInput.materials !== null ? userInput.materials : formsData.materials) +
         (userInput.labor !== null ? userInput.labor : formsData.labor) +
         (userInput.overhead !== null ? userInput.overhead : formsData.overhead);
+
+      const grossPrft = netSales - totalCostOfSrvcsProvided;
+
+      const totalWage = normalWage + overtimeWage;
+
+      const totalOperatingExp =
+        totalWage +
+        (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
+        (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
+        (userInput.interest !== null ? userInput.interest : formsData.interest) +
+        (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses);
+
+      const operatingPrft = grossPrft - totalOperatingExp;
+
+      const prftBeforeTaxes =
+        operatingPrft +
+        (userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
+        (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income);
+
+      const netProfit =
+        (netSales +
+          (userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
+          (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income)) -
+        totalCostOfSrvcsProvided -
+        totalOperatingExp -
+        (userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense);
+
 
       const formData = {
         date: currentDate,
@@ -342,9 +369,9 @@ function DailyFinancialLog({ onGoBackClick }) {
         materials: userInput.materials !== null ? userInput.materials : formsData.materials,
         labor: userInput.labor !== null ? userInput.labor : formsData.labor,
         overhead: userInput.overhead !== null ? userInput.overhead : formsData.overhead,
-        total_cost_of_srvcs_provided: userInput.total_cost_of_srvcs_provided !== null ? userInput.total_cost_of_srvcs_provided : formsData.total_cost_of_srvcs_provided,
+        total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
         gross_profit: grossPrft,
-        wages: userInput.wages !== null ? userInput.wages : formsData.wages,
+        wages: totalWage,
         repairs_maintenance: userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance,
         depreciation: userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation,
         interest: userInput.interest !== null ? userInput.interest : formsData.interest,
@@ -365,8 +392,25 @@ function DailyFinancialLog({ onGoBackClick }) {
       // Check if the response contains expected data
       if (response.data && response.data.success) {
         console.log("Submitted Successfully", response.data);
-        console.log("total new sales: ", formData.net_sales);
-        console.log("return: ", formData.return_amount);
+        console.log("total new return: ", formData.return_amount);
+        console.log("total new disc: ", formData.discount);
+        console.log("total new wages: ", formData.wages);
+        console.log("total new rep: ", formData.repairs_maintenance);
+        console.log("total new dep: ", formData.depreciation);
+        console.log("total new interest: ", formData.interest);
+        console.log("total new other exp: ", formData.other_expenses);
+        console.log("total new other inc: ", formData.other_income);
+        console.log("total new interest inc: ", formData.interest_income);
+        console.log("total new tax exp: ", formData.tax_expense);
+        console.log("ops");
+        console.log("total new net sales: ", netSales);
+        console.log("total new cost: ", totalCostOfSrvcsProvided);
+        console.log("total new gross profit: ", grossPrft);
+        console.log("total new operating exp: ", totalOperatingExp);
+        console.log("total new operating profit: ", operatingPrft);
+        console.log("total new profit before taxes: ", prftBeforeTaxes);
+        console.log("total new net profit: ", netProfit);
+        console.log("aye");
       } else {
         console.error("Error submitting form:", response.data);
       }
@@ -375,10 +419,10 @@ function DailyFinancialLog({ onGoBackClick }) {
     }
   };
 
+  const totalWage = normalWage + overtimeWage;
   const netSales = formsData.sales - formsData.return_amount - formsData.discount;
   const totalCostOfSrvcsProvided = formsData.materials + formsData.labor + formsData.overhead;
   const grossPrft = netSales - totalCostOfSrvcsProvided;
-  const totalWage = normalWage + overtimeWage;
   const totalOperatingExp = totalWage + formsData.repairs_maintenance + formsData.depreciation + formsData.interest + formsData.other_expenses;
   const operatingPrft = grossPrft - totalOperatingExp;
   const prftBeforeTaxes = operatingPrft + formsData.other_income + formsData.interest_income;
@@ -413,7 +457,6 @@ function DailyFinancialLog({ onGoBackClick }) {
                 type="text"
                 id="revenue-bar"
                 className="text-right rounded-t-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
                 disabled
               />
             </div>
@@ -448,7 +491,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="less-return-bar"
                 onChange={handleLessReturnChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount}
+                placeholder={formsData.return_amount}
                 disabled={!isEditing}
               />
             </div>
@@ -694,7 +737,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="other-expenses-bar"
                 onChange={handleOtherExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={formsData.otherExp}
+                placeholder={formsData.other_expenses}
                 disabled={!isEditing}
               />
             </div>
@@ -764,7 +807,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="interest-income-bar"
                 onChange={handleInterestIncomeChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income}
+                placeholder={formsData.interest_income}
                 disabled={!isEditing}
               />
             </div>
@@ -799,7 +842,7 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="tax-expense-bar"
                 onChange={handleTaxExpChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense}
+                placeholder={formsData.tax_expense}
                 disabled={!isEditing}
               />
             </div>
