@@ -7,13 +7,23 @@ import React, { useState, useEffect } from "react";
 function Log() {
   const [logsData, setLogsData] = useState([]);
 
-  useEffect(() => {
-    // Fetch data for all customers
-    fetch("http://localhost:8081/log")
-      .then((response) => response.json())
-      .then((data) => setLogsData(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const deleteCustomer = (customerId) => {
+    console.log("Deleting log with ID:", customerId);
+
+    fetch(`http://localhost:8081/log/${customerId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to delete log with ID ${customerId}`);
+        }
+        // Update the logsData after successful deletion
+        setLogsData((prevData) =>
+          prevData.filter((log) => log.CustomerID !== customerId)
+        );
+      })
+      .catch((error) => console.error("Error deleting log:", error));
+  };
 
   return (
     <>
@@ -210,10 +220,25 @@ function Log() {
         <div className="p-4  lg:ml-80">
           <div className="min-h-screen rounded-lg dark:border-bg-darkPurple">
             {/*SORT/FILTER/ SEARCH*/}
-            <LogsFunction />
+            <LogsFunction
+              onDateChange={(newStartDate, newEndDate) => {
+                // Fetch data for the updated date range
+
+                console.log("New Start Date:", newStartDate);
+                console.log("New End Date:", newEndDate);
+                fetch(
+                  `http://localhost:8081/log?startDate=${newStartDate}&endDate=${newEndDate}`
+                )
+                  .then((response) => response.json())
+                  .then((data) => setLogsData(data))
+                  .catch((error) =>
+                    console.error("Error fetching data:", error)
+                  );
+              }}
+            />
 
             {/*WEEKLY AVERAGE MONTHLY SALES */}
-            <LogsTable logsData={logsData} />
+            <LogsTable logsData={logsData} onDeleteCustomer={deleteCustomer} />
           </div>
         </div>
       </div>
