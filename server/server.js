@@ -138,8 +138,6 @@ app.post('/income-statement', (req, res) => {
 
 
 
-
-try {
     app.get('/log', (req, res) => {
 
       const startDate = req.query.startDate;
@@ -152,7 +150,7 @@ try {
       if (startDate && endDate && isValidDate(startDate) && isValidDate(endDate)) {
         // If valid date range provided, modify the SQL query to include date filtering
         const sqlQuery = `
-          SELECT 
+        SELECT 
             customer.CustomerID,
             customer.plateNumber,
             customer.vehicleType,
@@ -161,17 +159,31 @@ try {
             customer.extraCharge,
             customer.date,
             customer.total,
-            GROUP_CONCAT(services.ServiceName) AS serviceNames
-          FROM 
+            customer.vehicleSizing,
+            customer.workHour,
+            GROUP_CONCAT(services.ServiceName) AS serviceNames,
+            MAX(IF(services.ServiceName = 'Carwash', 1, 0)) AS carwash,
+            MAX(IF(services.ServiceName = 'Motorwash', 1, 0)) AS motorWash,
+            MAX(IF(services.ServiceName = 'Tricycle (Private)', 1, 0)) AS tricyclePriv,
+            MAX(IF(services.ServiceName = 'Tricycle (Public)', 1, 0)) AS tricyclePub,
+            MAX(IF(services.ServiceName = 'Wax', 1, 0)) AS Wax,
+            MAX(IF(services.ServiceName = 'Back 2 Zero', 1, 0)) AS back2Zero,
+            MAX(IF(services.ServiceName = 'Buffing', 1, 0)) AS buffing,
+            MAX(IF(services.ServiceName = 'Engine Wash', 1, 0)) AS engineWash,
+            MAX(IF(services.ServiceName = 'Promo Package', 1, 0)) AS promoPackage,
+            MAX(IF(services.ServiceName = 'Interior Detailing', 1, 0)) AS interiorDetailing,
+            MAX(IF(services.ServiceName = 'Exterior Detailing', 1, 0)) AS exteriorDetailing
+        FROM 
             Customers AS customer
-          LEFT JOIN 
+        LEFT JOIN 
             CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
-          LEFT JOIN 
+        LEFT JOIN 
             Services AS services ON customerServices.ServiceID = services.ServiceID
-          WHERE 
-            customer.date BETWEEN '${startDate}' AND '${endDate}'
-          GROUP BY 
-            customer.CustomerID;
+WHERE 
+        customer.date BETWEEN '${startDate}' AND '${endDate}'
+      GROUP BY 
+        customer.CustomerID;
+        
         `;
   
         db.query(sqlQuery, (err, results) => {
@@ -179,6 +191,7 @@ try {
             console.error('Error fetching data:', err);
             res.status(500).json({ error: 'Internal Server Error' });
           } else {
+            console.log('Results:', results);
             res.json(results);
           }
         });
@@ -187,10 +200,38 @@ try {
         res.status(400).json({ error: 'Invalid date range' });
       }
     });
-  } catch (error) {
-    console.error("Unexpected error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+
+    // DELETE endpoint to delete a customer
+
+    app.delete('/log/:id', (req, res) => {
+      const customerId = parseInt(req.params.id);
+    
+      // Delete associated records in customerservices table
+      const sqlDeleteCustomerServices = `DELETE FROM customerservices WHERE CustomerID = ?`;
+    
+      db.query(sqlDeleteCustomerServices, [customerId], (err, result) => {
+        if (err) {
+          console.error('Error deleting associated customer services:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          // Now, delete the customer from the customers table
+          const sqlDeleteCustomer = `DELETE FROM customers WHERE customerID = ?`;
+    
+          db.query(sqlDeleteCustomer, [customerId], (err, result) => {
+            if (err) {
+              console.error('Error deleting customer:', err);
+              res.status(500).json({ error: 'Internal Server Error' });
+            } else {
+              res.json({ success: true });
+            }
+          });
+        }
+      });
+    });
+        
+    
+    
+
 
   try {
     // Endpoint for current day
@@ -273,6 +314,63 @@ try {
       });
     });
 
+    app.get('/dashboard/month', (req, res) => {
+      const rawCurrentDate = new Date();
+      rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+      const currentDate = rawCurrentDate.toISOString().split("T")[0];
+    
+      // Get the first day of the current month
+      const firstDayOfMonth = new Date(rawCurrentDate.getFullYear(), rawCurrentDate.getMonth(), 1);
+    
+      const sqlQuery = `
+        SELECT 
+          customer.CustomerID,
+          customer.plateNumber,
+          customer.vehicleType,
+          customer.vehicleDescription,
+          customer.phoneNumber,
+          customer.extraCharge,
+          customer.date,
+          customer.total,
+          customer.vehicleSizing,  -- Include vehicle size in the query
+          GROUP_CONCAT(services.ServiceName) AS serviceNames
+        FROM 
+          Customers AS customer
+        LEFT JOIN 
+          CustomerServices AS customerServices ON customer.CustomerID = customerServices.CustomerID
+        LEFT JOIN 
+          Services AS services ON customerServices.ServiceID = services.ServiceID
+        WHERE
+          customer.date BETWEEN '${firstDayOfMonth.toISOString().split('T')[0]}' AND '${currentDate}'
+        GROUP BY 
+          customer.CustomerID, customer.date, customer.vehicleSizing;
+      `;
+    
+      db.query(sqlQuery, (err, results) => {
+        if (err) {
+          console.error('Error fetching data:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          res.json(results);
+        }
+      });
+    });
+
+    app.get('/services', (req, res) => {
+      const sqlQuery = `
+        SELECT ServiceName FROM services;
+      `;
+    
+      db.query(sqlQuery, (err, results) => {
+        if (err) {
+          console.error('Error fetching service names:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          const serviceNames = results.map(result => result.ServiceName);
+          res.json({ serviceNames });
+        }
+      });
+    });
     // Endpoint for sum of total column within the current date 
     app.get('/customers/total', (req, res) => {
       const rawCurrentDate = new Date();
@@ -301,10 +399,8 @@ try {
       });
     });
 
-    app.use((req, res, next) => {
-      console.log(`Received request: ${req.method} ${req.url}`);
-      next();
-    });
+    
+
 
     // endpoint to get normal wage of the day
     app.get('/customers/totalNormalWage', (req, res) => {

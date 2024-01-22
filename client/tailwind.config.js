@@ -11,8 +11,8 @@ export default {
       fontFamily: {
         'poppins': ['Poppins',  'sans-serif']
       }
-
     },
+
     colors: {
       ddbackground: '#1E1D2B',  //Darker
       dbackground: '#252736',

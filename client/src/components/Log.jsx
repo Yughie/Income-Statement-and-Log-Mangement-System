@@ -7,6 +7,24 @@ import React, { useState, useEffect } from "react";
 function Log() {
   const [logsData, setLogsData] = useState([]);
 
+  const deleteCustomer = (customerId) => {
+    console.log("Deleting log with ID:", customerId);
+
+    fetch(`http://localhost:8081/log/${customerId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to delete log with ID ${customerId}`);
+        }
+        // Update the logsData after successful deletion
+        setLogsData((prevData) =>
+          prevData.filter((log) => log.CustomerID !== customerId)
+        );
+      })
+      .catch((error) => console.error("Error deleting log:", error));
+  };
+
   return (
     <>
       <div className="bg-ddbackground">
@@ -220,7 +238,7 @@ function Log() {
             />
 
             {/*WEEKLY AVERAGE MONTHLY SALES */}
-            <LogsTable logsData={logsData} />
+            <LogsTable logsData={logsData} onDeleteCustomer={deleteCustomer} />
           </div>
         </div>
       </div>
