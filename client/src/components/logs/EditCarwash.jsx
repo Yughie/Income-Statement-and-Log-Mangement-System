@@ -1,21 +1,8 @@
-const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
-  // Use checkboxValues to initialize the state or determine initial checked status
-  // ...
-
+const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
+  console.log("EDIT CARWASH:", customerData);
   const handleCheckboxChange = (category, serviceName) => {
-    // Update the state immediately
     onCheckboxChange(category, serviceName);
-
-    // Rest of your code for handling checkbox changes (which you already have)
-    setFormValues((prevValues) => {
-      return {
-        ...prevValues,
-        [category]: {
-          ...prevValues[category],
-          [serviceName]: !prevValues[category][serviceName],
-        },
-      };
-    });
+    // Update the state in EditCarwash if necessary
   };
   return (
     <>
@@ -29,8 +16,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
               <div className="flex items-center ps-3">
                 <input
                   id="carwash-carwash"
-                  checked={checkboxValues.carwash}
-                  onChange={() => onCheckboxChange("carwash")}
+                  checked={customerData.carwash}
+                  onChange={() => onCheckboxChange("carwash", "carwash")}
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -46,8 +33,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
               <div className="flex items-center ps-3">
                 <input
                   id="motorwash-carwash"
-                  checked={checkboxValues.motorWash}
-                  onChange={() => onCheckboxChange("motorwash")}
+                  checked={customerData.motorWash}
+                  onChange={() => onCheckboxChange("carwash", "motorWash")}
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -63,8 +50,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
               <div className="flex items-center ps-3">
                 <input
                   id="tricycle-priv-carwash"
-                  checked={checkboxValues.trycyclePriv}
-                  onChange={() => onCheckboxChange("trycyclePriv")}
+                  checked={customerData.trycyclePriv}
+                  onChange={() => onCheckboxChange("carwash", "trycyclePriv")}
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -83,8 +70,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={checkboxValues.trycyclePub}
-                  onChange={() => onCheckboxChange("trycyclePub")}
+                  checked={customerData.trycyclePub}
+                  onChange={() => onCheckboxChange("carwash", "trycyclePub")}
                 />
                 <label
                   htmlFor="tricycle-pub-carwash"
@@ -101,8 +88,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={checkboxValues.wax}
-                  onChange={() => onCheckboxChange("wax")}
+                  checked={customerData.wax}
+                  onChange={() => onCheckboxChange("carwash", "wax")}
                 />
                 <label
                   htmlFor="wax-carwash"
@@ -119,8 +106,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={checkboxValues.backZero}
-                  onChange={() => onCheckboxChange("backZero")}
+                  checked={customerData.back2Zero}
+                  onChange={() => onCheckboxChange("carwash", "back2Zero")}
                 />
                 <label
                   htmlFor="back-zero-carwash"
@@ -137,8 +124,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={checkboxValues.buffing}
-                  onChange={() => onCheckboxChange("buffing")}
+                  checked={customerData.buffing}
+                  onChange={() => onCheckboxChange("carwash", "buffing")}
                 />
                 <label
                   htmlFor="buffing-carwash"
@@ -155,8 +142,8 @@ const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={checkboxValues.engineWash}
-                  onChange={() => onCheckboxChange("engineWash")}
+                  checked={customerData.engineWash}
+                  onChange={() => onCheckboxChange("carwash", "engineWash")}
                 />
                 <label
                   htmlFor="engine-wash-carwash"

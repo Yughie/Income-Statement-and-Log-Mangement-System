@@ -44,7 +44,7 @@ const EditModal = ({ customerData, onClose }) => {
       engineWash: false,
     },
     promo: {
-      servicePromo: false,
+      promoPackage: false,
     },
     detailing: {
       interiorDetailing: false,
@@ -261,8 +261,8 @@ const EditModal = ({ customerData, onClose }) => {
       return {
         ...prevValues,
         [category]: {
-          ...prevValues[category],
-          [serviceName]: !prevValues[category][serviceName],
+          ...(prevValues[category] || {}), // Ensure prevValues[category] is defined
+          [serviceName]: !prevValues[category]?.[serviceName], // Use optional chaining
         },
       };
     });
@@ -413,24 +413,18 @@ const EditModal = ({ customerData, onClose }) => {
             <div className="w-full gap-4 p-4 pb-0 bg-gray-300 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
               <EditCarwash
                 customerData={customerData}
-                checkboxValues={formValues.carwash} // or any other value
-                onCheckboxChange={(serviceName) =>
-                  handleCheckboxChange("carwash", serviceName)
-                }
+                checkboxValues={formValues.carwash}
+                onCheckboxChange={handleCheckboxChange}
               />
               <EditPromo
                 customerData={customerData}
                 checkboxValues={formValues.promo}
-                onCheckboxChange={(serviceName) =>
-                  handleCheckboxChange("promo", serviceName)
-                }
+                onCheckboxChange={handleCheckboxChange}
               />
               <EditDetailing
                 customerData={customerData}
                 checkboxValues={formValues.detailing}
-                onCheckboxChange={(serviceName) =>
-                  handleCheckboxChange("detailing", serviceName)
-                }
+                onCheckboxChange={handleCheckboxChange}
               />
             </div>
             {/* PRICING */}
