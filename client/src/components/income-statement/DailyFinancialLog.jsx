@@ -4,19 +4,19 @@ import axios from "axios";
 
 
 function DailyFinancialLog({ onGoBackClick }) {
-  const [lessReturn, setLessReturn] = useState(0);
-  const [lessDiscount, setLessDiscount] = useState(0);
-  const [materials, setMaterials] = useState(0);
-  const [labor, setLabor] = useState(0);
-  const [overhead, setOverhead] = useState(0);
-  const [wages, setWages] = useState(0);
-  const [repair, setRepair] = useState(0);
-  const [deprecation, setDepreciation] = useState(0);
-  const [interest, setInterest] = useState(0);
-  const [otherExp, setOtherExp] = useState(0);
-  const [otherIncome, setOtherInc] = useState(0);
-  const [interestIncome, setInterestIncome] = useState(0);
-  const [taxExp, setTaxExp] = useState(0);
+  const [lessReturn, setLessReturn] = useState(null);
+  const [lessDiscount, setLessDiscount] = useState(null);
+  const [materials, setMaterials] = useState(null);
+  const [labor, setLabor] = useState(null);
+  const [overhead, setOverhead] = useState(null);
+  const [wages, setWages] = useState(null);
+  const [repair, setRepair] = useState(null);
+  const [deprecation, setDepreciation] = useState(null);
+  const [interest, setInterest] = useState(null);
+  const [otherExp, setOtherExp] = useState(null);
+  const [otherIncome, setOtherInc] = useState(null);
+  const [interestIncome, setInterestIncome] = useState(null);
+  const [taxExp, setTaxExp] = useState(null);
 
   // for getting sales of the day
   const [totalSales, setTotalSales] = useState(0);
@@ -90,40 +90,44 @@ function DailyFinancialLog({ onGoBackClick }) {
   const totalWage = normalWage + overtimeWage;
 
   // function to load data form datbase to the placeholders and values
-  const [formsData, setFormsData] = useState({
-    sales: '',
-    return_amount: '',
-    discount: '',
-    net_sales: '',
-    materials: '',
-    labor: '',
-    overhead: '',
-    total_cost_of_srvcs_provided: '',
-    gross_profit: '',
-    repairs_maintenance: '',
-    depreciation: '',
-    interest: '',
-    other_expenses: '',
-    total_operating_exp: '',
-    operating_profit: '',
-    other_income: '',
-    interest_income: '',
-    profit_before_taxes: '',
-    tax_expense: '',
-    net_profit: ''
-  });
+  const [formsData, setFormsData] = useState({});
 
   useEffect(() => {
     const fetchFormsData = async () => {
+      console.log('Form component is mounting...', formsData);
       try {
         const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
         const data = await response.json();
+        console.log('Data from server:', data);
 
-        // Check if any property in the data object is defined or not
-        const hasData = Object.values(data).some(value => value !== undefined);
+        // Use the fetched data if available, otherwise use default values
+        const updatedFormsData = Object.values(data).some(value => value === undefined || value === "")
+          ? defaultValues
+          : data;
+
+        setFormsData(updatedFormsData);
+        console.log('Form component is mounted...', formsData);
+      } catch (error) {
+        console.error('Error fetching forms data:', error);
+      }
+    }; fetchFormsData();
+  }, []);
+
+  /*
+  useEffect(() => {
+    const fetchFormsData = async () => {
+      console.log('Form component is mounting...', formsData);
+      try {
+        const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
+        const data = await response.json();
+        console.log('Data from server:', data);
+        console.log('Form component is mounted...', formsData);
+
+
+
+        const hasData = Object.values(data).some(value => value === undefined || value === "");
 
         if (!hasData) {
-          // If none of the properties are defined, set all placeholders to "0"
           setFormsData({
             sales: '0',
             return_amount: '0',
@@ -147,7 +151,10 @@ function DailyFinancialLog({ onGoBackClick }) {
             net_profit: '0'
           });
         } else {
-          setFormsData(data);
+          setFormsData(prevFormsData => ({
+            ...prevFormsData,
+            ...data
+          }));;
         }
       } catch (error) {
         console.error('Error fetching forms data:', error);
@@ -155,7 +162,26 @@ function DailyFinancialLog({ onGoBackClick }) {
     };
 
     fetchFormsData();
-  }, []);
+  }, []); */
+
+  useEffect(() => {
+    console.log('Form component is mounted er...', formsData);
+  }, [formsData]);
+
+  /*
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/dailyfinanciallog/forms-data');
+        setFormsData(response.data);
+      } catch (error) {
+        console.error('Error fetching initial data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); */
+
 
 
   // function to handle editing
@@ -167,13 +193,15 @@ function DailyFinancialLog({ onGoBackClick }) {
 
   const handleLessReturnChange = (e) => {
     const newLessReturn = parseFloat(e.target.value) || formsData.return_amount;
-    console.log("Default value:", formsData.return_amount);
     setLessReturn(newLessReturn);
   };
 
   const handleLessDiscountChange = (e) => {
-    const newLessDiscount = parseFloat(e.target.value);
-    setLessDiscount(newLessDiscount);
+    const inputValue = e.target.value;
+
+    // Use the defaultValue directly if inputValue is empty
+    const valueToSave = inputValue.trim() === '' ? e.target.defaultValue : inputValue;
+    setLessDiscount(valueToSave);
   };
 
   const handleMaterialsChange = (e) => {
@@ -228,11 +256,17 @@ function DailyFinancialLog({ onGoBackClick }) {
 
 
   // Function to handle form submission
+  /*
   const handleSubmit = async (e) => {
     setIsEditing(false);
     e.preventDefault();
 
-    handleLessReturnChange(e);
+    try {
+      const response = await axios.get('/dailyfinanciallog/forms-data');
+      setFormsData(response.data);
+    } catch (error) {
+      console.error('Error fetching updated data:', error);
+    }
 
     const rawCurrentDate = new Date();
     rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
@@ -240,27 +274,27 @@ function DailyFinancialLog({ onGoBackClick }) {
 
     const formData = {
       date: currentDate,
-      sales: totalSales,
-      return_amount: lessReturn,
-      discount: lessDiscount,
-      net_sales: netSales,
-      materials: materials,
-      labor: labor,
-      overhead: overhead,
-      total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
-      gross_profit: grossPrft,
-      wages: totalWage,
-      repairs_maintenance: repair,
-      depreciation: deprecation,
-      interest: interest,
-      other_expenses: otherExp,
-      total_operating_exp: totalOperatingExp,
-      operating_profit: operatingPrft,
-      other_income: otherIncome,
-      interest_income: interestIncome,
-      profit_before_taxes: prftBeforeTaxes,
-      tax_expense: taxExp,
-      net_profit: netProfit
+      sales: totalSales !== null ? totalSales : formsData.sales,
+      return_amount: lessReturn !== null ? lessReturn : formsData.return_amount,
+      discount: lessDiscount !== null ? lessDiscount : formsData.discount,
+      net_sales: netSales !== null ? netSales : formsData.net_sales,
+      materials: materials !== null ? materials : formsData.materials,
+      labor: labor !== null ? labor : formsData.labor,
+      overhead: overhead !== null ? overhead : formsData.overhead,
+      total_cost_of_srvcs_provided: totalCostOfSrvcsProvided !== null ? totalCostOfSrvcsProvided : formsData.total_cost_of_srvcs_provided,
+      gross_profit: grossPrft !== null ? grossPrft : formsData.gross_profit,
+      wages: totalWage !== null ? totalWage : formsData.wages,
+      repairs_maintenance: repair !== null ? repair : formsData.repairs_maintenance,
+      depreciation: deprecation !== null ? deprecation : formsData.depreciation,
+      interest: interest !== null ? interest : formsData.interest,
+      other_expenses: otherExp !== null ? otherExp : formsData.other_expenses,
+      total_operating_exp: totalOperatingExp !== null ? totalOperatingExp : formsData.total_operating_exp,
+      operating_profit: operatingPrft !== null ? operatingPrft : formsData.operating_profit,
+      other_income: otherIncome !== null ? otherIncome : formsData.other_income,
+      interest_income: interestIncome !== null ? interestIncome : formsData.interest_income,
+      profit_before_taxes: prftBeforeTaxes !== null ? prftBeforeTaxes : formsData.profit_before_taxes,
+      tax_expense: taxExp !== null ? taxExp : formsData.tax_expense,
+      net_profit: netProfit !== null ? netProfit : formsData.net_profit
     };
 
     console.log("Form Data:", formData);
@@ -269,6 +303,54 @@ function DailyFinancialLog({ onGoBackClick }) {
       .post("http://localhost:8081/income-statement", formData)
       .then((res) => console.log("Inserted Successfully", res.data))
       .catch((err) => console.log("ERROR:", err));
+  }; */
+
+  const handleSubmit = async (e) => {
+    setIsEditing(false);
+    e.preventDefault();
+
+    try {
+      const rawCurrentDate = new Date();
+      rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+      const currentDate = rawCurrentDate.toISOString().split("T")[0];
+      const formData = {
+        date: currentDate,
+        sales: totalSales !== null ? totalSales : formsData.sales,
+        return_amount: lessReturn !== null ? lessReturn : formsData.return_amount,
+        discount: lessDiscount !== null ? lessDiscount : formsData.discount,
+        net_sales: netSales !== null ? netSales : formsData.net_sales,
+        materials: materials !== null ? materials : formsData.materials,
+        labor: labor !== null ? labor : formsData.labor,
+        overhead: overhead !== null ? overhead : formsData.overhead,
+        total_cost_of_srvcs_provided: totalCostOfSrvcsProvided !== null ? totalCostOfSrvcsProvided : formsData.total_cost_of_srvcs_provided,
+        gross_profit: grossPrft !== null ? grossPrft : formsData.gross_profit,
+        wages: totalWage !== null ? totalWage : formsData.wages,
+        repairs_maintenance: repair !== null ? repair : formsData.repairs_maintenance,
+        depreciation: deprecation !== null ? deprecation : formsData.depreciation,
+        interest: interest !== null ? interest : formsData.interest,
+        other_expenses: otherExp !== null ? otherExp : formsData.other_expenses,
+        total_operating_exp: totalOperatingExp !== null ? totalOperatingExp : formsData.total_operating_exp,
+        operating_profit: operatingPrft !== null ? operatingPrft : formsData.operating_profit,
+        other_income: otherIncome !== null ? otherIncome : formsData.other_income,
+        interest_income: interestIncome !== null ? interestIncome : formsData.interest_income,
+        profit_before_taxes: prftBeforeTaxes !== null ? prftBeforeTaxes : formsData.profit_before_taxes,
+        tax_expense: taxExp !== null ? taxExp : formsData.tax_expense,
+        net_profit: netProfit !== null ? netProfit : formsData.net_profit
+      };
+      console.log("Form Datasss:", formData);
+
+
+      const response = await axios.post("http://localhost:8081/income-statement", formData);
+
+      // Check if the response contains expected data
+      if (response.data && response.data.success) {
+        console.log("Submitted Successfully", response.data);
+      } else {
+        console.error("Error submitting form:", response.data);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -336,7 +418,6 @@ function DailyFinancialLog({ onGoBackClick }) {
                 id="less-return-bar"
                 onChange={handleLessReturnChange}
                 onBlur={handleLessReturnChange}
-                defaultValue={formsData.return_amount}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.return_amount}
                 disabled={!isEditing}
@@ -531,7 +612,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="repair-maintenance-bar"
-                value={formsData.repairs_maintenance}
                 onChange={handleRepairChange}
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.repairs_maintenance}

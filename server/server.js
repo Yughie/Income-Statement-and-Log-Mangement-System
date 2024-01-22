@@ -15,13 +15,8 @@ const db = mysql.createConnection({
 })
 
 app.post('/', (req, res) => {
-
-
-
   console.log("Request Payload:", req.body);
   const sql = "SELECT * FROM user WHERE username = ? AND password = ?";
-
-
 
   db.query(sql, [req.body.username, req.body.password], (err, data) => {
     if (err) {
@@ -95,6 +90,7 @@ app.post('/create-new-service', (req, res) => {
 });
 
 // daily financial log form insertion to database 
+/*
 app.post('/income-statement', (req, res) => {
   console.log("Request Body:", req.body);
 
@@ -113,32 +109,57 @@ app.post('/income-statement', (req, res) => {
 
     if (checkData.length > 0) {
       // If a record with the current date already exists, update the existing record
-      const sqlUpdateExistingRecord = "UPDATE dailyfinanciallog SET `sales` = ?, `return_amount` = ?, `discount` = ?, `net_sales` = ?, `materials` = ?, `labor` = ?, `overhead` = ?, `total_cost_of_srvcs_provided` = ?, `gross_profit` = ?, `wages` = ?, `repairs_maintenance` = ?, `depreciation` = ?, `interest` = ?, `other_expenses` = ?, `total_operating_exp` = ?, `operating_profit` = ?, `other_income` = ?, `interest_income` = ?, `profit_before_taxes` = ?, `tax_expense` = ?, `net_profit` = ? WHERE `date` = ?";
+      const sqlUpdateExistingRecord = `
+      UPDATE dailyfinanciallog
+      SET 
+        sales = ?,
+        return_amount = ?,
+        discount = ?,
+        net_sales = ?,
+        materials = ?,
+        labor = ?,
+        overhead = ?,
+        total_cost_of_srvcs_provided = ?,
+        gross_profit = ?,
+        wages = ?,
+        repairs_maintenance = ?,
+        depreciation = ?,
+        interest = ?,
+        other_expenses = ?,
+        total_operating_exp = ?,
+        operating_profit = ?,
+        other_income = ?,
+        interest_income = ?,
+        profit_before_taxes = ?,
+        tax_expense = ?,
+        net_profit = ?
+      WHERE date = ?`;
 
       const updateData = [
-        req.body.sales,
-        req.body.return_amount,
-        req.body.discount,
-        req.body.net_sales,
-        req.body.materials,
-        req.body.labor,
-        req.body.overhead,
-        req.body.total_cost_of_srvcs_provided,
-        req.body.gross_profit,
-        req.body.wages,
-        req.body.repairs_maintenance,
-        req.body.depreciation,
-        req.body.interest,
-        req.body.other_expenses,
-        req.body.total_operating_exp,
-        req.body.operating_profit,
-        req.body.other_income,
-        req.body.interest_income,
-        req.body.profit_before_taxes,
-        req.body.tax_expense,
-        req.body.net_profit,
+        req.body.sales !== null && req.body.sales !== '' ? req.body.sales : formsData.sales,
+        req.body.return_amount !== null && req.body.return_amount !== '' ? req.body.return_amount : formsData.return_amount,
+        req.body.discount !== null && req.body.discount !== '' ? req.body.discount : formsData.discount,
+        req.body.net_sales !== null && req.body.net_sales !== '' ? req.body.net_sales : formsData.net_sales,
+        req.body.materials !== null && req.body.materials !== '' ? req.body.materials : formsData.materials,
+        req.body.labor !== null && req.body.labor !== '' ? req.body.labor : formsData.labor,
+        req.body.overhead !== null && req.body.overhead !== '' ? req.body.overhead : formsData.overhead,
+        req.body.total_cost_of_srvcs_provided !== null && req.body.total_cost_of_srvcs_provided !== '' ? req.body.total_cost_of_srvcs_provided : formsData.total_cost_of_srvcs_provided,
+        req.body.gross_profit !== null && req.body.gross_profit !== '' ? req.body.gross_profit : formsData.gross_profit,
+        req.body.wages !== null && req.body.wages !== '' ? req.body.wages : formsData.wages,
+        req.body.repairs_maintenance !== null && req.body.repairs_maintenance !== '' ? req.body.repairs_maintenance : formsData.repairs_maintenance,
+        req.body.depreciation !== null && req.body.depreciation !== '' ? req.body.depreciation : formsData.depreciation,
+        req.body.interest !== null && req.body.interest !== '' ? req.body.interest : formsData.interest,
+        req.body.other_expenses !== null && req.body.other_expenses !== '' ? req.body.other_expenses : formsData.other_expenses,
+        req.body.total_operating_exp !== null && req.body.total_operating_exp !== '' ? req.body.total_operating_exp : formsData.total_operating_exp,
+        req.body.operating_profit !== null && req.body.operating_profit !== '' ? req.body.operating_profit : formsData.operating_profit,
+        req.body.other_income !== null && req.body.other_income !== '' ? req.body.other_income : formsData.other_income,
+        req.body.interest_income !== null && req.body.interest_income !== '' ? req.body.interest_income : formsData.interest_income,
+        req.body.profit_before_taxes !== null && req.body.profit_before_taxes !== '' ? req.body.profit_before_taxes : formsData.profit_before_taxes,
+        req.body.tax_expense !== null && req.body.tax_expense !== '' ? req.body.tax_expense : formsData.tax_expense,
+        req.body.net_profit !== null && req.body.net_profit !== '' ? req.body.net_profit : formsData.net_profit,
         currentDate
       ];
+
 
       db.query(sqlUpdateExistingRecord, updateData, (updateErr, updateData) => {
         if (updateErr) {
@@ -189,7 +210,171 @@ app.post('/income-statement', (req, res) => {
       });
     }
   });
+}); */
+{/*updates accrodingly but doesnt accept 0*/ } /*
+app.post('/income-statement', (req, res) => {
+  console.log("Request Body:", req.body);
+
+  const rawCurrentDate = new Date();
+  rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+  const currentDate = rawCurrentDate.toISOString().split("T")[0];
+
+  // Check if a record with the current date already exists
+  const sqlCheckExistingRecord = "SELECT * FROM dailyfinanciallog WHERE `date` = ?";
+
+  db.query(sqlCheckExistingRecord, [currentDate], (checkErr, checkData) => {
+    if (checkErr) {
+      console.error("Error checking for existing record:", checkErr);
+      return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to check for existing record" });
+    }
+
+    if (checkData.length > 0) {
+      // If a record with the current date already exists, update the existing record
+      const updateFields = Object.entries(req.body)
+        .filter(([key, value]) => value !== null && value !== '' && value !== 0)
+        .map(([key, value]) => `${key} = ?`);
+
+      const updateQuery = `
+        UPDATE dailyfinanciallog
+        SET ${updateFields.join(', ')}
+        WHERE date = ?`;
+
+      const updateData = [...Object.values(req.body).filter(value => value !== null && value !== '' && value !== 0), currentDate];
+
+      db.query(updateQuery, updateData, (updateErr, updateResult) => {
+        if (updateErr) {
+          console.error("Error updating existing record:", updateErr);
+          return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to update existing record" });
+        }
+
+        console.log("Update Result:", updateResult);
+        return res.json({ success: true, message: "Updated Successfully" });
+      });
+    } else {
+      // If no record exists, proceed with the insertion
+      const sqlInsertDailyFinancialLog = "INSERT INTO dailyfinanciallog (`date`, `sales`, `return_amount`, `discount`, `net_sales`, `materials`, `labor`, `overhead`, `total_cost_of_srvcs_provided`, `gross_profit`, `wages`, `repairs_maintenance`, `depreciation`, `interest`, `other_expenses`, `total_operating_exp`, `operating_profit`, `other_income`, `interest_income`, `profit_before_taxes`, `tax_expense`, `net_profit`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+      const formDataDailyFinancialLog = [
+        currentDate,
+        req.body.sales,
+        req.body.return_amount,
+        req.body.discount,
+        req.body.net_sales,
+        req.body.materials,
+        req.body.labor,
+        req.body.overhead,
+        req.body.total_cost_of_srvcs_provided,
+        req.body.gross_profit,
+        req.body.wages,
+        req.body.repairs_maintenance,
+        req.body.depreciation,
+        req.body.interest,
+        req.body.other_expenses,
+        req.body.total_operating_exp,
+        req.body.operating_profit,
+        req.body.other_income,
+        req.body.interest_income,
+        req.body.profit_before_taxes,
+        req.body.tax_expense,
+        req.body.net_profit
+      ];
+
+      db.query(sqlInsertDailyFinancialLog, formDataDailyFinancialLog, (insertErr, insertData) => {
+        if (insertErr) {
+          console.error("Error during dailyfinanciallog insertion:", insertErr);
+          return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to insert data into the database" });
+        }
+
+        console.log("Insert Result:", insertData);
+        return res.json({ success: true, message: "Inserted Successfully" });
+      });
+    }
+  });
+}); */
+app.post('/income-statement', (req, res) => {
+  console.log("Request Body:", req.body);
+
+  const rawCurrentDate = new Date();
+  rawCurrentDate.setUTCHours(rawCurrentDate.getUTCHours() + 8);
+  const currentDate = rawCurrentDate.toISOString().split("T")[0];
+
+  // Check if a record with the current date already exists
+  const sqlCheckExistingRecord = "SELECT * FROM dailyfinanciallog WHERE `date` = ?";
+
+  db.query(sqlCheckExistingRecord, [currentDate], (checkErr, checkData) => {
+    if (checkErr) {
+      console.error("Error checking for existing record:", checkErr);
+      return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to check for existing record" });
+    }
+
+    if (checkData.length > 0) {
+      // If a record with the current date already exists, update the existing record
+      const updateFields = Object.entries(req.body)
+        .filter(([key, value]) => value !== null && value !== '')
+        .map(([key, value]) => `${key} = ?`);
+
+      const updateQuery = `
+        UPDATE dailyfinanciallog
+        SET ${updateFields.join(', ')}
+        WHERE date = ?`;
+
+      const updateData = [...Object.values(req.body).filter(value => value !== null && value !== ''), currentDate];
+
+      db.query(updateQuery, updateData, (updateErr, updateResult) => {
+        if (updateErr) {
+          console.error("Error updating existing record:", updateErr);
+          return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to update existing record" });
+        }
+
+        console.log("Update Result:", updateResult);
+        return res.json({ success: true, message: "Updated Successfully" });
+      });
+    } else {
+      // If no record exists, proceed with the insertion
+      const sqlInsertDailyFinancialLog = "INSERT INTO dailyfinanciallog (`date`, `sales`, `return_amount`, `discount`, `net_sales`, `materials`, `labor`, `overhead`, `total_cost_of_srvcs_provided`, `gross_profit`, `wages`, `repairs_maintenance`, `depreciation`, `interest`, `other_expenses`, `total_operating_exp`, `operating_profit`, `other_income`, `interest_income`, `profit_before_taxes`, `tax_expense`, `net_profit`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+      const formDataDailyFinancialLog = [
+        currentDate,
+        req.body.sales,
+        req.body.return_amount,
+        req.body.discount,
+        req.body.net_sales,
+        req.body.materials,
+        req.body.labor,
+        req.body.overhead,
+        req.body.total_cost_of_srvcs_provided,
+        req.body.gross_profit,
+        req.body.wages,
+        req.body.repairs_maintenance,
+        req.body.depreciation,
+        req.body.interest,
+        req.body.other_expenses,
+        req.body.total_operating_exp,
+        req.body.operating_profit,
+        req.body.other_income,
+        req.body.interest_income,
+        req.body.profit_before_taxes,
+        req.body.tax_expense,
+        req.body.net_profit
+      ];
+
+      db.query(sqlInsertDailyFinancialLog, formDataDailyFinancialLog, (insertErr, insertData) => {
+        if (insertErr) {
+          console.error("Error during dailyfinanciallog insertion:", insertErr);
+          return res.status(500).json({ success: false, error: "Internal Server Error", message: "Failed to insert data into the database" });
+        }
+
+        console.log("Insert Result:", insertData);
+        return res.json({ success: true, message: "Inserted Successfully" });
+      });
+    }
+  });
 });
+
+
+
+
+
 
 
 
@@ -348,11 +533,6 @@ try {
     });
   });
 
-  app.use((req, res, next) => {
-    console.log(`Received request: ${req.method} ${req.url}`);
-    next();
-  });
-
   // endpoint to get normal wage of the day
   app.get('/customers/totalNormalWage', (req, res) => {
     try {
@@ -457,6 +637,7 @@ try {
         // If there is no data for the current date, return an empty object
         const formsData = results.length > 0 ? results[0] : {};
         res.json(formsData);
+        console.log('Raw results from database:', results);
       }
     });
   });
