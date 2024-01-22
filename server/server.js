@@ -170,19 +170,6 @@ app.post('/income-statement', (req, res) => {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get('/log', (req, res) => {
 
   const startDate = req.query.startDate;
