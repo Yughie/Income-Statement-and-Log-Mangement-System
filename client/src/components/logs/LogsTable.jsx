@@ -1,4 +1,7 @@
-function LogsTable({ logsData }) {
+import { useState } from "react";
+import EditModal from "./EditModal";
+
+function LogsTable({ logsData, onDeleteCustomer }) {
   const formatDate = (isoDateString) => {
     const dateObject = new Date(isoDateString);
     return dateObject.toLocaleDateString(); // Use toLocaleDateString for a localized date format
@@ -6,6 +9,18 @@ function LogsTable({ logsData }) {
 
   // Sort logsData array based on CustomerID in descending order
   const sortedLogsData = [...logsData].sort((a, b) => b.date - a.date);
+
+  const [isModalVisible, setModalVisibility] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+
+  const toggleModal = () => {
+    setModalVisibility(!isModalVisible);
+  };
+
+  const handleEditClick = (customer) => {
+    setSelectedCustomer(customer);
+    toggleModal();
+  };
 
   return (
     <>
@@ -73,7 +88,7 @@ function LogsTable({ logsData }) {
                   <td className="px-6 py-4">{formatDate(log.date)}</td>
                   <td className="px-6 py-4 flex items-center justify-center gap-4">
                     {/*EDIT BUTTON*/}
-                    <button className="">
+                    <button onClick={() => handleEditClick(log)} type="button">
                       <svg
                         width="27"
                         height="27"
@@ -89,7 +104,7 @@ function LogsTable({ logsData }) {
                       </svg>
                     </button>
                     {/*DELETE BUTTON*/}
-                    <button>
+                    <button onClick={() => onDeleteCustomer(log.CustomerID)}>
                       <svg
                         width="27"
                         height="27"
@@ -117,6 +132,15 @@ function LogsTable({ logsData }) {
           </tbody>
         </table>
       </div>
+      {isModalVisible && (
+        <EditModal
+          customerData={selectedCustomer}
+          onClose={() => {
+            setSelectedCustomer(null);
+            toggleModal();
+          }}
+        />
+      )}
     </>
   );
 }
