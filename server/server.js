@@ -232,7 +232,64 @@ WHERE
     res.status(400).json({ error: 'Invalid date range' });
   }
 });
+//UPDATE
 
+app.put("/update-endpoint/:customerId", (req, res) => {
+  const customerId = req.params.customerID;
+  const requestBody = req.body;
+
+  const sqlUpdateCustomer = `
+    UPDATE customers 
+    SET 
+      date = ?,
+      plateNumber = ?,
+      phoneNumber = ?,
+      vehicleDescription = ?,
+      vehicleType = ?,
+      workHour = ?,
+      vehicleSizing = ?,
+      extraCharge = ?,
+      total = ?
+    WHERE 
+      CustomerID = ?`;
+
+      console.log("SQL Query:", sqlUpdateCustomer);
+
+  const formDataCustomer = [
+    requestBody.date,
+    requestBody.plateNumber,
+    requestBody.phoneNumber,
+    requestBody.vehicleDescription,
+    requestBody.vehicleType,
+    requestBody.workHour,
+    requestBody.vehicleSizing,
+    requestBody.extraCharge,
+    requestBody.total,
+    customerId,
+  ];
+
+  console.log("DAte : "  + formDataCustomer[0]);
+  console.log("PLATE plateNumber : "  + formDataCustomer[1]);
+  console.log("PLATE phoneNumber : "  + formDataCustomer[2]);
+  console.log("PLATE vehicleDescription : "  + formDataCustomer[3]);
+  console.log("PLATE vehicleType : "  + formDataCustomer[4]);
+  console.log("PLATE workHour : "  + formDataCustomer[5]);
+  console.log("PLATE vehicleSizing : "  + formDataCustomer[6]);
+  console.log("PLATE extraCharge : "  + formDataCustomer[7]);
+  console.log("PLATE total : "  + formDataCustomer[8]);
+  console.log("ID : "  + customerId);
+
+  db.query(sqlUpdateCustomer, formDataCustomer, (err, data) => {
+    if (err) {
+      console.error("Error during customer update:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+    console.log("Update Result:", data);
+    return res.json({ success: true, message: "Updated Successfully" });
+  });
+
+});
 // DELETE endpoint to delete a customer
 
 app.delete('/log/:id', (req, res) => {

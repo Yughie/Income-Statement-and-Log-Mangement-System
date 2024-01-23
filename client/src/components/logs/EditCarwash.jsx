@@ -1,5 +1,4 @@
-const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
-  console.log("EDIT CARWASH:", customerData);
+const EditCarwash = ({ checkboxValues, onCheckboxChange }) => {
   const handleCheckboxChange = (category, serviceName) => {
     onCheckboxChange(category, serviceName);
     // Update the state in EditCarwash if necessary
@@ -16,8 +15,8 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
               <div className="flex items-center ps-3">
                 <input
                   id="carwash-carwash"
-                  checked={customerData.carwash}
-                  onChange={() => onCheckboxChange("carwash", "carwash")}
+                  checked={checkboxValues.Carwash}
+                  onChange={() => onCheckboxChange("carwash", "Carwash")}
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -25,6 +24,7 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   htmlFor="carwash-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
+                  {console.log(checkboxValues.Carwash)}
                   Carwash
                 </label>
               </div>
@@ -33,8 +33,8 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
               <div className="flex items-center ps-3">
                 <input
                   id="motorwash-carwash"
-                  checked={customerData.motorWash}
-                  onChange={() => onCheckboxChange("carwash", "motorWash")}
+                  checked={checkboxValues.Motorwash}
+                  onChange={() => onCheckboxChange("carwash", "Motorwash")}
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -50,8 +50,10 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
               <div className="flex items-center ps-3">
                 <input
                   id="tricycle-priv-carwash"
-                  checked={customerData.trycyclePriv}
-                  onChange={() => onCheckboxChange("carwash", "trycyclePriv")}
+                  checked={checkboxValues["Tricycle (Private)"]}
+                  onChange={() =>
+                    onCheckboxChange("carwash", "Tricycle (Private)")
+                  }
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
@@ -59,6 +61,9 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   htmlFor="tricycle-priv-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
+                  {console.log(
+                    "TRICYCLE " + checkboxValues["Tricycle (Private)"]
+                  )}
                   Tricycle (Private)
                 </label>
               </div>
@@ -70,13 +75,18 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={customerData.trycyclePub}
-                  onChange={() => onCheckboxChange("carwash", "trycyclePub")}
+                  checked={checkboxValues["Tricycle (Public)"]}
+                  onChange={() =>
+                    onCheckboxChange("carwash", "Tricycle (Public)")
+                  }
                 />
                 <label
                   htmlFor="tricycle-pub-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
+                  {console.log(
+                    "TRICYCLE PUB " + checkboxValues["Tricycle (Private)"]
+                  )}
                   Tricycle (Public)
                 </label>
               </div>
@@ -88,8 +98,8 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={customerData.wax}
-                  onChange={() => onCheckboxChange("carwash", "wax")}
+                  checked={checkboxValues.Wax}
+                  onChange={() => onCheckboxChange("carwash", "Wax")}
                 />
                 <label
                   htmlFor="wax-carwash"
@@ -106,8 +116,8 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={customerData.back2Zero}
-                  onChange={() => onCheckboxChange("carwash", "back2Zero")}
+                  checked={checkboxValues["Back 2 Zero"]}
+                  onChange={() => onCheckboxChange("carwash", "Back 2 Zero")}
                 />
                 <label
                   htmlFor="back-zero-carwash"
@@ -124,13 +134,14 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={customerData.buffing}
-                  onChange={() => onCheckboxChange("carwash", "buffing")}
+                  checked={checkboxValues.Buffing}
+                  onChange={() => onCheckboxChange("carwash", "Buffing")}
                 />
                 <label
                   htmlFor="buffing-carwash"
                   className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
+                  {console.log(checkboxValues.Buffing)}
                   Buffing
                 </label>
               </div>
@@ -142,8 +153,8 @@ const EditCarwash = ({ customerData, checkboxValues, onCheckboxChange }) => {
                   type="checkbox"
                   value=""
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                  checked={customerData.engineWash}
-                  onChange={() => onCheckboxChange("carwash", "engineWash")}
+                  checked={checkboxValues["Engine Wash"]}
+                  onChange={() => onCheckboxChange("carwash", "Engine Wash")}
                 />
                 <label
                   htmlFor="engine-wash-carwash"

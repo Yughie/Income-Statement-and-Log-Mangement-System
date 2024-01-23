@@ -30,7 +30,6 @@ function IncomeStatement() {
     setShowFinancialLog(false);
   };
 
-
   return (
     <>
       <div className="bg-ddbackground">
@@ -250,8 +249,10 @@ function IncomeStatement() {
                       >
                         Daily Financial Log
                       </button>
-                      <button onClick={handleViewLogClick}
-                        className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                      <button
+                        onClick={handleViewLogClick}
+                        className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground"
+                      >
                         View a Financial Log
                       </button>
                       <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
@@ -262,12 +263,8 @@ function IncomeStatement() {
                 </div>
               )}
 
+              <div className="w-full"> </div>
               <div className="w-full">
-                {" "}
-
-              </div>
-              <div className="w-full">
-
                 <DatePicker />
               </div>
             </div>

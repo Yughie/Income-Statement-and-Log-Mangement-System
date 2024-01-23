@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import React from "react";
-import CreateDatePicker from "../createNewService/CreateDatePicker";
+import React, { useState, useEffect } from "react";
 
 import EditCarwash from "./EditCarwash";
 import EditPromo from "./EditPromo";
@@ -8,9 +6,22 @@ import EditDetailing from "./EditDetailing";
 
 const EditModal = ({ customerData, onClose }) => {
   if (!customerData) return null;
-  const [date, setDate] = useState(customerData.date || "");
+
+  const formatDate = (isoDate) => {
+    const yyyy = isoDate.substring(0, 4);
+    const mm = isoDate.substring(5, 7);
+    const dd = isoDate.substring(8, 10);
+    return `${yyyy}-${mm}-${dd}`;
+  };
+  const [editedCustomerData, setEditedCustomerData] = useState(
+    customerData || null
+  );
+  const [date, setDate] = useState(
+    customerData.date ? formatDate(customerData.date) : ""
+  );
+
   const [plateNumber, setPlateNumber] = useState(
-    customerData.plateNumber || ""
+    editedCustomerData.plateNumber || ""
   );
   const [phoneNumber, setPhoneNumber] = useState(
     customerData.phoneNumber || ""
@@ -30,25 +41,25 @@ const EditModal = ({ customerData, onClose }) => {
   const [extraCharge, setExtraCharge] = useState(
     customerData.extraCharge || ""
   );
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState();
 
   const initialFormValues = {
     carwash: {
-      carwash: false,
-      motorwash: false,
-      trycyclePriv: false,
-      trycyclePub: false,
-      wax: false,
-      backZero: false,
-      buffing: false,
-      engineWash: false,
+      Carwash: false,
+      Motorwash: false,
+      "Tricycle (Private)": false,
+      "Tricycle (Public)": false,
+      Wax: false,
+      "Back 2 Zero": false,
+      Buffing: false,
+      "Engine Wash": false,
     },
     promo: {
-      promoPackage: false,
+      "Promo Package": false,
     },
     detailing: {
-      interiorDetailing: false,
-      exteriorDetailing: false,
+      "Interior Detailing": false,
+      "Exterior Detailing": false,
     },
   };
 
@@ -93,6 +104,7 @@ const EditModal = ({ customerData, onClose }) => {
   }, [formValues, vehicleSize, extraCharge]);
 
   console.log(customerData);
+
   const calculateTotal = (size, charge) => {
     let newTotal = 0;
 
@@ -100,7 +112,7 @@ const EditModal = ({ customerData, onClose }) => {
 
     // Accumulate amounts for selected carwash services
     if (formValues.carwash) {
-      if (formValues.carwash.carwash) {
+      if (formValues.carwash.Carwash) {
         if (size == "S") {
           newTotal += 120;
         } else if (size == "M") {
@@ -113,7 +125,7 @@ const EditModal = ({ customerData, onClose }) => {
           newTotal += 220;
         }
       }
-      if (formValues.carwash.motorwash) {
+      if (formValues.carwash.Motorwash) {
         if (size == "S") {
           newTotal += 120;
         } else if (size == "M") {
@@ -126,13 +138,13 @@ const EditModal = ({ customerData, onClose }) => {
           newTotal += 220;
         }
       }
-      if (formValues.carwash.trycyclePriv) {
+      if (formValues.carwash["Tricycle (Private)"]) {
         newTotal += 120;
       }
-      if (formValues.carwash.trycyclePub) {
+      if (formValues.carwash["Tricycle (Public)"]) {
         newTotal += 120;
       }
-      if (formValues.carwash.wax) {
+      if (formValues.carwash.Wax) {
         if (size == "S") {
           newTotal += 300;
         } else if (size == "M") {
@@ -145,7 +157,7 @@ const EditModal = ({ customerData, onClose }) => {
           newTotal += 550;
         }
       }
-      if (formValues.carwash.backZero) {
+      if (formValues.carwash["Back 2 Zero"]) {
         if (size == "S") {
           newTotal += 400;
         } else if (size == "M") {
@@ -158,7 +170,7 @@ const EditModal = ({ customerData, onClose }) => {
           newTotal += 550;
         }
       }
-      if (formValues.carwash.buffing) {
+      if (formValues.carwash.Buffing) {
         if (size == "S") {
           newTotal += 500;
         } else if (size == "M") {
@@ -171,7 +183,7 @@ const EditModal = ({ customerData, onClose }) => {
           newTotal += 750;
         }
       }
-      if (formValues.carwash.engineWash) {
+      if (formValues.carwash["Engine Wash"]) {
         if (size == "S") {
           newTotal += 400;
         } else if (size == "M") {
@@ -185,7 +197,7 @@ const EditModal = ({ customerData, onClose }) => {
         }
       }
     }
-    if (formValues.promo.servicePromo) {
+    if (formValues.promo["Promo Package"]) {
       if (size == "S") {
         newTotal += 1200;
       } else if (size == "M") {
@@ -198,7 +210,7 @@ const EditModal = ({ customerData, onClose }) => {
         newTotal += 2400;
       }
     }
-    if (formValues.detailing.interiorDetailing) {
+    if (formValues.detailing["Interior Detailing"]) {
       if (size == "S") {
         newTotal += 5000;
       } else if (size == "M") {
@@ -211,7 +223,7 @@ const EditModal = ({ customerData, onClose }) => {
         newTotal += 6000;
       }
     }
-    if (formValues.detailing.exteriorDetailing) {
+    if (formValues.detailing["Exterior Detailing"]) {
       if (size == "S") {
         newTotal += 2500;
       } else if (size == "M") {
@@ -231,7 +243,11 @@ const EditModal = ({ customerData, onClose }) => {
   };
 
   const handleDateChange = (event) => {
-    setDate(event.target.value);
+    // Convert UTC date to local date
+    const utcDate = new Date(event.target.value);
+    const formattedDate = formatDate(utcDate.toISOString()); // Convert to ISO format and then use your formatDate function
+
+    setDate(formattedDate);
   };
 
   const handleWorkHourChange = (e) => {
@@ -268,10 +284,62 @@ const EditModal = ({ customerData, onClose }) => {
     });
   };
 
+  const handleUpdate = () => {
+    // Assuming you have an API endpoint for updating data
+    console.log(
+      "Updating data for customer with ID:",
+      editedCustomerData.CustomerID
+    );
+
+    const requestBody = {
+      date: date, // Use the updated state value
+      plateNumber: plateNumber, // Use the updated state value
+      phoneNumber: phoneNumber, // Use the updated state value
+      vehicleDescription: vehicleDescription, // Use the updated state value
+      vehicleType: vehicleType, // Use the updated state value
+      workHour: workHour, // Use the updated state value
+      vehicleSizing: vehicleSize, // Use the updated state value
+      extraCharge: extraCharge, // Use the updated state value
+      total: total, // Use the updated state value
+      // Include other necessary fields
+    };
+
+    console.log("Request Body:", requestBody); // Log the updated request body
+
+    fetch(
+      `http://localhost:8081/update-endpoint/${editedCustomerData.CustomerID}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Failed to update data for customer with ID ${editedCustomerData.CustomerID}`
+          );
+        }
+        return response.json();
+      })
+      .then((updatedData) => {
+        setEditedCustomerData(updatedData);
+        console.log("Data updated successfully:", updatedData);
+      })
+      .catch((error) => console.error("Error updating data:", error));
+
+    console.log(
+      "Updating data for customer with ID:",
+      editedCustomerData.CustomerID
+    );
+  };
+
   return (
     <div className="modal">
       {/* Modal content */}
-      <div className="absolute top-0 left-0 right-0 flex  justify-center bg-ddbackground bg-opacity-80  h-full z-50">
+      <div className="fixed top-0 left-0 right-0 flex  justify-center bg-ddbackground bg-opacity-80  h-full z-50">
         <div className="relative m-4 overflow-auto md:w-11/12">
           {" "}
           {/* Adjust max-w-lg */}
@@ -309,7 +377,32 @@ const EditModal = ({ customerData, onClose }) => {
             <div className="space-y-4">
               <div className=" mt-4 rounded-lg dark:border-bg-darkPurple">
                 <span className="w-full">
-                  <CreateDatePicker />
+                  {/*******DATE PICKER */}
+                  <div className="flex items-center justify-center  lg:justify-end  mb-4 h-full">
+                    <div className="relative  w-72 ">
+                      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg
+                          className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
+                      </div>
+                      <input
+                        data-datepicker="true"
+                        type="date"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Select date"
+                        value={date}
+                        onChange={handleDateChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <h1 className="text-ddbackground dark:text-gray-300 text-3xl font-poppins mx-auto text-center ">
                     Vehicle Information
                   </h1>
@@ -412,17 +505,14 @@ const EditModal = ({ customerData, onClose }) => {
             </div>
             <div className="w-full gap-4 p-4 pb-0 bg-gray-300 dark:bg-dbackground rounded-lg flex flex-col lg:flex-row ">
               <EditCarwash
-                customerData={customerData}
                 checkboxValues={formValues.carwash}
                 onCheckboxChange={handleCheckboxChange}
               />
               <EditPromo
-                customerData={customerData}
                 checkboxValues={formValues.promo}
                 onCheckboxChange={handleCheckboxChange}
               />
               <EditDetailing
-                customerData={customerData}
                 checkboxValues={formValues.detailing}
                 onCheckboxChange={handleCheckboxChange}
               />
@@ -532,6 +622,7 @@ const EditModal = ({ customerData, onClose }) => {
               <button
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                onClick={handleUpdate}
               >
                 Update
               </button>
