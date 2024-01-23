@@ -32,7 +32,7 @@ function IncomeStatementDynamic() {
             </div>
           </div>
         </div>
-        <div className="w-full  bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
+        <div className="w-full bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
           <form className="w-full">
             <div className="relative ">
               <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

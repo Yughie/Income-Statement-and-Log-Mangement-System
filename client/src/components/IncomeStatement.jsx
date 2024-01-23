@@ -181,7 +181,7 @@ function IncomeStatement() {
               </li>
               <li>
                 <a
-                  href="./statistics"
+                  href="./wages"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -197,7 +197,7 @@ function IncomeStatement() {
                     />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">
-                    Statistics
+                    Wages
                   </span>
                 </a>
               </li>
@@ -256,16 +256,20 @@ function IncomeStatement() {
                     <div className="flex flex-col gap-4">
                       <button
                         onClick={handleDailyFinancialLogClick}
-                        className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800 dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground"
+                        className="inline-block text-center rounded bg-gray-50 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                        hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700
+                        "
                       >
                         Daily Financial Log
                       </button>
                       <button onClick={handleViewLogClick}
-                        className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                        className="inline-block text-center rounded bg-gray-50 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                        hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700">
                         View a Financial Log
                       </button>
                       <button onClick={handleCompareIncomeStatementClick}
-                        className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                        className="inline-block text-center rounded bg-gray-50 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                        hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700">
                         Compare Another Income Statement
                       </button>
                     </div>

@@ -1,9 +1,9 @@
 import { DarkMode } from "./DarkMode";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import IncomeStatementDynamic from "./income-statement/IncomeStatementDynamic";
+import CurrentDateTime from "./CurrentDateTime";
 
-function Statistics() {
+function Wages() {
   return (
     <>
       <div className="bg-gray-50 dark:bg-ddbackground">
@@ -148,7 +148,7 @@ function Statistics() {
               </li>
               <li>
                 <a
-                  href="./statistics"
+                  href="./wages"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple bg-darkPurple shadow-shadowPurple group"
                 >
                   <svg
@@ -164,7 +164,7 @@ function Statistics() {
                     />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">
-                    Statistics
+                    Wages
                   </span>
                 </a>
               </li>
@@ -197,32 +197,28 @@ function Statistics() {
           </div>
         </aside>
 
-        <div className="p-4 md:ml-80">
-          <div className="p-4  rounded-lg dark:border-bg-darkPurple">
-            {/*WEEKLY AVERAGE MONTHLY SALES */}
+        <div className="h-full w-full p-4 md:ml-80">
+          <div className="flex flex-col items-center justify-between">
+            <div className="w-full dark:text-gray-300 text-2xl text-ddbackground font-poppins text-center">
+              Wages
+            </div>
+            <div className="w-full dark:text-gray-400 text-lg text-ddbackground font-poppins  text-center" >
+              <CurrentDateTime />
+            </div>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-4">
-              <IncomeStatementDynamic />
+          <div className="w-12 dark:bg-white border">
+            <h3 className="dark:text-gray-300 text-xl text-ddbackground font-poppins text-center">
+              Overtime Work Hour
+            </h3>
+            <div className="rounded dark:bg-dbackground">
+              aye
+            </div>
+          </div>
 
-              <div className="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-dbackground">
-                <p className="text-2xl text-gray-400 dark:text-gray-500">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 18 18"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 1v16M1 9h16"
-                    />
-                  </svg>
-                </p>
-              </div>
+          <div className="p-4 rounded-lg dark:border-bg-darkPurple">
+            {/*<div className="grid md:grid-cols-2 gap-4 mb-4">*/}
+            <div className="h-full w-full flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-ddbackground">
             </div>
           </div>
         </div>
@@ -231,4 +227,4 @@ function Statistics() {
   );
 }
 
-export default Statistics;
+export default Wages;

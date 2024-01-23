@@ -151,7 +151,7 @@ function Dashboard() {
               </li>
               <li>
                 <a
-                  href="./statistics"
+                  href="./wages"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -167,7 +167,7 @@ function Dashboard() {
                     />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">
-                    Statistics
+                    Wages
                   </span>
                 </a>
               </li>

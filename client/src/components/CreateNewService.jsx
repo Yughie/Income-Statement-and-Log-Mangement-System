@@ -299,7 +299,7 @@ function CreateNewService() {
                   className="flex transition duration-300 ease-in-out items-center mt-10 p-4 py-4  dark:text-gray-900 rounded-lg bg-gray-100 border-lightPurple shadow-shadowPurple group"
                 >
                   <svg
-                    className="w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
+                    className="w-5 h-5 text-gray-00 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white
                     "
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -393,7 +393,7 @@ function CreateNewService() {
               </li>
               <li>
                 <a
-                  href="./statistics"
+                  href="./wages"
                   className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
                 >
                   <svg
@@ -409,7 +409,7 @@ function CreateNewService() {
                     />
                   </svg>
                   <span className="flex-1 ms-3 whitespace-nowrap">
-                    Statistics
+                    Wages
                   </span>
                 </a>
               </li>
@@ -466,7 +466,7 @@ function CreateNewService() {
                       type="text"
                       id="plate-number"
                       placeholder="Enter plate number"
-                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                     "
                       value={plateNumber}
                       onChange={(e) =>
@@ -487,7 +487,7 @@ function CreateNewService() {
                       type="text"
                       id="phone-number"
                       placeholder="Enter phone number"
-                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+                      className="bg-gray-50 mb-4 lg:mb-0 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
                       "
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
@@ -508,7 +508,7 @@ function CreateNewService() {
                       <input
                         type="text"
                         id="vehicle-description"
-                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="Enter vehicle description"
                         value={vehicleDescription}
                         onChange={(e) => setVehicleDescription(e.target.value)}
@@ -518,7 +518,7 @@ function CreateNewService() {
                     <div className="mb-4 w-40">
                       <select
                         id="vehicleType"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg border-e-0focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         value={vehicleType}
                         onChange={handleVehicleType}
                         required
@@ -591,7 +591,7 @@ function CreateNewService() {
                       id="work-hour"
                       value={workHour}
                       onChange={handleWorkHourChange}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                       <option value="" disabled>
                         Select work hour
@@ -612,7 +612,7 @@ function CreateNewService() {
                       id="vehicle-size"
                       value={vehicleSize}
                       onChange={handleVehicleSizeChange}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
                       <option value="" disabled>
                         Select vehicle size
@@ -636,7 +636,7 @@ function CreateNewService() {
                       id="extra-charge"
                       value={extraCharge}
                       onChange={handleExtraChargeChange}
-                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                      className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                       placeholder="Enter extra charge"
                     />
                   </div>
@@ -653,7 +653,7 @@ function CreateNewService() {
                         type="text"
                         id="vehicle-description"
                         value={total || ""}
-                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg rounded-s-gray-100   border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-dbgContainer1 dark:border-dbgContainer1 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="00000"
                         disabled
                       />
@@ -661,7 +661,7 @@ function CreateNewService() {
                     <div className="mb-4 w-40">
                       <button
                         type="submit"
-                        className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-gray-700  dark:border-gray-600 font-bold"
+                        className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-dbgContainer1  dark:border-dbgContainer1 font-bold"
                       >
                         Submit
                       </button>

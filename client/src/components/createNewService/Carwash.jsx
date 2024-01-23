@@ -21,8 +21,8 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
           <label htmlFor="service-carwash">Carwash</label>
         </h1>
         <div className="flex flex-col justify-between  text-gray-900 dark:text-gray-300 max-h-80 overflow-auto pb-4">
-          <ul className="w-full  text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+          <ul className="w-full  text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-dbgContainer1 dark:border-dbgContainer2 dark:text-white">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="carwash-carwash"
@@ -40,7 +40,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="motorwash-carwash"
@@ -58,7 +58,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="trycycle-priv-carwash"
@@ -76,7 +76,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="tricycle-pub-carwash"
@@ -94,7 +94,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="wax-carwash"
@@ -112,7 +112,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="back-zero-carwash"
@@ -130,7 +130,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="buffing-carwash"
@@ -148,7 +148,7 @@ const Carwash = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <input
                   id="engine-wash-carwash"
