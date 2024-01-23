@@ -25,7 +25,8 @@ export default {
       darkPurple: '#450088',
       lightPurple: '#7A30C2',
       purpleGrape: '#8736DA',
-      tableHeader: '#161523'
+      tableHeader: '#161523',
+      tableBG: "#262536"
     }
   },
   plugins: [
