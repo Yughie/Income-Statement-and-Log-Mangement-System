@@ -543,6 +543,81 @@ try {
 
 
 
+  // Endpoint for fetching forms data based on the selected date
+
+  function isValidDate(dateString) {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    return regex.test(dateString);
+  }
+
+  app.get('/dailyfinanciallog/selected-forms-data', (req, res) => {
+    const { selectedDate } = req.query; // Use req.query to get query parameters
+
+    // Validate if selectedDate is in the correct format (adjust as needed)
+    if (!selectedDate || !isValidDate(selectedDate)) {
+      console.log("date here: ", selectedDate);
+      return res.status(400).json({ error: 'Invalid date format' });
+    } else {
+      console.log("righggtt");
+    }
+
+    const sqlQuery = `
+    SELECT 
+      sales,
+      return_amount,
+      discount,
+      net_sales,
+      materials,
+      labor,
+      overhead,
+      total_cost_of_srvcs_provided,
+      gross_profit,
+      wages,
+      repairs_maintenance,
+      depreciation,
+      interest,
+      other_expenses,
+      total_operating_exp,
+      operating_profit,
+      other_income,
+      interest_income,
+      profit_before_taxes,
+      tax_expense,
+      net_profit
+    FROM 
+      dailyfinanciallog
+    WHERE
+      date = '${selectedDate}';
+  `;
+    console.log('SQL Query:', sqlQuery);
+    console.log('Received Date:', selectedDate);
+
+    db.query(sqlQuery, [new Date(selectedDate)], (err, results) => {
+      if (err) {
+        console.error('Error fetching income data:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+        console.log('Raw results from database:', results);
+        console.log('NICE :', results);
+
+
+        console.log('SQL Query:', sqlQuery);
+        console.log('Received Date:', selectedDate);
+      } else {
+
+        const formsData = results.length > 0 ? results[0] : {};
+        res.json(formsData);
+        console.log('Raw results from database:', results);
+        console.log('emoty');
+      }
+    });
+  });
+
+
+
+
+
+
+
 
 } catch (error) {
   console.error("Unexpected error:", error);

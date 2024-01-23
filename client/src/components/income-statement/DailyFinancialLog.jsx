@@ -79,18 +79,6 @@ function DailyFinancialLog({ onGoBackClick }) {
     fetchOvertimeWage();
   }, []);
 
-  // handle totals 
-  /*
-  const netSales = totalSales - lessReturn - lessDiscount;
-  const totalCostOfSrvcsProvided = materials + labor + overhead;
-  const grossPrft = netSales - totalCostOfSrvcsProvided;
-  const totalOperatingExp = wages + repair + deprecation + interest + otherExp;
-  const operatingPrft = grossPrft - totalOperatingExp;
-  const prftBeforeTaxes = operatingPrft + otherIncome + interestIncome;
-  const netProfit = (netSales + otherIncome + interestIncome) - totalCostOfSrvcsProvided - totalOperatingExp - taxExp;
-  const totalWage = normalWage + overtimeWage;
-  */
-
   // function to load data form datbase to the placeholders and values
   const [formsData, setFormsData] = useState({});
 
@@ -114,72 +102,6 @@ function DailyFinancialLog({ onGoBackClick }) {
       }
     }; fetchFormsData();
   }, []);
-
-  /*
-  useEffect(() => {
-    const fetchFormsData = async () => {
-      console.log('Form component is mounting...', formsData);
-      try {
-        const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
-        const data = await response.json();
-        console.log('Data from server:', data);
-        console.log('Form component is mounted...', formsData);
-
-
-
-        const hasData = Object.values(data).some(value => value === undefined || value === "");
-
-        if (!hasData) {
-          setFormsData({
-            sales: '0',
-            return_amount: '0',
-            discount: '0',
-            net_sales: '0',
-            materials: '0',
-            labor: '0',
-            overhead: '0',
-            total_cost_of_srvcs_provided: '0',
-            gross_profit: '0',
-            repairs_maintenance: '0',
-            depreciation: '0',
-            interest: '0',
-            other_expenses: '0',
-            total_operating_exp: '0',
-            operating_profit: '0',
-            other_income: '0',
-            interest_income: '0',
-            profit_before_taxes: '0',
-            tax_expense: '0',
-            net_profit: '0'
-          });
-        } else {
-          setFormsData(prevFormsData => ({
-            ...prevFormsData,
-            ...data
-          }));;
-        }
-      } catch (error) {
-        console.error('Error fetching forms data:', error);
-      }
-    };
-
-    fetchFormsData();
-  }, []); */
-
-  /*
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/dailyfinanciallog/forms-data');
-        setFormsData(response.data);
-      } catch (error) {
-        console.error('Error fetching initial data:', error);
-      }
-    };
-
-    fetchData();
-  }, []); */
-
 
 
   // function to handle editing
