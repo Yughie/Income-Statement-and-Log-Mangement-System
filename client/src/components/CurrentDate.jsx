@@ -6,21 +6,21 @@ function CurrentDate() {
     useEffect(() => {
         // FUnction to format the date as 'Month day, Year'
         const formatDate = (date) => {
-            const options = {month: 'long', day: 'numeric', year: 'numeric'};
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
             return new Intl.DateTimeFormat('en-US', options).format(date);
         };
 
-         // Get the current date
-         const today = new Date();
+        // Get the current date
+        const today = new Date();
 
-         // Format the current date
-         setCurrentDate(formatDate(today));
+        // Format the current date
+        setCurrentDate(formatDate(today));
     }, []);
 
 
     return (
-        <div>  
-            for {currentDate}  
+        <div>
+            for {currentDate}
         </div>
     );
 }
