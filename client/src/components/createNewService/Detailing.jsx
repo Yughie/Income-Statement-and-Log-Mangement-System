@@ -32,8 +32,8 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
             />
             <span>INTERIOR</span>
           </h3>
-          <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+          <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-dbgContainer1 dark:border-dbgContainer2 dark:text-white">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="interior"
@@ -43,7 +43,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="interior"
@@ -53,7 +53,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="interior"
@@ -64,7 +64,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="interior"
@@ -74,7 +74,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="interior"
@@ -96,8 +96,8 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
             />
             <span>EXTERIOR</span>
           </h3>
-          <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+          <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-dbgContainer1 dark:border-dbgContainer2 dark:text-white">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="exterior-checkbox"
@@ -107,7 +107,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="exterior-checkbox"
@@ -117,7 +117,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="exterior-checkbox"
@@ -127,7 +127,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="exterior-checkbox"
@@ -137,7 +137,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="exterior-checkbox"
@@ -147,7 +147,7 @@ const Detailing = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="exterior-checkbox"

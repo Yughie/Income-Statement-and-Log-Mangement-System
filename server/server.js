@@ -604,7 +604,6 @@ try {
         const formsData = results.length > 0 ? results[0] : {};
         res.json(formsData);
         console.log('Raw results from database:', results);
-        console.log('emoty');
       }
     });
   });

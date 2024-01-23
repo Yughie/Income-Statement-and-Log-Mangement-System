@@ -30,8 +30,8 @@ function ViewFinancialLog({ onGoBackClick }) {
                     const data = await response.json();
 
                     console.log('Fetching data for date:', selectedDate);
-                    console.log('Data from server:', response.data);
-                    setFinancialLogData(data);  // Corrected from setFormsData
+                    console.log('Data from server:', data);
+                    setFinancialLogData(data);
                 }
             } catch (error) {
                 console.error('Error fetching forms data:', error);
@@ -65,7 +65,6 @@ function ViewFinancialLog({ onGoBackClick }) {
 
                 </div>
                 <div className="flex items-center justify-center mb-4 w-full bg-ddbackground">
-                    {/* Display the fetched financial log data */}
                     {Object.keys(financialLogData).length > 0 && (
                         <>
                             <form className="w-full">
