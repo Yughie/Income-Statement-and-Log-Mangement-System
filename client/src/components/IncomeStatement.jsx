@@ -39,7 +39,7 @@ function IncomeStatement() {
 
   return (
     <>
-      <div className="bg-ddbackground">
+      <div className="dark:bg-ddbackground bg-gray-100">
         {/* Navigator open/close button */}
         <button
           data-drawer-target="logo-sidebar"
@@ -203,7 +203,7 @@ function IncomeStatement() {
 
             <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-end py-4 pr-4">
               <a
-                href="#"
+                href="/"
                 className="flex transition duration-300 ease-in-out w-full items-center p-4  text-white rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
               >
                 <svg
@@ -254,22 +254,22 @@ function IncomeStatement() {
                     <div className="flex flex-col gap-4">
                       <button
                         onClick={handleDailyFinancialLogClick}
-                        className="inline-block text-center rounded bg-gray-50 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
-                        hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700
+                        className="inline-block text-center rounded border bg-gray-400 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                        hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white   dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700
                         "
                       >
                         Daily Financial Log
                       </button>
                       <button
                         onClick={handleViewLogClick}
-                        className="inline-block text-center rounded bg-gray-50 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                        className="inline-block text-center rounded border bg-gray-400 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                         hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
                       >
                         View a Financial Log
                       </button>
                       <button
                         onClick={handleCompareIncomeStatementClick}
-                        className="inline-block text-center rounded bg-gray-50 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                        className="inline-block text-center rounded border bg-gray-400 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                         hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-gray-700"
                       >
                         Compare Another Income Statement

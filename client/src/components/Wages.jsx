@@ -163,16 +163,14 @@ function Wages() {
                       fill="7A30C2"
                     />
                   </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    Wages
-                  </span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">Wages</span>
                 </a>
               </li>
             </ul>
 
             <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-center items-end py-4 pr-4">
               <a
-                href="#"
+                href="/"
                 className="flex transition duration-300 ease-in-out w-full items-center p-4  text-white rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
               >
                 <svg
@@ -202,7 +200,7 @@ function Wages() {
             <div className="w-full dark:text-gray-300 text-2xl text-ddbackground font-poppins text-center">
               Wages
             </div>
-            <div className="w-full dark:text-gray-400 text-lg text-ddbackground font-poppins  text-center" >
+            <div className="w-full dark:text-gray-400 text-lg text-ddbackground font-poppins  text-center">
               <CurrentDateTime />
             </div>
           </div>
@@ -211,15 +209,12 @@ function Wages() {
             <h3 className="dark:text-gray-300 text-xl text-ddbackground font-poppins text-center">
               Overtime Work Hour
             </h3>
-            <div className="rounded dark:bg-dbackground">
-              aye
-            </div>
+            <div className="rounded dark:bg-dbackground">aye</div>
           </div>
 
           <div className="p-4 rounded-lg dark:border-bg-darkPurple">
             {/*<div className="grid md:grid-cols-2 gap-4 mb-4">*/}
-            <div className="h-full w-full flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-ddbackground">
-            </div>
+            <div className="h-full w-full flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-ddbackground"></div>
           </div>
         </div>
       </div>
