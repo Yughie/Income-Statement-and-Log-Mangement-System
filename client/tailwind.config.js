@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [ './src/**/*.{js,jsx,ts,tsx}', 'node_modules/flowbite-react/lib/esm/**/*.js'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', 'node_modules/flowbite-react/lib/esm/**/*.js'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -9,7 +9,7 @@ export default {
         'redShadow': '0px 0px 15px 8px #800020'
       },
       fontFamily: {
-        'poppins': ['Poppins',  'sans-serif']
+        'poppins': ['Poppins', 'sans-serif']
       }
     },
 
@@ -20,7 +20,8 @@ export default {
       dbgContainer2: '#44455D',  //Ligther
       darkPurple: '#450088',
       lightPurple: '#7A30C2',
-      purpleGrape: '#8736DA'
+      purpleGrape: '#8736DA',
+      tableHeader: '#161523'
     }
   },
   plugins: [

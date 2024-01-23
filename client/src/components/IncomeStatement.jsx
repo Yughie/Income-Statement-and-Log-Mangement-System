@@ -4,8 +4,33 @@ import { useState } from "react";
 import IncomeStatementDynamic from "./income-statement/IncomeStatementDynamic";
 import DailyFinancialLog from "./income-statement/DailyFinancialLog";
 import DatePicker from "./income-statement/DatePicker";
+import ViewFinancialLog from "./income-statement/ViewFinancialLog";
 
 function IncomeStatement() {
+  const [showDailyFinancialLog, setShowDailyFinancialLog] = useState(false);
+  const [showFinancialLog, setShowFinancialLog] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null); // New state for the selected date
+
+  const handleDailyFinancialLogClick = () => {
+    setShowDailyFinancialLog(true);
+    setShowFinancialLog(false); // Make sure to hide the selected log component
+  };
+
+  const handleViewLogClick = () => {
+    setShowDailyFinancialLog(false); // Make sure to hide the daily log component
+    setShowFinancialLog(true);
+  };
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleGoBackClick = () => {
+    setShowDailyFinancialLog(false);
+    setShowFinancialLog(false);
+  };
+
+
   return (
     <>
       <div className="bg-ddbackground">
@@ -206,29 +231,43 @@ function IncomeStatement() {
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <IncomeStatementDynamic />
 
-              {/*Button Functions */}
-              <div className="w-full h-full flex  border-2 border-dashed">
-                <div className=" m-auto">
-                  <div className="flex flex-col gap-4">
-                    <button className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800 dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
-                      Display Financial Log
-                    </button>
-                    <button className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
-                      Financial Log
-                    </button>
-                    <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
-                      Compare another Income Statement
-                    </button>
+              {/* Render either buttons or DailyFinancialLog based on state */}
+              {showDailyFinancialLog ? (
+                <div className="w-full">
+                  <DailyFinancialLog onGoBackClick={handleGoBackClick} />
+                </div>
+              ) : showFinancialLog ? (
+                <div className="w-full">
+                  <ViewFinancialLog onGoBackClick={handleGoBackClick} />
+                </div>
+              ) : (
+                <div className="w-full min-h-full flex  border-2 border-dashed rounded border-gray-400">
+                  <div className="m-auto">
+                    <div className="flex flex-col gap-4">
+                      <button
+                        onClick={handleDailyFinancialLogClick}
+                        className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800 dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground"
+                      >
+                        Daily Financial Log
+                      </button>
+                      <button onClick={handleViewLogClick}
+                        className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                        View a Financial Log
+                      </button>
+                      <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                        Compare Another Income Statement
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               <div className="w-full">
                 {" "}
-                <DailyFinancialLog />
+
               </div>
               <div className="w-full">
-                
+
                 <DatePicker />
               </div>
             </div>
