@@ -549,7 +549,6 @@ try {
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     return regex.test(dateString);
   }
-
   app.get('/dailyfinanciallog/selected-forms-data', (req, res) => {
     const { selectedDate } = req.query; // Use req.query to get query parameters
 
@@ -611,6 +610,53 @@ try {
       }
     });
   });
+
+  // Endpoint for fetching forms data of a whole month (for monthly income statement)
+  app.get('/dailyfinanciallog/current-month-forms-data', (req, res) => {
+    const currentMonth = new Date().toISOString().slice(0, 7); // Get current month in 'YYYY-MM' format
+
+    const sqlQuery = `
+      SELECT 
+        SUM(sales) AS total_sales,
+        SUM(return_amount) AS total_return_amount,
+        SUM(discount) AS total_discount,
+        SUM(net_sales) AS total_net_sales,
+        SUM(materials) AS total_materials,
+        SUM(labor) AS total_labor,
+        SUM(overhead) AS total_overhead,
+        SUM(total_cost_of_srvcs_provided) AS total_cost_of_services_provided,
+        SUM(gross_profit) AS total_gross_profit,
+        SUM(wages) AS total_wages,
+        SUM(repairs_maintenance) AS total_repairs_maintenance,
+        SUM(depreciation) AS total_depreciation,
+        SUM(interest) AS total_interest,
+        SUM(other_expenses) AS total_other_expenses,
+        SUM(total_operating_exp) AS total_operating_expenses,
+        SUM(operating_profit) AS total_operating_profit,
+        SUM(other_income) AS total_other_income,
+        SUM(interest_income) AS total_interest_income,
+        SUM(profit_before_taxes) AS total_profit_before_taxes,
+        SUM(tax_expense) AS total_tax_expense,
+        SUM(net_profit) AS total_net_profit
+      FROM 
+        dailyfinanciallog
+      WHERE
+        DATE_FORMAT(date, '%Y-%m') = '${currentMonth}'
+    `;
+
+    db.query(sqlQuery, (err, results) => {
+      if (err) {
+        console.error('Error fetching current month data:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        // Extract the totals from the results
+        const totals = results[0] || {};
+        res.json(totals);
+      }
+    });
+  });
+
+
 
 
 

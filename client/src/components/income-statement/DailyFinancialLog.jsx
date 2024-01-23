@@ -350,7 +350,7 @@ function DailyFinancialLog({ onGoBackClick }) {
       <div>
         <div className="flex justify-between  pb-4">
           <div>
-            <h1 className="dark:text-gray-300 text-3xl text-ddbackground font-poppins">
+            <h1 className="dark:text-gray-300 text-2xl text-ddbackground font-poppins">
               Daily Financial Log
             </h1>
             <h3 className="dark:text-gray-400 text-lg text-ddbackground font-poppins">
