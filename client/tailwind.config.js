@@ -3,7 +3,8 @@ export default {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     'node_modules/flowbite-react/lib/esm/**/*.js',
-    './node_modules/tailwind-datepicker-react/dist/**/*.js'],
+    './node_modules/tailwind-datepicker-react/dist/**/*.js',
+    './node_modules/react-tailwindcss-datepicker/dist/index.esm.js'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -24,7 +25,8 @@ export default {
       darkPurple: '#450088',
       lightPurple: '#7A30C2',
       purpleGrape: '#8736DA',
-      tableHeader: '#161523'
+      tableHeader: '#161523',
+      tableBG: "#262536"
     }
   },
   plugins: [
