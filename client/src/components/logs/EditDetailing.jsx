@@ -1,4 +1,4 @@
-const EditDetailing = ({ customerData, checkboxValues, onCheckboxChange }) => {
+const EditDetailing = ({ checkboxValues, onCheckboxChange }) => {
   const handleCheckboxChange = (category, serviceName) => {
     onCheckboxChange(category, serviceName);
     // Update the state in EditCarwash if necessary
@@ -16,9 +16,9 @@ const EditDetailing = ({ customerData, checkboxValues, onCheckboxChange }) => {
               type="checkbox"
               value=""
               className="w-4 mx-4 h-4 mb-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              checked={customerData.interiorDetailing}
+              checked={checkboxValues["Interior Detailing"]}
               onChange={() =>
-                onCheckboxChange("detailing", "interiorDetailing")
+                onCheckboxChange("detailing", "Interior Detailing")
               }
             />
             <span>INTERIOR</span>
@@ -82,9 +82,9 @@ const EditDetailing = ({ customerData, checkboxValues, onCheckboxChange }) => {
               type="checkbox"
               value=""
               className="w-4 mx-4 h-4 mb-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-              checked={customerData.exteriorDetailing}
+              checked={checkboxValues["Exterior Detailing"]}
               onChange={() =>
-                onCheckboxChange("detailing", "exteriorDetailing")
+                onCheckboxChange("detailing", "Exteriror Detailing")
               }
             />
             <span>EXTERIOR</span>

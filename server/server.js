@@ -232,7 +232,64 @@ WHERE
     res.status(400).json({ error: 'Invalid date range' });
   }
 });
+//UPDATE
 
+app.put("/update-endpoint/:customerId", (req, res) => {
+  const customerId = req.params.customerId;
+  const requestBody = req.body;
+
+  const sqlUpdateCustomer = `
+    UPDATE customers 
+    SET 
+      date = ?,
+      plateNumber = ?,
+      phoneNumber = ?,
+      vehicleDescription = ?,
+      vehicleType = ?,
+      workHour = ?,
+      vehicleSizing = ?,
+      extraCharge = ?,
+      total = ?
+    WHERE 
+      CustomerID = ?`;
+
+      console.log("SQL Query:", sqlUpdateCustomer);
+
+  const formDataCustomer = [
+    requestBody.date,
+    requestBody.plateNumber,
+    requestBody.phoneNumber,
+    requestBody.vehicleDescription,
+    requestBody.vehicleType,
+    requestBody.workHour,
+    requestBody.vehicleSizing,
+    requestBody.extraCharge,
+    requestBody.total,
+    customerId,
+  ];
+
+  console.log("DAte : "  + formDataCustomer[0]);
+  console.log("PLATE plateNumber : "  + formDataCustomer[1]);
+  console.log("PLATE phoneNumber : "  + formDataCustomer[2]);
+  console.log("PLATE vehicleDescription : "  + formDataCustomer[3]);
+  console.log("PLATE vehicleType : "  + formDataCustomer[4]);
+  console.log("PLATE workHour : "  + formDataCustomer[5]);
+  console.log("PLATE vehicleSizing : "  + formDataCustomer[6]);
+  console.log("PLATE extraCharge : "  + formDataCustomer[7]);
+  console.log("PLATE total : "  + formDataCustomer[8]);
+  console.log("ID : "  + customerId);
+
+  db.query(sqlUpdateCustomer, formDataCustomer, (err, data) => {
+    if (err) {
+      console.error("Error during customer update:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+
+    console.log("Update Result:", data);
+    return res.json({ success: true, message: "Updated Successfully" });
+  });
+
+});
 // DELETE endpoint to delete a customer
 
 app.delete('/log/:id', (req, res) => {
@@ -556,6 +613,8 @@ try {
     if (!selectedDate || !isValidDate(selectedDate)) {
       console.log("date here: ", selectedDate);
       return res.status(400).json({ error: 'Invalid date format' });
+    } else {
+      console.log("righggtt");
     }
 
     const sqlQuery = `
@@ -604,6 +663,7 @@ try {
         const formsData = results.length > 0 ? results[0] : {};
         res.json(formsData);
         console.log('Raw results from database:', results);
+        console.log('emoty');
       }
     });
   });
@@ -653,52 +713,6 @@ try {
     });
   });
 
-  // Endpoint for fetching forms data of a selected month
-  app.get('/dailyfinanciallog/selected-month-forms-data/:year-:month', (req, res) => {
-    const { year, month } = req.params;
-
-    const sqlQuery = `
-      SELECT 
-          SUM(sales) AS total_sales,
-          SUM(return_amount) AS total_return_amount,
-          SUM(discount) AS total_discount,
-          SUM(net_sales) AS total_net_sales,
-          SUM(materials) AS total_materials,
-          SUM(labor) AS total_labor,
-          SUM(overhead) AS total_overhead,
-          SUM(total_cost_of_srvcs_provided) AS total_cost_of_services_provided,
-          SUM(gross_profit) AS total_gross_profit,
-          SUM(wages) AS total_wages,
-          SUM(repairs_maintenance) AS total_repairs_maintenance,
-          SUM(depreciation) AS total_depreciation,
-          SUM(interest) AS total_interest,
-          SUM(other_expenses) AS total_other_expenses,
-          SUM(total_operating_exp) AS total_operating_expenses,
-          SUM(operating_profit) AS total_operating_profit,
-          SUM(other_income) AS total_other_income,
-          SUM(interest_income) AS total_interest_income,
-          SUM(profit_before_taxes) AS total_profit_before_taxes,
-          SUM(tax_expense) AS total_tax_expense,
-          SUM(net_profit) AS total_net_profit
-      FROM 
-          dailyfinanciallog
-      WHERE
-          DATE_FORMAT(date, '%Y-%m') = '${year}-${month}'
-  `;
-
-    db.query(sqlQuery, (err, results) => {
-      if (err) {
-        console.error('Error fetching data:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
-      } else {
-        console.log("HEY ", results);
-        console.log("year ", year);
-        console.log("month ", month);
-        const totals = results[0] || {};
-        res.json(totals);
-      }
-    });
-  });
 
 
 

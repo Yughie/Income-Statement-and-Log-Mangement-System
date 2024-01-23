@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import CurrentDate from "../CurrentDate";
 import axios from "axios";
 
-
 function DailyFinancialLog({ onGoBackClick }) {
   const [lessReturn, setLessReturn] = useState(null);
   const [lessDiscount, setLessDiscount] = useState(null);
@@ -28,7 +27,10 @@ function DailyFinancialLog({ onGoBackClick }) {
         const data = await response.json();
 
         // Calculate the sum of the "total" column
-        const sum = data.total.reduce((accumulator, totalValue) => accumulator + totalValue, 0);
+        const sum = data.total.reduce(
+          (accumulator, totalValue) => accumulator + totalValue,
+          0
+        );
 
         setTotalSales(sum);
       } catch (error) {
@@ -37,9 +39,7 @@ function DailyFinancialLog({ onGoBackClick }) {
     };
 
     fetchTotalSales();
-
   }, []);
-
 
   // for getting normal hour wage
   const [normalWage, setNormalWage] = useState(0);
@@ -47,7 +47,9 @@ function DailyFinancialLog({ onGoBackClick }) {
   useEffect(() => {
     const fetchNormalWage = async () => {
       try {
-        const response = await fetch("http://localhost:8081/customers/totalNormalWage");
+        const response = await fetch(
+          "http://localhost:8081/customers/totalNormalWage"
+        );
         const data = await response.json();
 
         const normalWageValue = data.totalNormalWage;
@@ -66,7 +68,9 @@ function DailyFinancialLog({ onGoBackClick }) {
   useEffect(() => {
     const fetchOvertimeWage = async () => {
       try {
-        const response = await fetch("http://localhost:8081/customers/totalOvertimeWage");
+        const response = await fetch(
+          "http://localhost:8081/customers/totalOvertimeWage"
+        );
         const data = await response.json();
 
         const overtimeWageValue = data.totalOvertimeWage;
@@ -84,32 +88,35 @@ function DailyFinancialLog({ onGoBackClick }) {
 
   useEffect(() => {
     const fetchFormsData = async () => {
-
-      console.log('Form component is mounting...', formsData);
+      console.log("Form component is mounting...", formsData);
       try {
-        const response = await fetch("http://localhost:8081/dailyfinanciallog/forms-data");
+        const response = await fetch(
+          "http://localhost:8081/dailyfinanciallog/forms-data"
+        );
         const data = await response.json();
-        console.log('Data from server:', data);
+        console.log("Data from server:", data);
 
         // Use the fetched data if available, otherwise use default values
-        const updatedFormsData = Object.values(data).some(value => value === undefined || value === "")
+        const updatedFormsData = Object.values(data).some(
+          (value) => value === undefined || value === ""
+        )
           ? defaultValues
           : data;
 
         setFormsData(updatedFormsData);
       } catch (error) {
-        console.error('Error fetching forms data:', error);
+        console.error("Error fetching forms data:", error);
       }
-    }; fetchFormsData();
+    };
+    fetchFormsData();
   }, []);
-
 
   // function to handle editing
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
     setIsEditing(true);
-  }
+  };
 
   const handleLessReturnChange = (e) => {
     const newReturn = parseFloat(e.target.value);
@@ -219,7 +226,6 @@ function DailyFinancialLog({ onGoBackClick }) {
     }));
   };
 
-
   const [userInput, setUserInput] = useState({
     return_amount: null,
     discount: null,
@@ -232,10 +238,10 @@ function DailyFinancialLog({ onGoBackClick }) {
     other_expenses: null,
     other_income: null,
     interest_income: null,
-    tax_expense: null
+    tax_expense: null,
   });
 
-  // handle submission 
+  // handle submission
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -246,7 +252,7 @@ function DailyFinancialLog({ onGoBackClick }) {
       return;
     }
 
-    console.log('Submitting...');
+    console.log("Submitting...");
     setIsSubmitting(true);
 
     setTimeout(() => {
@@ -260,11 +266,15 @@ function DailyFinancialLog({ onGoBackClick }) {
 
       const netSales =
         totalSales -
-        (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
+        (userInput.return_amount !== null
+          ? userInput.return_amount
+          : formsData.return_amount) -
         (userInput.discount !== null ? userInput.discount : formsData.discount);
 
       const totalCostOfSrvcsProvided =
-        (userInput.materials !== null ? userInput.materials : formsData.materials) +
+        (userInput.materials !== null
+          ? userInput.materials
+          : formsData.materials) +
         (userInput.labor !== null ? userInput.labor : formsData.labor) +
         (userInput.overhead !== null ? userInput.overhead : formsData.overhead);
 
@@ -274,55 +284,102 @@ function DailyFinancialLog({ onGoBackClick }) {
 
       const totalOperatingExp =
         totalWage +
-        (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
-        (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
-        (userInput.interest !== null ? userInput.interest : formsData.interest) +
-        (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses);
+        (userInput.repairs_maintenance !== null
+          ? userInput.repairs_maintenance
+          : formsData.repairs_maintenance) +
+        (userInput.depreciation !== null
+          ? userInput.depreciation
+          : formsData.depreciation) +
+        (userInput.interest !== null
+          ? userInput.interest
+          : formsData.interest) +
+        (userInput.other_expenses !== null
+          ? userInput.other_expenses
+          : formsData.other_expenses);
 
       const operatingPrft = grossPrft - totalOperatingExp;
 
       const prftBeforeTaxes =
         operatingPrft +
-        (userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
-        (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income);
+        (userInput.other_income !== null
+          ? userInput.other_income
+          : formsData.other_income) +
+        (userInput.interest_income !== null
+          ? userInput.interest_income
+          : formsData.interest_income);
 
       const netProfit =
-        (netSales +
-          (userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
-          (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income)) -
+        netSales +
+        (userInput.other_income !== null
+          ? userInput.other_income
+          : formsData.other_income) +
+        (userInput.interest_income !== null
+          ? userInput.interest_income
+          : formsData.interest_income) -
         totalCostOfSrvcsProvided -
         totalOperatingExp -
-        (userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense);
-
+        (userInput.tax_expense !== null
+          ? userInput.tax_expense
+          : formsData.tax_expense);
 
       const formData = {
         date: currentDate,
         sales: totalSales,
-        return_amount: userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount,
-        discount: userInput.discount !== null ? userInput.discount : formsData.discount,
+        return_amount:
+          userInput.return_amount !== null
+            ? userInput.return_amount
+            : formsData.return_amount,
+        discount:
+          userInput.discount !== null ? userInput.discount : formsData.discount,
         net_sales: netSales,
-        materials: userInput.materials !== null ? userInput.materials : formsData.materials,
+        materials:
+          userInput.materials !== null
+            ? userInput.materials
+            : formsData.materials,
         labor: userInput.labor !== null ? userInput.labor : formsData.labor,
-        overhead: userInput.overhead !== null ? userInput.overhead : formsData.overhead,
+        overhead:
+          userInput.overhead !== null ? userInput.overhead : formsData.overhead,
         total_cost_of_srvcs_provided: totalCostOfSrvcsProvided,
         gross_profit: grossPrft,
         wages: totalWage,
-        repairs_maintenance: userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance,
-        depreciation: userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation,
-        interest: userInput.interest !== null ? userInput.interest : formsData.interest,
-        other_expenses: userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses,
+        repairs_maintenance:
+          userInput.repairs_maintenance !== null
+            ? userInput.repairs_maintenance
+            : formsData.repairs_maintenance,
+        depreciation:
+          userInput.depreciation !== null
+            ? userInput.depreciation
+            : formsData.depreciation,
+        interest:
+          userInput.interest !== null ? userInput.interest : formsData.interest,
+        other_expenses:
+          userInput.other_expenses !== null
+            ? userInput.other_expenses
+            : formsData.other_expenses,
         total_operating_exp: totalOperatingExp,
         operating_profit: operatingPrft,
-        other_income: userInput.other_income !== null ? userInput.other_income : formsData.other_income,
-        interest_income: userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income,
+        other_income:
+          userInput.other_income !== null
+            ? userInput.other_income
+            : formsData.other_income,
+        interest_income:
+          userInput.interest_income !== null
+            ? userInput.interest_income
+            : formsData.interest_income,
         profit_before_taxes: prftBeforeTaxes,
-        tax_expense: userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense,
-        net_profit: netProfit
+        tax_expense:
+          userInput.tax_expense !== null
+            ? userInput.tax_expense
+            : formsData.tax_expense,
+        net_profit: netProfit,
       };
 
       console.log("Form Datasss:", formData);
 
-      const response = await axios.post("http://localhost:8081/income-statement", formData);
+      const response = await axios.post(
+        "http://localhost:8081/income-statement",
+        formData
+      );
 
       // Check if the response contains expected data
       if (response.data && response.data.success) {
@@ -331,19 +388,32 @@ function DailyFinancialLog({ onGoBackClick }) {
         console.error("Error submitting form:", response.data);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
     }
   };
 
-
   const totalWage = normalWage + overtimeWage;
-  const netSales = formsData.sales - formsData.return_amount - formsData.discount;
-  const totalCostOfSrvcsProvided = formsData.materials + formsData.labor + formsData.overhead;
+  const netSales =
+    formsData.sales - formsData.return_amount - formsData.discount;
+  const totalCostOfSrvcsProvided =
+    formsData.materials + formsData.labor + formsData.overhead;
   const grossPrft = netSales - totalCostOfSrvcsProvided;
-  const totalOperatingExp = totalWage + formsData.repairs_maintenance + formsData.depreciation + formsData.interest + formsData.other_expenses;
+  const totalOperatingExp =
+    totalWage +
+    formsData.repairs_maintenance +
+    formsData.depreciation +
+    formsData.interest +
+    formsData.other_expenses;
   const operatingPrft = grossPrft - totalOperatingExp;
-  const prftBeforeTaxes = operatingPrft + formsData.other_income + formsData.interest_income;
-  const netProfit = (netSales + formsData.other_income + formsData.interest_income) - totalCostOfSrvcsProvided - totalOperatingExp - formsData.tax_expense;
+  const prftBeforeTaxes =
+    operatingPrft + formsData.other_income + formsData.interest_income;
+  const netProfit =
+    netSales +
+    formsData.other_income +
+    formsData.interest_income -
+    totalCostOfSrvcsProvided -
+    totalOperatingExp -
+    formsData.tax_expense;
 
   return (
     <>
@@ -357,7 +427,6 @@ function DailyFinancialLog({ onGoBackClick }) {
               <CurrentDate />
             </h3>
           </div>
-
         </div>
         <div className="w-full  bg-gray-200 dark:bg-dbackground rounded-lg mb-4 ">
           <form onSubmit={handleSubmit}>
@@ -442,9 +511,15 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="net-sales-bar"
-                value={totalSales -
-                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
-                  (userInput.discount !== null ? userInput.discount : formsData.discount)}
+                value={
+                  totalSales -
+                  (userInput.return_amount !== null
+                    ? userInput.return_amount
+                    : formsData.return_amount) -
+                  (userInput.discount !== null
+                    ? userInput.discount
+                    : formsData.discount)
+                }
                 className="text-right block w-full p-2  text-sm text-gray-900 borderbg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-tableBG border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={netSales}
                 disabled
@@ -533,9 +608,17 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="goods-sold-bar"
-                value={(userInput.materials !== null ? userInput.materials : formsData.materials) +
-                  (userInput.labor !== null ? userInput.labor : formsData.labor) +
-                  (userInput.overhead !== null ? userInput.overhead : formsData.overhead)}
+                value={
+                  (userInput.materials !== null
+                    ? userInput.materials
+                    : formsData.materials) +
+                  (userInput.labor !== null
+                    ? userInput.labor
+                    : formsData.labor) +
+                  (userInput.overhead !== null
+                    ? userInput.overhead
+                    : formsData.overhead)
+                }
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-tableBG border-2 border-purpleGrape dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.total_cost_of_srvcs_provided}
                 disabled
@@ -553,11 +636,24 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="gross-profit-bar"
-                value={(totalSales -
-                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
-                  (userInput.discount !== null ? userInput.discount : formsData.discount)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
-                    (userInput.labor !== null ? userInput.labor : formsData.labor) +
-                    (userInput.overhead !== null ? userInput.overhead : formsData.overhead))}
+                value={
+                  totalSales -
+                  (userInput.return_amount !== null
+                    ? userInput.return_amount
+                    : formsData.return_amount) -
+                  (userInput.discount !== null
+                    ? userInput.discount
+                    : formsData.discount) -
+                  ((userInput.materials !== null
+                    ? userInput.materials
+                    : formsData.materials) +
+                    (userInput.labor !== null
+                      ? userInput.labor
+                      : formsData.labor) +
+                    (userInput.overhead !== null
+                      ? userInput.overhead
+                      : formsData.overhead))
+                }
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-tableBG border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.gross_profit}
                 disabled
@@ -681,11 +777,21 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="total-operating-bar"
-                value={totalWage +
-                  (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
-                  (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
-                  (userInput.interest !== null ? userInput.interest : formsData.interest) +
-                  (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses)}
+                value={
+                  totalWage +
+                  (userInput.repairs_maintenance !== null
+                    ? userInput.repairs_maintenance
+                    : formsData.repairs_maintenance) +
+                  (userInput.depreciation !== null
+                    ? userInput.depreciation
+                    : formsData.depreciation) +
+                  (userInput.interest !== null
+                    ? userInput.interest
+                    : formsData.interest) +
+                  (userInput.other_expenses !== null
+                    ? userInput.other_expenses
+                    : formsData.other_expenses)
+                }
                 className="text-right block w-full p-2  text-sm text-gray-900 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-tableBG border-2 border-purpleGrape  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.total_operating_exp}
                 disabled
@@ -703,15 +809,37 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="operating-profit-bar"
-                value={((totalSales -
-                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
-                  (userInput.discount !== null ? userInput.discount : formsData.discount)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
-                    (userInput.labor !== null ? userInput.labor : formsData.labor) +
-                    (userInput.overhead !== null ? userInput.overhead : formsData.overhead))) - (totalWage +
-                      (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
-                      (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
-                      (userInput.interest !== null ? userInput.interest : formsData.interest) +
-                      (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses))}
+                value={
+                  totalSales -
+                  (userInput.return_amount !== null
+                    ? userInput.return_amount
+                    : formsData.return_amount) -
+                  (userInput.discount !== null
+                    ? userInput.discount
+                    : formsData.discount) -
+                  ((userInput.materials !== null
+                    ? userInput.materials
+                    : formsData.materials) +
+                    (userInput.labor !== null
+                      ? userInput.labor
+                      : formsData.labor) +
+                    (userInput.overhead !== null
+                      ? userInput.overhead
+                      : formsData.overhead)) -
+                  (totalWage +
+                    (userInput.repairs_maintenance !== null
+                      ? userInput.repairs_maintenance
+                      : formsData.repairs_maintenance) +
+                    (userInput.depreciation !== null
+                      ? userInput.depreciation
+                      : formsData.depreciation) +
+                    (userInput.interest !== null
+                      ? userInput.interest
+                      : formsData.interest) +
+                    (userInput.other_expenses !== null
+                      ? userInput.other_expenses
+                      : formsData.other_expenses))
+                }
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-tableHeader dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.operating_profit}
                 disabled
@@ -765,16 +893,43 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="before-taxes-bar"
-                value={(((totalSales -
-                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
-                  (userInput.discount !== null ? userInput.discount : formsData.discount)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
-                    (userInput.labor !== null ? userInput.labor : formsData.labor) +
-                    (userInput.overhead !== null ? userInput.overhead : formsData.overhead))) - (totalWage +
-                      (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
-                      (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
-                      (userInput.interest !== null ? userInput.interest : formsData.interest) +
-                      (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses))) + ((userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
-                        (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income))}
+                value={
+                  totalSales -
+                  (userInput.return_amount !== null
+                    ? userInput.return_amount
+                    : formsData.return_amount) -
+                  (userInput.discount !== null
+                    ? userInput.discount
+                    : formsData.discount) -
+                  ((userInput.materials !== null
+                    ? userInput.materials
+                    : formsData.materials) +
+                    (userInput.labor !== null
+                      ? userInput.labor
+                      : formsData.labor) +
+                    (userInput.overhead !== null
+                      ? userInput.overhead
+                      : formsData.overhead)) -
+                  (totalWage +
+                    (userInput.repairs_maintenance !== null
+                      ? userInput.repairs_maintenance
+                      : formsData.repairs_maintenance) +
+                    (userInput.depreciation !== null
+                      ? userInput.depreciation
+                      : formsData.depreciation) +
+                    (userInput.interest !== null
+                      ? userInput.interest
+                      : formsData.interest) +
+                    (userInput.other_expenses !== null
+                      ? userInput.other_expenses
+                      : formsData.other_expenses)) +
+                  ((userInput.other_income !== null
+                    ? userInput.other_income
+                    : formsData.other_income) +
+                    (userInput.interest_income !== null
+                      ? userInput.interest_income
+                      : formsData.interest_income))
+                }
                 className="text-right block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-gray-400 focus:ring-blue-500 focus:border-blue-500 dark:bg-tableHeader dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.profit_before_taxes}
                 disabled
@@ -810,16 +965,46 @@ function DailyFinancialLog({ onGoBackClick }) {
               <input
                 type="text"
                 id="net-profit-bar"
-                value={(totalSales -
-                  (userInput.return_amount !== null ? userInput.return_amount : formsData.return_amount) -
-                  (userInput.discount !== null ? userInput.discount : formsData.discount)) + ((userInput.other_income !== null ? userInput.other_income : formsData.other_income) +
-                    (userInput.interest_income !== null ? userInput.interest_income : formsData.interest_income)) - ((userInput.materials !== null ? userInput.materials : formsData.materials) +
-                      (userInput.labor !== null ? userInput.labor : formsData.labor) +
-                      (userInput.overhead !== null ? userInput.overhead : formsData.overhead)) - (totalWage +
-                        (userInput.repairs_maintenance !== null ? userInput.repairs_maintenance : formsData.repairs_maintenance) +
-                        (userInput.depreciation !== null ? userInput.depreciation : formsData.depreciation) +
-                        (userInput.interest !== null ? userInput.interest : formsData.interest) +
-                        (userInput.other_expenses !== null ? userInput.other_expenses : formsData.other_expenses)) - (userInput.tax_expense !== null ? userInput.tax_expense : formsData.tax_expense)}
+                value={
+                  totalSales -
+                  (userInput.return_amount !== null
+                    ? userInput.return_amount
+                    : formsData.return_amount) -
+                  (userInput.discount !== null
+                    ? userInput.discount
+                    : formsData.discount) +
+                  ((userInput.other_income !== null
+                    ? userInput.other_income
+                    : formsData.other_income) +
+                    (userInput.interest_income !== null
+                      ? userInput.interest_income
+                      : formsData.interest_income)) -
+                  ((userInput.materials !== null
+                    ? userInput.materials
+                    : formsData.materials) +
+                    (userInput.labor !== null
+                      ? userInput.labor
+                      : formsData.labor) +
+                    (userInput.overhead !== null
+                      ? userInput.overhead
+                      : formsData.overhead)) -
+                  (totalWage +
+                    (userInput.repairs_maintenance !== null
+                      ? userInput.repairs_maintenance
+                      : formsData.repairs_maintenance) +
+                    (userInput.depreciation !== null
+                      ? userInput.depreciation
+                      : formsData.depreciation) +
+                    (userInput.interest !== null
+                      ? userInput.interest
+                      : formsData.interest) +
+                    (userInput.other_expenses !== null
+                      ? userInput.other_expenses
+                      : formsData.other_expenses)) -
+                  (userInput.tax_expense !== null
+                    ? userInput.tax_expense
+                    : formsData.tax_expense)
+                }
                 className="text-right rounded-b-lg block w-full p-2  text-sm text-gray-900 border border-gray-300 bg-purpleGrape focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder={formsData.net_profit}
                 disabled
@@ -834,36 +1019,39 @@ function DailyFinancialLog({ onGoBackClick }) {
               </div>
             ) : (
               <>
-                <div className="flex items-center justify-center mb-4 w-full bg-ddbackground">
+                <div className="flex items-center justify-center mb-4 w-full bg-white dark:bg-ddbackground">
                   <button
                     type="button"
                     onClick={onGoBackClick}
-                    className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                    className="inline-block text-center rounded border bg-gray-400 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                     hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-tableBG"
                   >
                     Back to Menu
                   </button>
-                  {!isEditing && <button
-                    type="submit"
-                    className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                  {!isEditing && (
+                    <button
+                      type="submit"
+                      className="w-32 text-center rounded border bg-gray-400 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-tableBG"
-                    onClick={handleEdit}
-                  >
-                    Edit
-                  </button>}
+                      onClick={handleEdit}
+                    >
+                      Edit
+                    </button>
+                  )}
 
-                  {isEditing && <button
-                    type="submit"
-                    className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
+                  {isEditing && (
+                    <button
+                      type="submit"
+                      className="w-32 text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold
                 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-tableBG"
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </button>}
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </button>
+                  )}
                 </div>
               </>
             )}
-
           </form>
         </div>
       </div>

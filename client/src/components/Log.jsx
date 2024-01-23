@@ -27,7 +27,7 @@ function Log() {
 
   return (
     <>
-      <div className="bg-ddbackground">
+      <div className="dark:bg-ddbackground bg-gray-100">
         {/* Navigator open/close button */}
         <button
           data-drawer-target="logo-sidebar"
@@ -184,16 +184,14 @@ function Log() {
                       fill="7A30C2"
                     />
                   </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">
-                    Wages
-                  </span>
+                  <span className="flex-1 ms-3 whitespace-nowrap">Wages</span>
                 </a>
               </li>
             </ul>
 
-            <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto items-center items-end py-4 pr-4">
+            <span className="flex transition duration-300 ease-in-out absolute bottom-0 min-w-full h-auto  items-end py-4 pr-4">
               <a
-                href="#"
+                href="/"
                 className="flex transition duration-300 ease-in-out w-full items-center p-4  text-white rounded-lg mr-4 dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
               >
                 <svg
