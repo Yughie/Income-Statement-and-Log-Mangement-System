@@ -9,17 +9,14 @@ function IncomeStatementDynamic() {
   useEffect(() => {
     const fetchCurrentMonthIncomeStatement = async () => {
       try {
-        // Make a GET request to your modified API endpoint
         const response = await axios.get('http://localhost:8081/dailyfinanciallog/current-month-forms-data');
 
-        // Update state with the fetched data
         setCurrentMonthIncomeStatement(response.data);
       } catch (error) {
         console.error('Error fetching monthly income statement:', error);
       }
     };
 
-    // Call the fetch function
     fetchCurrentMonthIncomeStatement();
   }, []); // Empty dependency array to run the effect only once when the component mounts
   return (
