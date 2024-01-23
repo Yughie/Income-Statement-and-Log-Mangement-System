@@ -20,7 +20,6 @@ function ViewFinancialLog({ onGoBackClick }) {
         console.log('Selected Date (before formatting):', selectedDate);
         setSelectedDate(formatDate(selectedDate)); // Format the selected date
         console.log('Selected Date (after formatting):', selectedDate);
-
     };
 
     useEffect(() => {
@@ -31,7 +30,7 @@ function ViewFinancialLog({ onGoBackClick }) {
                     const data = await response.json();
 
                     console.log('Fetching data for date:', selectedDate);
-                    console.log('Data from server:', data);
+                    console.log('Data from server:', response.data);
                     setFinancialLogData(data);  // Corrected from setFormsData
                 }
             } catch (error) {
@@ -44,7 +43,7 @@ function ViewFinancialLog({ onGoBackClick }) {
 
     return (
         <>
-            <div className="w-full h-full flex flex-col items-center justify-center dark:ddbackground rounded-lg pt-1">
+            <div className="w-full h-full flex flex-col items-center justify-center dark:ddbackground rounded-lg">
                 <div className="w-full flex flex-col items-center justify-center bg-ddbackground">
                     <p className="dark:text-gray-100 text-sm text-center font-poppins mb-1">
                         Select the date of the financial log you want to view.

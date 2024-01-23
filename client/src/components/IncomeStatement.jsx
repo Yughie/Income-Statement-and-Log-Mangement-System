@@ -3,31 +3,37 @@ import logo from "../assets/logo.png";
 import { useState } from "react";
 import IncomeStatementDynamic from "./income-statement/IncomeStatementDynamic";
 import DailyFinancialLog from "./income-statement/DailyFinancialLog";
+import CompareIncomeStatement from "./income-statement/CompareIncomeStatement";
 import DatePicker from "./income-statement/DatePicker";
 import ViewFinancialLog from "./income-statement/ViewFinancialLog";
 
 function IncomeStatement() {
   const [showDailyFinancialLog, setShowDailyFinancialLog] = useState(false);
   const [showFinancialLog, setShowFinancialLog] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null); // New state for the selected date
+  const [showCompareIncomeStatement, setShowCompareIncomeStatement] = useState(false);
 
   const handleDailyFinancialLogClick = () => {
     setShowDailyFinancialLog(true);
-    setShowFinancialLog(false); // Make sure to hide the selected log component
+    setShowFinancialLog(false);
+    setShowCompareIncomeStatement(false);
   };
 
   const handleViewLogClick = () => {
-    setShowDailyFinancialLog(false); // Make sure to hide the daily log component
     setShowFinancialLog(true);
+    setShowDailyFinancialLog(false);
+    setShowCompareIncomeStatement(false);
   };
 
-  const handleDateSelect = (date) => {
-    setSelectedDate(date);
+  const handleCompareIncomeStatementClick = () => {
+    setShowCompareIncomeStatement(true);
+    setShowFinancialLog(false);
+    setShowDailyFinancialLog(false);
   };
 
   const handleGoBackClick = () => {
     setShowDailyFinancialLog(false);
     setShowFinancialLog(false);
+    setShowCompareIncomeStatement(false);
   };
 
 
@@ -240,6 +246,10 @@ function IncomeStatement() {
                 <div className="w-full">
                   <ViewFinancialLog onGoBackClick={handleGoBackClick} />
                 </div>
+              ) : showCompareIncomeStatement ? (
+                <div className="w-full">
+                  <CompareIncomeStatement onGoBackClick={handleGoBackClick} />
+                </div>
               ) : (
                 <div className="w-full min-h-full flex  border-2 border-dashed rounded border-gray-400">
                   <div className="m-auto">
@@ -254,7 +264,8 @@ function IncomeStatement() {
                         className=" flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg  p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
                         View a Financial Log
                       </button>
-                      <button className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
+                      <button onClick={handleCompareIncomeStatementClick}
+                        className="flex justify-center bg-gray-50 border border-gray-300 hover:shadow-redShadow text-sm rounded-lg p-2.5  dark:bg-gray-700 dark:hover:bg-red-800  dark:border-gray-600  dark:placeholder-gray-400  dark:text-white text-ddbackground">
                         Compare Another Income Statement
                       </button>
                     </div>
