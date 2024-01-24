@@ -285,7 +285,6 @@ const EditModal = ({ customerData, onClose }) => {
   };
 
   const handleUpdate = () => {
-    // Assuming you have an API endpoint for updating data
     console.log(
       "Updating data for customer with ID:",
       editedCustomerData.CustomerID

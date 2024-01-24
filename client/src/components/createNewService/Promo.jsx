@@ -20,8 +20,9 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
         <h1 className="mb-4 font-bold text-xl dark:text-gray-300 text-ddbackground text-center">
           <label htmlFor="promo">Promo</label>
         </h1>
-        <div className="flex flex-col justify-between  text-gray-900 dark:text-gray-300 max-h-80 overflow-auto pb-4">
-          <h3 className="mb-2 font-bold text-gray-900 text-lg dark:text-white">
+        <div className="flex flex-col justify-between  text-gray-900 dark:text-gray-300 max-h-80 overflow-auto pb-4
+        ">
+          <h3 className="mb-2 font-bold text-gray-900 text-lg dark:text-white w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-dbgContainer1 dark:border-dbgContainer2 dark:text-white p-4">
             <input
               id="promo"
               type="checkbox"
@@ -32,8 +33,8 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
             />
             <label htmlFor="promo">PROMO PAKCAGE</label>
           </h3>
-          <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-dbgContainer1 dark:border-dbgContainer2 dark:text-white">
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
+          <ul className=" text-gray-900 dark:text-white">
+            <li className="w-full   dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="promo"
@@ -43,7 +44,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
+            <li className="w-full rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="promo"
@@ -53,7 +54,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
+            <li className="w-full  border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="promo"
@@ -63,7 +64,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
+            <li className="w-full border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="promo"
@@ -73,7 +74,7 @@ const Promo = ({ checkboxValues, onCheckboxChange }) => {
                 </label>
               </div>
             </li>
-            <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-dbgContainer2">
+            <li className="w-full border-gray-200 rounded-t-lg dark:border-dbgContainer2">
               <div className="flex items-center ps-3">
                 <label
                   htmlFor="promo"

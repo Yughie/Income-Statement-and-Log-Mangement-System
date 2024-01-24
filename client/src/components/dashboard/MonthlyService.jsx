@@ -205,7 +205,7 @@ const MonthlyService = () => {
         plotOptions: {
           pie: {
             donut: {
-              size: "70%",
+              size: "60%",
               background: "transparent",
               labels: {
                 show: true,
