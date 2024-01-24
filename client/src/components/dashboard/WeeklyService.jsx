@@ -22,7 +22,7 @@ function WeeklyService() {
       .then((response) => response.json())
       .then((data) => {
         const logsDataInClientTime = convertToClientTimeZone(data);
-        console.log("Fetched logsData:", logsDataInClientTime);
+        console.log("Fetched week logsData:", logsDataInClientTime);
         setLogsData(logsDataInClientTime);
       })
       .catch((error) => console.error("Error fetching data:", error));
@@ -96,6 +96,7 @@ function WeeklyService() {
             Hover to see total services on that day
           </h1>
         </div>
+        {/*}
         <div>
           <h1 className="dark:text-gray-500 text-md text-ddbackground font-poppins">
             Last 7 days
@@ -103,7 +104,7 @@ function WeeklyService() {
           <h1 className="dark:text-gray-300 text-xl text-ddbackground font-poppins">
             P99,999
           </h1>
-        </div>
+  </div> */}
       </div>
 
       <ResponsiveContainer width="100%" height="100%">
