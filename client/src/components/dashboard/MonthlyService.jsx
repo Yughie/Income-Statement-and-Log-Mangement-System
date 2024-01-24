@@ -254,12 +254,14 @@ const MonthlyService = () => {
 
   return (
     <>
+      
       <h1 className="dark:text-gray-300 text-xl text-ddbackground font-poppins">
         Monthly Services
       </h1>
+      {/*
       <h1 className="dark:text-gray-500 text-md text-ddbackground font-poppins mb-4">
         Average total sales +99%
-      </h1>
+  </h1>*/}
 
       <div id="chart" ref={chartRef}>
         {/* The chart will be rendered here */}

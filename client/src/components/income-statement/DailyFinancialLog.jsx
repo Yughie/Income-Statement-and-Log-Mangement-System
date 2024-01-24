@@ -257,7 +257,7 @@ function DailyFinancialLog({ onGoBackClick }) {
 
     setTimeout(() => {
       setIsSubmitting(false);
-    }, 500); // Adjust the duration as needed
+    }, 1500); // Adjust the duration as needed
 
     try {
       const rawCurrentDate = new Date();
@@ -1013,7 +1013,7 @@ function DailyFinancialLog({ onGoBackClick }) {
 
             {isSubmitting ? (
               <div className="flex justify-center items-center">
-                <div className="inline-block text-center rounded bg-gray-50 m-5 hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:text-white dark:hover:bg-purpleGrape dark:border-gray-600 dark:bg-tableBG">
+                <div className="inline-block text-center rounded bg-gray-50 m-5  text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold dark:border-gray-600 dark:bg-tableBG">
                   Submitting...
                 </div>
               </div>

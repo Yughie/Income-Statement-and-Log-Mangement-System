@@ -8,6 +8,7 @@ import CreateDatePicker from "./createNewService/CreateDatePicker";
 import axios from "axios";
 
 function CreateNewService() {
+  //const [isSubmitted, setIsSubmitted] = useState({});
   const [date, setDate] = useState("");
   const [plateNumber, setPlateNumber] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -226,9 +227,24 @@ function CreateNewService() {
       };
     });
   };
+ 
+  {/*}
+  const handleMessage = (e) => {
+    setIsSubmitted(true)
+
+    console.log("submitted");
+    setIsSubmitted(true);
+
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 1500)
+  }
+  */}
+
   // Function to handle the overall form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formData = {
       date,
       plateNumber,
@@ -389,26 +405,6 @@ function CreateNewService() {
                   <span className="flex-1 ms-3 whitespace-nowrap">
                     Income Statement
                   </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="./wages"
-                  className="flex transition duration-300 ease-in-out items-center p-4 py-4 text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-darkPurple hover:shadow-shadowPurple group"
-                >
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 31 24"
-                  >
-                    <path
-                      d="M20.15 15.5H22.475C22.8625 15.5 23.25 15.1125 23.25 14.725V6.5875C23.25 6.2 22.8625 5.8125 22.475 5.8125H20.15C19.7625 5.8125 19.375 6.2 19.375 6.5875V14.725C19.375 15.1125 19.7625 15.5 20.15 15.5ZM25.9625 15.5H28.2875C28.675 15.5 29.0625 15.1125 29.0625 14.725V0.775C29.0625 0.3875 28.675 0 28.2875 0H25.9625C25.575 0 25.1875 0.3875 25.1875 0.775V14.725C25.1875 15.1125 25.575 15.5 25.9625 15.5ZM8.525 15.5H10.85C11.2375 15.5 11.625 15.1125 11.625 14.725V10.4625C11.625 10.075 11.2375 9.6875 10.85 9.6875H8.525C8.1375 9.6875 7.75 10.075 7.75 10.4625V14.725C7.75 15.1125 8.1375 15.5 8.525 15.5ZM14.3375 15.5H16.6625C17.05 15.5 17.4375 15.1125 17.4375 14.725V2.7125C17.4375 2.325 17.05 1.9375 16.6625 1.9375H14.3375C13.95 1.9375 13.5625 2.325 13.5625 2.7125V14.725C13.5625 15.1125 13.95 15.5 14.3375 15.5ZM30.0312 19.375H3.875V0.96875C3.875 0.433516 3.44148 0 2.90625 0H0.96875C0.433516 0 0 0.433516 0 0.96875V21.3125C0 22.3824 0.867637 23.25 1.9375 23.25H30.0312C30.5665 23.25 31 22.8165 31 22.2812V20.3438C31 19.8085 30.5665 19.375 30.0312 19.375Z"
-                      fill="7A30C2"
-                    />
-                  </svg>
-                  <span className="flex-1 ms-3 whitespace-nowrap">Wages</span>
                 </a>
               </li>
             </ul>
@@ -645,6 +641,17 @@ function CreateNewService() {
                     <label htmlFor="vehicle-description">Total</label>
                   </h1>
 
+                {/*
+                  {isSubmitted ? (
+                    <div className="flex justify-center items-center">
+                    <div className="inline-block text-center rounded bg-gray-50 m-5  text-ddbackground dark:text-gray-300 text-sm focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 transition-all duration-200 ease-in-out font-bold dark:border-gray-600 dark:bg-tableBG">
+                      Submitting...
+                    </div>
+                  </div>
+                  ) : (
+                  
+                  )} */}
+
                   <div className="flex">
                     <div className="w-full">
                       <input
@@ -658,6 +665,7 @@ function CreateNewService() {
                     </div>
                     <div className="mb-4 w-40">
                       <button
+                        // onClick={handleMessage}
                         type="submit"
                         className="w-32 text-center bg-gray-50 border border-gray-300  rounded-r-lg hover:shadow-shadowPurple text-ddbackground dark:text-gray-300 text-sm  focus:ring-purpleGrape focus:border-purpleGrape p-2.5 px-6 hover:text-white hover:bg-purpleGrape hover:border-purpleGrape dark:hover:bg-purpleGrape dark:bg-dbgContainer1  dark:border-dbgContainer1 font-bold"
                       >
@@ -665,6 +673,8 @@ function CreateNewService() {
                       </button>
                     </div>
                   </div>
+
+                  
                 </div>
               </div>
             </div>
